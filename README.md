@@ -1,9 +1,9 @@
 # keras-helloworld
-Dummy use of the keras lib.
+Dummy use of the [Keras] lib.
 
 # Installation
-Keras works with different ML libs, I've choosed `TensorFlow`.
-There are some errors on Ubuntu 16.04 with certain versions of `TensorFlow`, be sure of select the correct versions of the libraries.
+[Keras] works with different ML libs, I've choosed [TensorFlow].
+There are some errors on Ubuntu 16.04 with certain versions of [TensorFlow], be sure of select the correct versions of the libraries.
 I prefer to use `python 3` but it works also with `python 2.7`.
 
 ```sh
@@ -28,3 +28,9 @@ Check the installation with:
 ```sh
 python -c "import tensorflow as tf; print(tf.__version__)"
 ```
+
+
+[//]: # Links used in the body
+
+   [TensorFlow]: <https://tensorflow.org>
+   [Keras]: <https://keras.io>
