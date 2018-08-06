@@ -2,7 +2,7 @@
 Dummy use of the [Keras] lib.
 
 # Installation
-[Keras] works with different ML libs, I've choosed [TensorFlow].
+[Keras] works with different ML libs, I've chosen [TensorFlow].
 There are some errors on Ubuntu 16.04 with certain versions of [TensorFlow], be sure of select the correct versions of the libraries.
 I prefer to use `python 3` but it works also with `python 2.7`.
 
