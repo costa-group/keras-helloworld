@@ -29,8 +29,7 @@ Check the installation with:
 python -c "import tensorflow as tf; print(tf.__version__)"
 ```
 
-
-[//]: # Links used in the body
+[//]: # (Links used in the body)
 
    [TensorFlow]: <https://tensorflow.org>
    [Keras]: <https://keras.io>
