@@ -44,9 +44,9 @@ def get_stats_cfg(cfg):
 
 
 def get_stats_file(file, pe_times=0):
-    from genericparser import GenericParser
+    import genericparser
     from partialevaluation import partialevaluate
-    cfg = GenericParser().parse(file)
+    cfg = genericparser.parse(file)
     pe_cfgs = []
     pe_cfgs.append(cfg)
     for i in range(1,pe_times+1):
