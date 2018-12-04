@@ -1,5 +1,5 @@
 # Algorithm 1
--------------
+
 
 It will require "ML LIBRARY"???? (TO DO).
 
@@ -29,11 +29,11 @@ to run the tool:
 python3 main.py -f [FILES] -v [VERBOSITY LEVEL]
 ```
 
-
+-------------
+-------------
 
 
 # keras-helloworld
-------------------
 Dummy use of the [Keras] lib.
 
 ## Installation
