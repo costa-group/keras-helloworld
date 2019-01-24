@@ -11,7 +11,9 @@ import sys
 _name = "alg1"
 _version = "v0.0.0dev"
 verbosity = 0
-def printif(ver,*kwargs):
+
+
+def printif(ver, *kwargs):
     if verbosity < ver:
         return
     msg = ""
@@ -23,8 +25,9 @@ def printif(ver,*kwargs):
         msg += str(m)
     print(msg)
 
+
 def setArgumentParser():
-    desc = _name+": test script for Non-Termination algorithm with ML."
+    desc = _name + ": test script for Non-Termination algorithm with ML."
     argParser = argparse.ArgumentParser(
         description=desc,
         formatter_class=argparse.RawTextHelpFormatter)
@@ -40,11 +43,13 @@ def setArgumentParser():
                            help="File to be analysed.")
     return argParser
 
+
 def extractname(filename):
     f = os.path.split(filename)
     b = os.path.split(f[0])
     c = os.path.splitext(f[1])
     return os.path.join(b[1], c[0])
+
 
 def launch(config):
     files = config["files"]
@@ -54,9 +59,11 @@ def launch(config):
         config["name"] = extractname(files[i])
         launch_file(config, files[i])
 
+
 def parse_file(f):
     import genericparser
     return genericparser.parse(f)
+
 
 def launch_file(config, f):
     try:
@@ -70,6 +77,7 @@ def launch_file(config, f):
     pprint(analyse(config, cfg))
     return True
 
+
 def analyse(config, cfg):
     max_sccd = config["scc_depth"]
     CFGs = [(cfg, max_sccd)]
@@ -81,7 +89,7 @@ def analyse(config, cfg):
         current_cfg, sccd = CFGs.pop(0)
         for t in current_cfg.get_edges():
             if t["polyhedron"].is_empty():
-                printif(2, "Transition ("+t["name"]+") removed because it is empty.")
+                printif(2, "Transition (" + t["name"] + ") removed because it is empty.")
                 current_cfg.remove_edge(t["source"], t["target"], t["name"])
         if len(current_cfg.get_edges()) == 0:
             printif(2, "This cfg has not transitions.")
@@ -107,18 +115,18 @@ def analyse(config, cfg):
                 maybe_sccs.append(R)
         # end for
     # end while
-    status="maybe"
+    status = "maybe"
     if len(nonterminating_sccs) > 0:
-        status="no"
+        status = "no"
     elif len(maybe_sccs) > 0:
-        status="maybe"
+        status = "maybe"
     else:
-        status="yes"
-    response = {"status":status,
-                "terminate":terminating_sccs,
-                "nonterminate":nonterminating_sccs,
-                "unknown_sccs":maybe_sccs,
-                "graph":cfg}
+        status = "yes"
+    response = {"status": status,
+                "terminate": terminating_sccs,
+                "nonterminate": nonterminating_sccs,
+                "unknown_sccs": maybe_sccs,
+                "graph": cfg}
     return response
 
 

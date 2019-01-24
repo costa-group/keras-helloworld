@@ -3,7 +3,7 @@
 	initnode: node_init,
 	nodes: {
 	    node_init: {    },
-	    node_while: { fancy_prop: [z >= 0] },
+	    node_while: { fancy_prop: [x >= 0] },
       	node_exit: { fancy_prop: [x == -1] },
   },
 	transitions: [
