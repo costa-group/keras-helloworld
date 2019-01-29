@@ -1,27 +1,27 @@
 {
-	vars: [x, y, z],
+	vars: [x, y],
 	initnode: node_init,
 	nodes: {
 	    node_init: {    },
-	    node_while: { fancy_prop: [x >= 0] },
-      	node_exit: { fancy_prop: [x == -1] },
+	    node_while: { fancy_prop: [[x > 0]] },
+      	node_exit: { },
   },
 	transitions: [
 		{
 			name: t0,
 			source: node_init,
 			target: node_while,
-			constraints: [x' = 5, y' = 0, z' = 0]
+			constraints: [x' = 50, y' = 0]
 		},{
 			name: t1,
 			source: node_while,
 			target: node_while,
-			constraints: [x >= 0, x' = x-1, y' = y, z' = z]
+			constraints: [x > 0, x' = x - y, y' = y]
 		},{
 			name: t2,
 			source: node_while,
 			target: node_exit,
-			constraints: [x < 0, x' = x, y' = y, z' = z]
+			constraints: [x <= 0, x' = x, y' = y]
 		}
 	]
 }

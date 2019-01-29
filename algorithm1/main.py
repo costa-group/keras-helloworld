@@ -73,8 +73,7 @@ def launch_file(config, f):
         return False
     config["vars_name"] = cfg.get_info("global_vars")
     cfg.build_polyhedrons()
-    from pprint import pprint
-    pprint(analyse(config, cfg))
+    analyse(config, cfg)
     return True
 
 
