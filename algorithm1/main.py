@@ -86,10 +86,9 @@ def analyse(config, cfg):
     nonterminating_sccs = []
     while (not stop and CFGs):
         current_cfg, sccd = CFGs.pop(0)
-        for t in current_cfg.get_edges():
-            if t["polyhedron"].is_empty():
-                printif(2, "Transition (" + t["name"] + ") removed because it is empty.")
-                current_cfg.remove_edge(t["source"], t["target"], t["name"])
+        removed = current_cfg.remove_unsat_edges()
+        if len(removed) > 0:
+            printif(2, "Transition (" + removed + ") were removed because it is empty.")
         if len(current_cfg.get_edges()) == 0:
             printif(2, "This cfg has not transitions.")
             continue
@@ -99,16 +98,14 @@ def analyse(config, cfg):
         CFGs_aux.sort()
 
         for scc in CFGs_aux:
-            for t in scc.get_edges():
-                if t["polyhedron"].is_empty():
-                    scc.remove_edge(t["source"], t["target"], t["name"])
-                    continue
+            scc.remove_unsat_edges()
             if len(scc.get_edges()) == 0:
                 continue
+            set_fancy_props(cfg, scc)
             R = analyse_scc(scc)
-            if "status" in R and R["status"] == "yes":
+            if R.get_status().is_terminate():
                 terminating_sccs.append(R)
-            elif "status" in R and R["status"] == "no":
+            elif R.get_status().is_nonterminate():
                 nonterminating_sccs.append(R)
             else:
                 maybe_sccs.append(R)
@@ -134,6 +131,29 @@ def analyse_scc(scc):
     alg = ML()
     return alg.run(scc)
 
+
+def set_fancy_props(cfg, scc):
+    from lpi.constraints import And, Or
+    fancy = {}
+    nodes = scc.get_nodes()
+    gvs = cfg.get_info("global_vars")
+    Nvars = int(len(gvs) / 2)
+    vs = gvs[:Nvars]
+    for node in nodes:
+        ors = []
+        for tr in cfg.get_edges(source=node):
+            if tr["target"] in nodes:
+                continue
+            cs = tr["polyhedron"].project(vs).get_constraints()
+            if len(cs) == 0:
+                continue
+            if len(cs) == 1:
+                ors.append(cs[0])
+            else:
+                ors.append(And(cs))
+        fancy[node] = Or([o.negate() for o in ors])
+    print(fancy)
+    scc.set_nodes_info(fancy, "exit_props")
 
 if __name__ == '__main__':
     try:

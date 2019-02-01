@@ -2,17 +2,70 @@
 from z3 import sat
 from z3 import Real
 from z3 import Solver, And, Or
-from main import printif
 from termination.algorithm.utils import generate_prime_names
+from termination.output import Output_Manager as OM
 import numpy as np
-from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC, LinearSVC
+# from .manager import Algorithm
 import matplotlib.pyplot as plt
 from lpi import Expression
-from lpi import C_Polyhedron
 from lpi.constraints import Or as ExpOr
 from lpi.constraints import And as ExpAnd
+from termination.result import Result
+from termination.result import TerminationResult
 
+
+def set_fancy_props_neg(cfg, scc):
+    fancy = {}
+    nodes = scc.get_nodes()
+    gvs = cfg.get_info("global_vars")
+    Nvars = int(len(gvs) / 2)
+    vs = gvs[:Nvars]
+    for node in nodes:
+        ors = []
+        for tr in cfg.get_edges(source=node):
+            if tr["target"] in nodes:
+                continue
+            cs = tr["polyhedron"].project(vs).get_constraints()
+            if len(cs) == 0:
+                continue
+            if len(cs) == 1:
+                ors.append(cs[0])
+            else:
+                ors.append(ExpAnd(cs))
+        if len(ors) == 0:
+            fancy[node] = ExpOr(Expression(0) == Expression(0))
+        else:
+            fancy[node] = ExpOr([o.negate() for o in ors])
+    print("exit conditions: \n", fancy, "\n ===========================")
+    scc.set_nodes_info(fancy, "exit_props")
+
+
+def set_fancy_props(scc):
+    fancy = {}
+    nodes = scc.get_nodes()
+    gvs = scc.get_info("global_vars")
+    Nvars = int(len(gvs) / 2)
+    vs = gvs[:Nvars]
+    for node in nodes:
+        ors = []
+        for tr in scc.get_edges(source=node):
+            print(tr["polyhedron"])
+            cs = tr["polyhedron"].project(vs).get_constraints()
+            print(cs)
+            if len(cs) == 0:
+                ors.append(Expression(0) == Expression(0))
+            if len(cs) == 1:
+                ors.append(cs[0])
+            else:
+                ors.append(ExpAnd(cs))
+        if len(ors) == 0:
+            fancy[node] = ExpOr(Expression(0) == Expression(0))
+        else:
+            fancy[node] = ExpOr([o for o in ors])
+    print("exit conditions: \n", fancy, "\n ===========================")
+    # scc.set_nodes_info(fancy, "exit_props")
+    return fancy
 
 def toz3(c):
     if isinstance(c, list):
@@ -64,23 +117,36 @@ class ML:
     def __init__(self, properties={}):
         self.props = properties
 
-    def run(self, cfg):
+    def run(self, scc):
         Npoints = 10
-        printif(1, "--> with " + self.NAME)
-        global_vars = cfg.get_info("global_vars")
+        OM.printif(1, "--> with " + self.NAME)
+        global_vars = scc.get_info("global_vars")
         Nvars = int(len(global_vars) / 2)
         vs = global_vars[:Nvars]
         pvs = global_vars[Nvars:]
-        phi = {n: ExpOr([ExpAnd(e) for e in v]) for n, v in cfg.nodes.data("fancy_prop", default=[])}
+        fancy = set_fancy_props(scc)
+        # phi = {n: fancy[n] for n in fancy}
+        # phi = {n: v for n, v in scc.nodes.data("exit_props", default=ExpOr([]))}
+        phi = {n: ExpOr([ExpAnd(e) for e in v]) for n, v in scc.nodes.data("fancy_prop", default=[])}
         queue = [n for n in phi if phi[n].len() > 0]
         bad_points = []
         bad_y = []
+        max_tries = 10
+        tries = {n: max_tries for n in phi}
+        skiped = []
+        warnings = False
+        itis = TerminationResult.NONTERMINATE
         while len(queue) > 0:
             node = queue.pop()
+            if tries[node] == 0:
+                print("TOO MANY TRIES with node: ", node)
+                skiped.append(node)
+                continue
+            tries[node] -= 1
             good_cons = [toz3(phi[node])]  # phi[node] ^ ti ^ phi[ti[target]]  ^ ...
             bad_cons = []  # phi[node] ^ ti ^ ¬ phi[ti[target]] V ...
             taken_vars = []
-            for t in cfg.get_edges(source=node):
+            for t in scc.get_edges(source=node):
                 print(t["name"])
                 lvs = t["local_vars"]
                 taken_vars += lvs
@@ -94,13 +160,15 @@ class ML:
                 print("good cons:", good_cons)
                 print("bad cons:", bad_cons)
             Sb = Solver()
-            Sb.add(Or(bad_cons))
+            from z3 import simplify
+            Sb.add(simplify(Or(bad_cons)))
+            print("bad", Sb)
             if Sb.check() == sat:
                 # bad_points = [[0, i * -100] for i in range(3, 3 + Npoints)]
                 bad_points = generateNpoints(Sb, Npoints, vs)  # program terminates
                 bad_y = [False] * Npoints
                 Sg = Solver()
-                Sg.add(good_cons)
+                Sg.add(And(good_cons))
                 if Sg.check() == sat:
                     # good_points = [[0, i * 100] for i in range(3, 3 + Npoints)]
                     good_points = generateNpoints(Sg, Npoints, vs)
@@ -146,11 +214,73 @@ class ML:
                     else:
                         print("node {}, got unsat phi".format(node))
                 else:
+                    warnings = True
                     print("WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT")
+                    itis = TerminationResult.UNKNOWN
             else:
                 print("bads (terminating) are UNSAT")
-        print("phi props: {")
+        cad = ("phi props: {\n")
         for node in phi:
-            print("\t", node, ":", phi[node].toString(str, float, and_symb=",\n\t\t", or_symb="\n\t\tOR"))
-        print("}")
-        return {"status": "?"}
+            cad += ("\t {} : {} \n".format(node, phi[node].toString(str, float, and_symb=",\n\t\t", or_symb="\n\t\tOR")))
+        cad += ("\n}")
+        if len(skiped) > 0:
+            itis = TerminationResult.UNKNOWN
+            cad += ("some nodes ({}) where ignored after {} iterations. ".format(skiped, max_tries))
+        if warnings:
+            cad += ("Look at log.. there were WARNINGS")
+        print(cad)
+        response = Result()
+        response.set_response(status=itis, info=cad)
+        return response
+
+    @classmethod
+    def generate(cls, data):
+        if len(data) != 1:
+            return None
+        if data[0] == cls.ID:
+            try:
+                c = cls()
+            except Exception as e:
+                raise Exception() from e
+            return c
+        return None
+
+    @classmethod
+    def use_close_walk(cls):
+        return False
+
+    @classmethod
+    def description(cls, long=False):
+        desc = str(cls.ID)
+        if long:
+            desc += ": " + str(cls.DESC)
+        return desc
+
+    def __repr__(self):
+        cad_alg = self.NAME
+        if "version" in self.props:
+            cad_alg += "v" + str(self.props["version"])
+        if "nonoptimal" in self.props and self.props["nonoptimal"]:
+            cad_alg += "_nonoptimal"
+        return cad_alg
+
+    def set_prop(self, key, value):
+        self.props[key] = value
+
+    def get_prop(self, key):
+        return self.props[key]
+
+    def has_prop(self, key):
+        return key in self.props
+
+    def get_name(self):
+        cad_name = self.NAME
+        if "nonoptimal" in self.props and self.props["nonoptimal"]:
+            cad_name += "_nonoptimal"
+        if "version" in self.props and str(self.props["version"]) != 1:
+            cad_name += "v" + str(self.props["version"])
+        if "min_depth" in self.props:
+            cad_name += "_" + str(self.props["min_depth"])
+        if "max_depth" in self.props:
+            cad_name += "_" + str(self.props["max_depth"])
+        return cad_name

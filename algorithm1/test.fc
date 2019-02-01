@@ -1,5 +1,5 @@
 {
-	vars: [x, y],
+	vars: [x, y, z],
 	initnode: node_init,
 	nodes: {
 	    node_init: {    },
@@ -11,17 +11,17 @@
 			name: t0,
 			source: node_init,
 			target: node_while,
-			constraints: [x' = 50, y' = 0]
+			constraints: [x' = 50, y' = 0, z'=z]
+		},{
+			name: t2,
+			source: node_while,
+			target: node_while,
+			constraints: [x >= 1, x' = x - y, y' = y, z'=z]
 		},{
 			name: t1,
 			source: node_while,
 			target: node_while,
-			constraints: [x > 0, x' = x - y, y' = y]
-		},{
-			name: t2,
-			source: node_while,
-			target: node_exit,
-			constraints: [x <= 0, x' = x, y' = y]
+			constraints: [x >= 10, x' = x - y, y' = y, z'=z]
 		}
 	]
 }
