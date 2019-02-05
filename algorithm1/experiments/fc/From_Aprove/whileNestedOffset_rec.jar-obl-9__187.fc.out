@@ -1,0 +1,10 @@
+{'f95_0_increase_aux_LE': ()}
+exit conditions: 
+ {'f95_0_increase_aux_LE': {'t3': -6 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f95_0_increase_aux_LE : (-6.0 + A >= 0) 
+
+}
+

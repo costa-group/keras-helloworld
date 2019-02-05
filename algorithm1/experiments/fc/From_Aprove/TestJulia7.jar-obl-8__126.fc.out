@@ -1,0 +1,12 @@
+{'f81_0_loop_InvokeMethod': ()}
+exit conditions: 
+ {'f81_0_loop_InvokeMethod': {'t1': -1 + A >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f81_0_loop_InvokeMethod
+
+phi props: {
+	 f81_0_loop_InvokeMethod : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 -1.0 + A >= 0))))))))))) 
+
+}
+some nodes (['f81_0_loop_InvokeMethod']) where ignored after 10 iterations. 
+

@@ -1,0 +1,6 @@
+{'f49_0_increase_LE': (), 'f49_0_increase_LEp': ()}
+exit conditions: 
+ {'f49_0_increase_LE': {'t3': -1 + A >= 0, 't1': -1 + A >= 0}, 'f49_0_increase_LEp': {'t2': -1 + A >= 0, 't4': -1 + A >= 0}} 
+ ===========================
+Error: ValueError
+Found input variables with inconsistent numbers of samples: [11, 20]

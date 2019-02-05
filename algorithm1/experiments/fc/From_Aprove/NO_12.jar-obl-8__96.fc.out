@@ -1,0 +1,10 @@
+{'f124_0_main_GT': ()}
+exit conditions: 
+ {'f124_0_main_GT': {'t2': (A - B == 0 AND B >= 0), 't1': (A >= 0 AND -1 - A + B >= 0)}} 
+ ===========================
+
+phi props: {
+	 f124_0_main_GT : ((A - B == 0 AND	 B >= 0) 	OR (A >= 0 AND	 -1.0 - A + B >= 0)) 
+
+}
+

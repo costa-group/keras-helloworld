@@ -1,0 +1,12 @@
+{'f1097_0_outputList_NULL': ()}
+exit conditions: 
+ {'f1097_0_outputList_NULL': {'t4': -1 + A >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f1097_0_outputList_NULL
+
+phi props: {
+	 f1097_0_outputList_NULL : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 -1.0 + A >= 0))))))))))) 
+
+}
+some nodes (['f1097_0_outputList_NULL']) where ignored after 10 iterations. 
+

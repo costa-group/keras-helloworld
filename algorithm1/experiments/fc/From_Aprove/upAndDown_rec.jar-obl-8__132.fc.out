@@ -1,0 +1,10 @@
+{'f91_0_upAndDown_GT': ()}
+exit conditions: 
+ {'f91_0_upAndDown_GT': {'t2': (-10 + C == 0 AND 1 - A >= 0), 't1': (B == 0 AND -1 + C >= 0 AND 9 - C >= 0 AND 1 - A >= 0), 't3': (-1 + B == 0 AND -1 + C >= 0 AND 9 - C >= 0 AND 1 - A >= 0), 't4': (C == 0 AND 1 - A >= 0)}} 
+ ===========================
+
+phi props: {
+	 f91_0_upAndDown_GT : ((-10.0 + C == 0 AND	 1.0 - A >= 0) 	OR (B == 0 AND	 -1.0 + C >= 0 AND	 9.0 - C >= 0 AND	 1.0 - A >= 0) 	OR (-1.0 + B == 0 AND	 -1.0 + C >= 0 AND	 9.0 - C >= 0 AND	 1.0 - A >= 0) 	OR (C == 0 AND	 1.0 - A >= 0)) 
+
+}
+

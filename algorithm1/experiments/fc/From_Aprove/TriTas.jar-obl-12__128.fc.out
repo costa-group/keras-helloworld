@@ -1,0 +1,11 @@
+{'f357_0_main_ArrayAccess': (), 'f229_0_main_GE': ()}
+exit conditions: 
+ {'f357_0_main_ArrayAccess': {'t3': ()}, 'f229_0_main_GE': {'t2': (-1 + A >= 0 AND C >= 0)}} 
+ ===========================
+
+phi props: {
+	 f357_0_main_ArrayAccess : ((0.998046875 + B >= 0 AND	 ())) 
+	 f229_0_main_GE : ((-1.0 + A >= 0 AND	 C >= 0)) 
+
+}
+

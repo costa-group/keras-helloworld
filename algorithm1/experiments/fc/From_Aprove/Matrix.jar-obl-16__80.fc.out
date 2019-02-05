@@ -1,0 +1,4 @@
+Parser Error: UnexpectedToken
+Unexpected token Token(NUMBER, '47') at line 23, column 14.
+Expected: dict_keys(['CNAME', 'name'])
+Context: <no context>

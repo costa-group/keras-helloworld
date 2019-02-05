@@ -1,0 +1,12 @@
+{'f541_0_bubble_NULL': ()}
+exit conditions: 
+ {'f541_0_bubble_NULL': {'t14': (-3 + A >= 0 AND -3 + B >= 0)}} 
+ ===========================
+TOO MANY TRIES with node:  f541_0_bubble_NULL
+
+phi props: {
+	 f541_0_bubble_NULL : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-3.0 + A >= 0 AND	 -3.0 + B >= 0)))))))))))) 
+
+}
+some nodes (['f541_0_bubble_NULL']) where ignored after 10 iterations. 
+

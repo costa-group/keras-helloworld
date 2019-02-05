@@ -1,0 +1,34 @@
+{'f1394_0_less_leaves_NULL': (), 'f1554_0_less_leaves_InvokeMethod': ()}
+exit conditions: 
+ {'f1394_0_less_leaves_NULL': {'t22': (-1 + A >= 0 AND -1 + B >= 0 AND -1 + C >= 0), 't21': (-1 + A >= 0 AND -1 + B >= 0 AND -1 + C >= 0)}, 'f1554_0_less_leaves_InvokeMethod': {'t25': (A >= 0 AND B >= 0), 't24': (A >= 0 AND B >= 0)}} 
+ ===========================
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1554_0_less_leaves_InvokeMethod
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+TOO MANY TRIES with node:  f1394_0_less_leaves_NULL
+
+phi props: {
+	 f1394_0_less_leaves_NULL : ((4.467958927154541 -1.1416311119442373 * A + 0.0836429766632314 * B -1.5202869005573945 * C >= 0 AND	 (6.390216394343004 -3.5769408608416278 * A + 0.7357669032806307 * B -0.20862397723320392 * C >= 0 AND	 (-2.6524758338928223 + 0.1794983179821319 * A + 0.9697730856468709 * B -0.13019811989205987 * C >= 0 AND	 (-0.1589345932006836 + 0.02939116316256829 * A + 0.05716953403290859 * B -0.026484844772983962 * C >= 0 AND	 (0.7285256385803223 + 0.9625052750500434 * A -0.2934720496948735 * B -0.9774244663515885 * C >= 0 AND	 (-8.881784197001252e-16 * A + 1.7763568394002505e-15 * B >= 0 AND	 (-2.8693814277648926 + 0.998044933840621 * A -0.050737449481097485 * B + 0.998044933840621 * C >= 0 AND	 (3.047947645187378 -1.0487823833217185 * B >= 0 AND	 (-0.26252031326293945 + 0.10910268748115826 * B >= 0 AND	 (-6.210080623626709 + 2.698962992513991 * B >= 0 AND	 (-1.0 + A >= 0 AND	 -1.0 + B >= 0 AND	 -1.0 + C >= 0))))))))))) 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-1.0 + A >= 0 AND	 -1.0 + B >= 0 AND	 -1.0 + C >= 0)))))))))))) 
+	 f1554_0_less_leaves_InvokeMethod : ((-6.309666156768799 + 1.6792110799285744 * A -0.059034171626997534 * B >= 0 AND	 (-5.614995002746582 + 1.6879277585119663 * A + 0.18544662444130233 * B >= 0 AND	 (-4.583877801895142 + 1.6328881728317022 * A + 0.05649379314659897 * B >= 0 AND	 (-3.7491841316223145 + 1.6133974847103207 * A + 0.12124438466695797 * B >= 0 AND	 (0.3937828540802002 + 0.05341504292220556 * A -1.2081379210177599 * B >= 0 AND	 (-3.4519305107753766 + 1.8991098285993857 * A + 0.10089004891101538 * B >= 0 AND	 (-2.882032846113452 + 2.2322398077836043 * A -0.05043056642641592 * B >= 0 AND	 (-2.540171042084694 + 3.012843485647621 * A -0.0680649503848642 * B >= 0 AND	 (-0.08388166004441411 + 1.1027509378797817 * A -2.310388260221098 * B >= 0 AND	 (-1.023650697392359 + 2.0206943602183136 * A -1.831488781079442 * B >= 0 AND	 (A >= 0 AND	 B >= 0))))))))))) 	OR (0.023058414459228516 -0.008253455839513535 * A -8.881784197001252e-16 * B >= 0 AND	 (-0.10616922378540039 -0.04021559812751896 * A + 0.1536153683647008 * B >= 0 AND	 (0.09558773040771484 -0.033010984467479076 * A >= 0 AND	 (-1.622732036127498 + 1.2326207082987648 * A -1.1178548673754938 * B >= 0 AND	 (-4.679721953485478 + 1.3624038789074113 * A + 0.5778971318519104 * B >= 0 AND	 (-3.533051248301222 + 1.0728808386851414 * A + 0.8403091459946479 * B >= 0 AND	 (-0.6359479675568539 -0.15535524734118722 * A + 1.1636919161983166 * B >= 0 AND	 (-2.391848690186122 + 0.9724479637808345 * A + 0.8490407485155262 * B >= 0 AND	 (-1.980556269397536 + 1.3837622748081584 * A + 0.9823248607077963 * B >= 0 AND	 (-1.023650697392359 + 2.0206943602183136 * A -1.831488781079442 * B >= 0 AND	 (A >= 0 AND	 B >= 0)))))))))))) 
+
+}
+some nodes (['f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1554_0_less_leaves_InvokeMethod', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL', 'f1394_0_less_leaves_NULL']) where ignored after 10 iterations. 
+

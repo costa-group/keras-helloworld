@@ -1,0 +1,12 @@
+{'f1431_0_samefringe_NULL': ()}
+exit conditions: 
+ {'f1431_0_samefringe_NULL': {'t20': (-1 + A >= 0 AND -1 + B >= 0 AND -1 + C >= 0)}} 
+ ===========================
+TOO MANY TRIES with node:  f1431_0_samefringe_NULL
+
+phi props: {
+	 f1431_0_samefringe_NULL : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-1.0 + A >= 0 AND	 -1.0 + B >= 0 AND	 -1.0 + C >= 0)))))))))))) 
+
+}
+some nodes (['f1431_0_samefringe_NULL']) where ignored after 10 iterations. 
+

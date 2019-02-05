@@ -1,0 +1,10 @@
+{'f257_0_loop_GTp': (), 'f257_0_loop_GT': ()}
+exit conditions: 
+ {'f257_0_loop_GTp': {'t4': (C == 0 AND -1 + D >= 0 AND 1 + A >= 0), 't10': (-1 + C == 0 AND A == 0 AND D == 0 AND -1 + B >= 0), 't6': (-1 + C == 0 AND D == 0 AND -1 + A >= 0 AND 1 + B >= 0), 't8': (D == 0 AND C == 0 AND -1 + A >= 0), 't2': (-1 + C == 0 AND -1 + D >= 0 AND 1 + B >= 0)}, 'f257_0_loop_GT': {'t11': (C == 0 AND A == 0 AND D == 0 AND -1 + B >= 0), 't9': (-1 + C == 0 AND A == 0 AND D == 0 AND -1 + B >= 0), 't5': (D == 0 AND -1 + C == 0 AND -1 + A >= 0), 't3': (C == 0 AND -1 + D >= 0), 't1': (-1 + C == 0 AND -1 + D >= 0), 't7': (D == 0 AND C == 0 AND -1 + A >= 0)}} 
+ ===========================
+TOO MANY TRIES with node:  f257_0_loop_GT
+TOO MANY TRIES with node:  f257_0_loop_GT
+TOO MANY TRIES with node:  f257_0_loop_GT
+TOO MANY TRIES with node:  f257_0_loop_GT
+Error: ValueError
+Found input variables with inconsistent numbers of samples: [11, 20]

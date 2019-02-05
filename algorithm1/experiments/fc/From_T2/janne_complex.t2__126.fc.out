@@ -1,0 +1,47 @@
+{'n_l7': (), 'n_l4': (), 'n_l5': (), 'n_l6': (), 'n_l2': (), 'n_l0': (), 'n_l3': ()}
+exit conditions: 
+ {'n_l7': {'t9': -1 - D + H >= 0, 't8': D - H >= 0}, 'n_l4': {'t11': -1 + E - H >= 0, 't10': - E + H >= 0}, 'n_l5': {'t4': -1 - B + H >= 0, 't5': B - H >= 0}, 'n_l6': {'t6': -1 + A - H >= 0, 't7': - A + H >= 0}, 'n_l2': {'t3': ()}, 'n_l0': {'t1': -1 + C - E >= 0}, 'n_l3': {'t2': ()}} 
+ ===========================
+Error: Z3Exception
+b'parser error'
+Traceback (most recent call last):
+  File "main.py", line 166, in <module>
+    launch(config)
+  File "main.py", line 51, in launch
+    launch_file(config, files[i])
+  File "main.py", line 67, in launch_file
+    analyse(config, cfg)
+  File "main.py", line 96, in analyse
+    R = analyse_scc(scc, config["no_split"])
+  File "main.py", line 127, in analyse_scc
+    return alg.run(scc)
+  File "/home/friker/Systems/keras-helloworld/algorithm1/ntML.py", line 211, in run
+    S.add(toz3(phi[node][tname]))
+  File "/home/friker/Systems/keras-helloworld/algorithm1/ntML.py", line 88, in toz3
+    return c.get(Real, float, ignore_zero=True, toOr=Or, toAnd=And)
+  File "/usr/local/lib/python3.5/dist-packages/lpi/constraints.py", line 318, in get
+    for e in self._boolexps])
+  File "/usr/local/lib/python3.5/dist-packages/lpi/constraints.py", line 318, in <listcomp>
+    for e in self._boolexps])
+  File "/usr/local/lib/python3.5/dist-packages/lpi/constraints.py", line 153, in get
+    left = self._exp.get(toVar, toNum, toExp, ignore_zero=ignore_zero)
+  File "/usr/local/lib/python3.5/dist-packages/lpi/expressions.py", line 234, in get
+    exp += s_exp
+  File "/usr/local/lib/python3.5/dist-packages/z3/z3.py", line 2100, in __radd__
+    a, b = _coerce_exprs(self, other)
+  File "/usr/local/lib/python3.5/dist-packages/z3/z3.py", line 1018, in _coerce_exprs
+    b = s.cast(b)
+  File "/usr/local/lib/python3.5/dist-packages/z3/z3.py", line 2023, in cast
+    return RealVal(val, self.ctx)
+  File "/usr/local/lib/python3.5/dist-packages/z3/z3.py", line 2826, in RealVal
+    return RatNumRef(Z3_mk_numeral(ctx.ref(), str(val), RealSort(ctx).ast), ctx)
+  File "/usr/local/lib/python3.5/dist-packages/z3/z3core.py", line 2227, in Z3_mk_numeral
+    raise Z3Exception(lib().Z3_get_error_msg(a0, err))
+z3.z3types.Z3Exception: b'parser error'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "main.py", line 169, in <module>
+    raise Exception() from e
+Exception

@@ -1,0 +1,33 @@
+{'n_l1': (), 'n_l2': (), 'n_l4': (), 'n_l3': (), 'n_l8': ()}
+exit conditions: 
+ {'n_l1': {'t1': (), 't10': -14 + A == 0}, 'n_l2': {'t5': ()}, 'n_l4': {'t4': A >= 0}, 'n_l3': {'t2': 12 - A >= 0, 't3': -14 + A >= 0}, 'n_l8': {'t11': ()}} 
+ ===========================
+Error: ValueError
+Found input variables with inconsistent numbers of samples: [11, 20]
+Traceback (most recent call last):
+  File "main.py", line 166, in <module>
+    launch(config)
+  File "main.py", line 51, in launch
+    launch_file(config, files[i])
+  File "main.py", line 67, in launch_file
+    analyse(config, cfg)
+  File "main.py", line 96, in analyse
+    R = analyse_scc(scc, config["no_split"])
+  File "main.py", line 127, in analyse_scc
+    return alg.run(scc)
+  File "/home/friker/Systems/keras-helloworld/algorithm1/ntML.py", line 178, in run
+    clf.fit(X, Y)
+  File "/usr/local/lib/python3.5/dist-packages/sklearn/svm/base.py", line 149, in fit
+    accept_large_sparse=False)
+  File "/usr/local/lib/python3.5/dist-packages/sklearn/utils/validation.py", line 766, in check_X_y
+    check_consistent_length(X, y)
+  File "/usr/local/lib/python3.5/dist-packages/sklearn/utils/validation.py", line 235, in check_consistent_length
+    " samples: %r" % [int(l) for l in lengths])
+ValueError: Found input variables with inconsistent numbers of samples: [11, 20]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "main.py", line 169, in <module>
+    raise Exception() from e
+Exception

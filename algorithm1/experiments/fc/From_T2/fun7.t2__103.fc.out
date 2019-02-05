@@ -1,0 +1,27 @@
+{'n_l6': (), 'n_l17': (), 'n_l4': (), 'n_l5': (), 'n_l15': (), 'n_l18': ()}
+exit conditions: 
+ {'n_l6': {'t14': (K >= 0 AND -1 - I + N >= 0), 't13': (I - N >= 0 AND K >= 0)}, 'n_l17': {'t19': ()}, 'n_l4': {'t5': (), 't6': ()}, 'n_l5': {'t3': K >= 0}, 'n_l15': {'t18': K >= 0}, 'n_l18': {'t20': ()}} 
+ ===========================
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+TOO MANY TRIES with node:  n_l6
+
+phi props: {
+	 n_l6 : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (K >= 0 AND	 -1.0 - I + N >= 0))))))))))) 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (I - N >= 0 AND	 K >= 0)))))))))))) 
+	 n_l17 : (()) 
+	 n_l4 : ((0.7500000000000004 + I >= 0 AND	 ()) 	OR (0.75 + K >= 0 AND	 ())) 
+	 n_l5 : (K >= 0) 
+	 n_l15 : (K >= 0) 
+	 n_l18 : (()) 
+
+}
+some nodes (['n_l6', 'n_l6', 'n_l6', 'n_l6', 'n_l6', 'n_l6', 'n_l6', 'n_l6', 'n_l6', 'n_l6', 'n_l6']) where ignored after 10 iterations. 
+

@@ -1,0 +1,34 @@
+{'f2161_0_count_NONNULL': (), 'f2411_0_count_InvokeMethod': ()}
+exit conditions: 
+ {'f2161_0_count_NONNULL': {'t41': -3 + A >= 0, 't40': -3 + A >= 0, 't39': -3 + A >= 0, 't38': -2 + A >= 0}, 'f2411_0_count_InvokeMethod': {'t42': A >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f2411_0_count_InvokeMethod
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+TOO MANY TRIES with node:  f2161_0_count_NONNULL
+
+phi props: {
+	 f2161_0_count_NONNULL : (-3.0 + A >= 0 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 -3.0 + A >= 0)))))))))) 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-12.097697633462463 + 2.3022365845163915 * A >= 0 AND	 (-11.155603408813477 + 2.316126340343887 * A >= 0 AND	 (-5.172801971435547 + 1.1891191023669014 * A >= 0 AND	 -3.0 + A >= 0)))))))))) 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-6.744375228881836 + 1.240234374999993 * A >= 0 AND	 (-4.337966985230238 + 0.8896611642050396 * A >= 0 AND	 (-4.324675324675325 + 1.3298701298701299 * A >= 0 AND	 -2.0 + A >= 0))))))))))) 
+	 f2411_0_count_InvokeMethod : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-4.256382942199707 + 1.9443359375 * A >= 0 AND	 (-4.293233082706767 + 2.5664160401002505 * A >= 0 AND	 (-1.664935064935065 + 1.3298701298701299 * A >= 0 AND	 A >= 0))))))))))) 
+
+}
+some nodes (['f2411_0_count_InvokeMethod', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL', 'f2161_0_count_NONNULL']) where ignored after 10 iterations. 
+

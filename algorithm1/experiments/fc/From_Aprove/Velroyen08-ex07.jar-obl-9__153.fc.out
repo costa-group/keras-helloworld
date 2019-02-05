@@ -1,0 +1,10 @@
+{'f119_0_loop_LE': ()}
+exit conditions: 
+ {'f119_0_loop_LE': {'t4': A == 0}} 
+ ===========================
+
+phi props: {
+	 f119_0_loop_LE : (A == 0) 
+
+}
+

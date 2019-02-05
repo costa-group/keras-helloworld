@@ -1,0 +1,12 @@
+{'f2097_0_flatten_NULL': ()}
+exit conditions: 
+ {'f2097_0_flatten_NULL': {'t12': -3 + A >= 0, 't11': -2 + A >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f2097_0_flatten_NULL
+
+phi props: {
+	 f2097_0_flatten_NULL : (-3.0 + A >= 0 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-9.22791533766716 + 1.754923816409585 * A >= 0 AND	 (-5.292737430167594 + 1.144134078212289 * A >= 0 AND	 (-4.324675324675325 + 1.3298701298701299 * A >= 0 AND	 -2.0 + A >= 0))))))))))) 
+
+}
+some nodes (['f2097_0_flatten_NULL']) where ignored after 10 iterations. 
+

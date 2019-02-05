@@ -1,0 +1,10 @@
+{'f51_0_main_GE': ()}
+exit conditions: 
+ {'f51_0_main_GE': {'t1': -1 - A + B >= 0}} 
+ ===========================
+
+phi props: {
+	 f51_0_main_GE : (-1.0 - A + B >= 0) 
+
+}
+

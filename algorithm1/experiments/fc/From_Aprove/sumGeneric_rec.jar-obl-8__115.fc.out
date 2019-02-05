@@ -1,0 +1,10 @@
+{'f40_0_sum_InvokeMethod': ()}
+exit conditions: 
+ {'f40_0_sum_InvokeMethod': {'t1': (-1 + A - B >= 0 AND - A >= 0)}} 
+ ===========================
+
+phi props: {
+	 f40_0_sum_InvokeMethod : ((-1.0 + A - B >= 0 AND	 - A >= 0)) 
+
+}
+

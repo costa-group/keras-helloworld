@@ -1,0 +1,11 @@
+{'f57_0_collatz_LE': (), 'f57_0_collatz_LEp': ()}
+exit conditions: 
+ {'f57_0_collatz_LE': {'t3': -2 + A >= 0, 't1': -2 + A >= 0}, 'f57_0_collatz_LEp': {'t2': -2 + A >= 0, 't4': -2 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f57_0_collatz_LE : (-2.0 + A >= 0 	OR -2.0 + A >= 0) 
+	 f57_0_collatz_LEp : ((-4.324675324675325 + 1.3298701298701303 * A >= 0 AND	 -2.0 + A >= 0) 	OR -2.0 + A >= 0) 
+
+}
+

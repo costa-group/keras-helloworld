@@ -1,0 +1,10 @@
+{'f53_0_main_Load': ()}
+exit conditions: 
+ {'f53_0_main_Load': {'t0': (-1 + A >= 0 AND -1 + B >= 0 AND 99 - A - B >= 0)}} 
+ ===========================
+
+phi props: {
+	 f53_0_main_Load : ((-1.0 + A >= 0 AND	 -1.0 + B >= 0 AND	 99.0 - A - B >= 0)) 
+
+}
+

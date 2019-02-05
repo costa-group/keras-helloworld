@@ -1,0 +1,10 @@
+{'f34_0_loop_Inc': ()}
+exit conditions: 
+ {'f34_0_loop_Inc': {'t0': -1 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f34_0_loop_Inc : (-1.0 + A >= 0) 
+
+}
+

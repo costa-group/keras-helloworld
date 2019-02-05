@@ -1,0 +1,58 @@
+{'n_l4': (), 'n_l1': (), 'n_l5': (), 'n_l8': (), 'n_l6': (), 'n_l7': (), 'n_l3': ()}
+exit conditions: 
+ {'n_l4': {'t7': ()}, 'n_l1': {'t4': -1 + B >= 0, 't10': -1 - B >= 0, 't6': (-1 + B >= 0 AND - A >= 0), 't14': (-1 + A >= 0 AND -1 - B >= 0), 't12': (-1 - B >= 0 AND - A >= 0), 't8': (-1 + A >= 0 AND -1 + B >= 0)}, 'n_l5': {'t9': ()}, 'n_l8': {'t15': ()}, 'n_l6': {'t11': ()}, 'n_l7': {'t13': ()}, 'n_l3': {'t5': ()}} 
+ ===========================
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+TOO MANY TRIES with node:  n_l1
+
+phi props: {
+	 n_l4 : ((-0.5499999895691872 + 0.6666666666666665 * A - B >= 0 AND	 (-0.07692307692307704 -0.46153846153846156 * A -0.30769230769230765 * B >= 0 AND	 ()))) 
+	 n_l1 : ((-0.3477783203125 -0.0625 * A >= 0 AND	 (-0.314453125 -0.0625 * A >= 0 AND	 (-0.2811279296875 -0.0625 * A >= 0 AND	 (-0.247802734375 -0.0625 * A >= 0 AND	 (-0.2144775390625 -0.0625 * A >= 0 AND	 (-0.18115234375 -0.0625 * A >= 0 AND	 (-0.1478271484375 -0.0625 * A >= 0 AND	 (-0.114501953125 -0.0625 * A >= 0 AND	 (-0.0811767578125 -0.0625 * A >= 0 AND	 (-0.3828125 -0.5 * A >= 0 AND	 -1.0 + B >= 0)))))))))) 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 -1.0 - B >= 0)))))))))) 	OR (-1.0 + B >= 0 AND	 - A >= 0) 	OR (-26.50925387277356 + 0.10854919659944429 * A -0.5865335845655792 * B >= 0 AND	 (-23.624528650209975 + 0.1085471741961479 * A -0.5865226567329422 * B >= 0 AND	 (-20.741037277782933 + 0.10855179357342237 * A -0.5865476170274171 * B >= 0 AND	 (-17.85608626156626 + 0.10854915370329898 * A -0.5865333527810286 * B >= 0 AND	 (-14.970748919177225 + 0.10854255052084794 * A -0.5864976732145628 * B >= 0 AND	 (-12.086967202187434 + 0.1085469467766993 * A -0.5865214278971003 * B >= 0 AND	 (-9.2027346056223 + 0.10854859832898711 * A -0.5865303518773128 * B >= 0 AND	 (-6.318311479290887 + 0.10854812532255242 * A -0.5865277960393342 * B >= 0 AND	 (-0.2102679696881408 + 0.8319286401898243 * A + 0.15396421943605532 * B >= 0 AND	 (-2.27364864864865 + 1.128378378378378 * A -0.14527027027027017 * B >= 0 AND	 (-1.0 + A >= 0 AND	 -1.0 - B >= 0))))))))))) 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-1.0 - B >= 0 AND	 - A >= 0))))))))))) 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-1.0 + A >= 0 AND	 -1.0 + B >= 0)))))))))))) 
+	 n_l5 : ((0.9955714479928331 -0.0001708874599666288 * A + 3.5074652037114795e-05 * B >= 0 AND	 (-0.9997670675947451 + 3.493986078817457e-05 * A -0.9998777104872412 * B >= 0 AND	 ()))) 
+	 n_l8 : ((0.9955714479928331 -0.0001708874599666288 * A + 3.5074652037114795e-05 * B >= 0 AND	 (-0.9997670675947451 + 3.493986078817457e-05 * A -0.9998777104872412 * B >= 0 AND	 ()))) 
+	 n_l6 : ((0.9955714479928331 -0.0001708874599666288 * A + 3.5074652037114795e-05 * B >= 0 AND	 (-0.9997670675947451 + 3.493986078817457e-05 * A -0.9998777104872412 * B >= 0 AND	 ()))) 
+	 n_l7 : ((0.9955714479928331 -0.0001708874599666288 * A + 3.5074652037114795e-05 * B >= 0 AND	 (-0.9997670675947451 + 3.493986078817457e-05 * A -0.9998777104872412 * B >= 0 AND	 ()))) 
+	 n_l3 : ((0.9955714479928331 -0.0001708874599666288 * A + 3.5074652037114795e-05 * B >= 0 AND	 (-0.9997670675947451 + 3.493986078817457e-05 * A -0.9998777104872412 * B >= 0 AND	 ()))) 
+
+}
+some nodes (['n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1', 'n_l1']) where ignored after 10 iterations. 
+

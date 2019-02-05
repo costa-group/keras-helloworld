@@ -1,0 +1,10 @@
+{'f91_0_increase_aux_LE': ()}
+exit conditions: 
+ {'f91_0_increase_aux_LE': {'t3': -1 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f91_0_increase_aux_LE : (-1.0 + A >= 0) 
+
+}
+

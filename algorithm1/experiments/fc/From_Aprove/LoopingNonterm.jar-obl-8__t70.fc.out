@@ -1,0 +1,12 @@
+{'f61_0_main_GE': ()}
+exit conditions: 
+ {'f61_0_main_GE': {'t1': (-1 + A >= 0 AND B >= 0 AND -1 - B + C >= 0)}} 
+ ===========================
+TOO MANY TRIES with node:  f61_0_main_GE
+
+phi props: {
+	 f61_0_main_GE : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-1.0 + A >= 0 AND	 B >= 0 AND	 -1.0 - B + C >= 0)))))))))))) 
+
+}
+some nodes (['f61_0_main_GE']) where ignored after 10 iterations. 
+

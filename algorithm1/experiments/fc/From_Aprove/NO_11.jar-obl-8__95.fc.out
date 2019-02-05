@@ -1,0 +1,10 @@
+{'f162_0_main_GE': ()}
+exit conditions: 
+ {'f162_0_main_GE': {'t2': 2 + A - B == 0}} 
+ ===========================
+
+phi props: {
+	 f162_0_main_GE : (2.0 + A - B == 0) 
+
+}
+

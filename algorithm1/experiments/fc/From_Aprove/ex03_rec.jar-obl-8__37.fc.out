@@ -1,0 +1,10 @@
+{'f33_0_loop_GE': ()}
+exit conditions: 
+ {'f33_0_loop_GE': {'t1': 5 + A == 0}} 
+ ===========================
+
+phi props: {
+	 f33_0_loop_GE : (5.0 + A == 0) 
+
+}
+

@@ -1,0 +1,7 @@
+{'f53_0_loop_EQ': ()}
+exit conditions: 
+ {'f53_0_loop_EQ': {'t1': -36 + A >= 0, 't3': (-31 + A >= 0 AND 35 - A >= 0), 't2': (-1 + A >= 0 AND 30 - A >= 0)}} 
+ ===========================
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+Error: ValueError
+Found input variables with inconsistent numbers of samples: [11, 20]

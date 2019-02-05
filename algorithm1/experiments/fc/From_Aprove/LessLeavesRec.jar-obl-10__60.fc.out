@@ -1,0 +1,4 @@
+Parser Error: UnexpectedToken
+Unexpected token Token(__COMMA, ',') at line 5, column 5.
+Expected: dict_keys(['__TARGET4', 'ESCAPED_STRING', '__PVARS8', '__VARS7', '__NAME5', 'lvarskey', 'CNAME', 'key', 'pair', '__RBRACE', 'NUMBER', '__SOURCE3', '__INITNODE6', 'namekey'])
+Context: <no context>

@@ -1,0 +1,6 @@
+{'f53_0_loop_LE': (), 'f74_0_loop_NE': ()}
+exit conditions: 
+ {'f53_0_loop_LE': {'t1': (-11 + A >= 0 AND 20 - A >= 0), 't2': -21 + A >= 0}, 'f74_0_loop_NE': {'t4': -31 + A >= 0, 't3': 29 - A >= 0}} 
+ ===========================
+Error: ValueError
+Found input variables with inconsistent numbers of samples: [11, 20]

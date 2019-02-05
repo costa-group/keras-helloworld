@@ -1,0 +1,10 @@
+{'f79_0_increase_LE': ()}
+exit conditions: 
+ {'f79_0_increase_LE': {'t3': (B - C == 0 AND -1 + C >= 0)}} 
+ ===========================
+
+phi props: {
+	 f79_0_increase_LE : ((B - C == 0 AND	 -1.0 + C >= 0)) 
+
+}
+

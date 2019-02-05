@@ -1,0 +1,10 @@
+{'f111_0_fib_EQ': ()}
+exit conditions: 
+ {'f111_0_fib_EQ': {'t2': (-1 + A >= 0 AND B >= 0 AND -1 + C >= 0 AND -1 + C - D >= 0)}} 
+ ===========================
+
+phi props: {
+	 f111_0_fib_EQ : ((-1.0 + A >= 0 AND	 B >= 0 AND	 -1.0 + C >= 0 AND	 -1.0 + C - D >= 0)) 
+
+}
+

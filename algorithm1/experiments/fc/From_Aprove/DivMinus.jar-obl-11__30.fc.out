@@ -1,0 +1,67 @@
+{'f226_0_isZero_NONNULL': (), 'f534_0_div_InvokeMethod': (), 'f555_0_div_InvokeMethod': ()}
+exit conditions: 
+ {'f226_0_isZero_NONNULL': {'t10': (-3 + A >= 0 AND -4 + B >= 0 AND -2 + C >= 0), 't12': (-3 + A >= 0 AND -6 + B >= 0 AND -4 + C >= 0), 't14': (-3 + A >= 0 AND -7 + B >= 0 AND -5 + C >= 0), 't13': (-3 + A >= 0 AND -7 + B >= 0 AND -5 + C >= 0), 't8': (-3 + A >= 0 AND -5 + B >= 0 AND -3 + C >= 0), 't9': (-3 + A >= 0 AND -4 + B >= 0 AND -2 + C >= 0)}, 'f534_0_div_InvokeMethod': {'t11': -1 + A >= 0}, 'f555_0_div_InvokeMethod': {'t15': (-1 + A >= 0 AND -5 + B >= 0)}} 
+ ===========================
+TOO MANY TRIES with node:  f555_0_div_InvokeMethod
+TOO MANY TRIES with node:  f534_0_div_InvokeMethod
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+TOO MANY TRIES with node:  f226_0_isZero_NONNULL
+
+phi props: {
+	 f226_0_isZero_NONNULL : ((3.9948263376735262 -0.3580614297231204 * A -0.2023723119636438 * B -0.1248242109830171 * C >= 0 AND	 (-0.25668485355129766 -0.3404614243933275 * A + 0.44335821245586304 * B + 0.11674022214986524 * C >= 0 AND	 (-0.7313670257987774 -0.13131790234367813 * A -0.6962364247139838 * B + 1.8276020984103916 * C >= 0 AND	 (-11.733401229206969 -0.1153117576453262 * A + 1.537289132806805 * B + 1.5146632882690376 * C >= 0 AND	 (-5.944524844167647 -0.03248491295599476 * A + 1.7016184368210923 * B -0.525935667061643 * C >= 0 AND	 (-7.739656297361295 -0.2829228913618502 * A + 1.5795888352574297 * B + 0.5032220215140804 * C >= 0 AND	 (-3.39196381252157 + 1.099625731475184 * A -0.9828103287999035 * B + 1.4318934631417122 * C >= 0 AND	 (-3.9452541893178754 + 1.2023573963204206 * A + 0.6817390011188511 * B -1.1124720261565462 * C >= 0 AND	 (-15.783204546318649 + 1.8854086608456138 * A + 0.9592150368099039 * B + 1.0687169771151397 * C >= 0 AND	 (-9.650014708205315 + 0.802011481106518 * A + 0.8020114811065184 * B + 0.8935680784532591 * C >= 0 AND	 (-3.0 + A >= 0 AND	 -4.0 + B >= 0 AND	 -2.0 + C >= 0))))))))))) 	OR (-3.0 + A >= 0 AND	 -6.0 + B >= 0 AND	 -4.0 + C >= 0) 	OR (-3.0 + A >= 0 AND	 -7.0 + B >= 0 AND	 -5.0 + C >= 0) 	OR (-3.0 + A >= 0 AND	 -7.0 + B >= 0 AND	 -5.0 + C >= 0) 	OR (-5.253734588623046 -0.2277932726907963 * A + 1.426551083842611 * B -0.8474308969656903 * C >= 0 AND	 (-13.007730877679547 + 1.397028992733322 * A + 0.5865738270994214 * B + 0.6119008928756742 * C >= 0 AND	 (-20.22122109381433 + 1.3223843436653127 * A + 1.259118324855553 * B + 1.5358589603846706 * C >= 0 AND	 (4.373609632817659 -1.4134763286861207 * A -0.9362198395816757 * B + 1.900980371744153 * C >= 0 AND	 (3.2331319986449256 -0.04888590138656301 * A -0.8440172627060134 * B + 0.7599292837116023 * C >= 0 AND	 (2.074141080469797 -1.3285936390279875 * A -0.14858494913623588 * B + 1.2368179301925988 * C >= 0 AND	 (1.5190046848590493 -1.999129438137107 * A + 0.6942260765411348 * B + 0.9623516532149541 * C >= 0 AND	 (-15.030678932706007 + 0.9391680696030722 * A + 1.031940205008155 * B + 1.206543088147722 * C >= 0 AND	 (-7.188197715756407 -0.4957501354269125 * A + 1.015919772185776 * B + 1.015919772185776 * C >= 0 AND	 (-10.077148437500002 + 0.75 * A + 0.75 * B + 0.75 * C >= 0 AND	 (-3.0 + A >= 0 AND	 -5.0 + B >= 0 AND	 -3.0 + C >= 0))))))))))) 	OR (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-3.0 + A >= 0 AND	 -4.0 + B >= 0 AND	 -2.0 + C >= 0)))))))))))) 
+	 f534_0_div_InvokeMethod : ((3.552713678800501e-15 * A >= 0 AND	 (3.552713678800501e-15 * A >= 0 AND	 (3.552713678800501e-15 * A >= 0 AND	 (3.552713678800501e-15 * A >= 0 AND	 (3.552713678800501e-15 * A >= 0 AND	 (3.552713678800501e-15 * A >= 0 AND	 (-8.72109842300415 + 2.68486946669071 * A >= 0 AND	 (-5.779135794606782 + 2.010614283632238 * A >= 0 AND	 (5.4956207275390625 -1.515625 * A >= 0 AND	 (-2.994805194805195 + 1.3298701298701299 * A >= 0 AND	 -1.0 + A >= 0))))))))))) 
+	 f555_0_div_InvokeMethod : ((0.000865936279296875 -0.00025493223717631963 * A -2.091549117011482e-06 * B >= 0 AND	 (0.0024166107177734375 -0.0007109617922598233 * A -5.8329677052881834e-06 * B >= 0 AND	 (0.0055599212646484375 -0.0016313508218139816 * A -1.338414632812146e-05 * B >= 0 AND	 (-0.003894805908203125 + 3.406145258288973e-05 * A + 0.0006556296474578005 * B >= 0 AND	 (-0.13476181030273438 -0.012512168453941541 * A + 0.03063038814717345 * B >= 0 AND	 (-0.11613082885742188 + 0.012848781373046236 * A + 0.012848781373048013 * B >= 0 AND	 (0.254852294921875 -0.056433642611020574 * A -0.011099897450172591 * B >= 0 AND	 (-6.948050148453866 + 1.3126232092506283 * A + 0.4496456132176072 * B >= 0 AND	 (4.091034549917124 + 2.021215424848025 * A -1.8315284682001156 * B >= 0 AND	 (2.9963248849526956 + 1.0001968811632482 * A -0.9994093565102551 * B >= 0 AND	 (-1.0 + A >= 0 AND	 -5.0 + B >= 0)))))))))))) 
+
+}
+some nodes (['f555_0_div_InvokeMethod', 'f534_0_div_InvokeMethod', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL', 'f226_0_isZero_NONNULL']) where ignored after 10 iterations. 
+Look at log.. there were WARNINGS
+

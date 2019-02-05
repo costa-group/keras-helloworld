@@ -1,0 +1,11 @@
+{'f1549_0_search_LT': (), 'f1911_0_search_GE': ()}
+exit conditions: 
+ {'f1549_0_search_LT': {'t1': ()}, 'f1911_0_search_GE': {'t3': A >= 0, 't4': A >= 0, 't2': ()}} 
+ ===========================
+
+phi props: {
+	 f1549_0_search_LT : (()) 
+	 f1911_0_search_GE : (A >= 0 	OR A >= 0 	OR ()) 
+
+}
+

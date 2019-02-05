@@ -1,0 +1,12 @@
+{'f31_0_loop_EQ': ()}
+exit conditions: 
+ {'f31_0_loop_EQ': {'t1': -6 + A >= 0, 't2': (-1 + A >= 0 AND 5 - A >= 0)}} 
+ ===========================
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+
+phi props: {
+	 f31_0_loop_EQ : (-6.0 + A >= 0 	OR (-1.0 + A >= 0 AND	 5.0 - A >= 0)) 
+
+}
+Look at log.. there were WARNINGS
+

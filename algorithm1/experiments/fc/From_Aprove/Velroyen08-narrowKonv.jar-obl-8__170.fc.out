@@ -1,0 +1,10 @@
+{'f209_0_loop_GT': ()}
+exit conditions: 
+ {'f209_0_loop_GT': {'t1': (B == 0 AND A == 0)}} 
+ ===========================
+
+phi props: {
+	 f209_0_loop_GT : ((B == 0 AND	 A == 0)) 
+
+}
+

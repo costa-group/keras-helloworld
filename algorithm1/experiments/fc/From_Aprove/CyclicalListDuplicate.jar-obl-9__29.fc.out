@@ -1,0 +1,10 @@
+{'f348_0_duplicate_EQ': ()}
+exit conditions: 
+ {'f348_0_duplicate_EQ': {'t5': (A == 0 AND B >= 0), 't4': (A == 0 AND -2 + B >= 0), 't6': (-1 + A == 0 AND -2 + B >= 0), 't7': (-1 + A == 0 AND B >= 0)}} 
+ ===========================
+
+phi props: {
+	 f348_0_duplicate_EQ : ((A == 0 AND	 B >= 0) 	OR (A == 0 AND	 -2.0 + B >= 0) 	OR (-1.0 + A == 0 AND	 -2.0 + B >= 0) 	OR (-1.0 + A == 0 AND	 B >= 0)) 
+
+}
+

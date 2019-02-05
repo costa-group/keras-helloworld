@@ -1,0 +1,7 @@
+{'f962_0_loop_aux_NE': (), 'f961_0_loop_aux_NE': (), 'f887_0_loop_aux_GT': (), 'f970_0_loop_aux_NE': ()}
+exit conditions: 
+ {'f962_0_loop_aux_NE': {'t9': (-1 + A >= 0 AND -1 - A + B >= 0 AND -1 - C + D >= 0)}, 'f961_0_loop_aux_NE': {'t5': (-1 + A >= 0 AND -1 - A + B >= 0 AND -2 + D >= 0 AND -1 - D + E >= 0), 't7': (-1 + A >= 0 AND -1 - A + B >= 0 AND -2 + D >= 0 AND -1 + D - E >= 0)}, 'f887_0_loop_aux_GT': {'t21': (C == 0 AND A == 0), 't17': (C == 0 AND -1 + A >= 0 AND 2 - A >= 0), 't2': (-1 + C >= 0 AND -1 + A - C >= 0 AND -1 + B >= 0), 't18': (C == 0 AND -4 + A >= 0), 't4': (A - C == 0 AND -1 + A >= 0), 't3': (B == 0 AND -1 + C >= 0 AND -1 + A - C >= 0)}, 'f970_0_loop_aux_NE': {'t16': -1 + B - C >= 0}} 
+ ===========================
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+Error: ValueError
+Found input variables with inconsistent numbers of samples: [2, 20]

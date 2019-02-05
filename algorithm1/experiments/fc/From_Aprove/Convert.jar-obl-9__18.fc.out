@@ -1,0 +1,10 @@
+{'f815_0_main_NULL': ()}
+exit conditions: 
+ {'f815_0_main_NULL': {'t4': -1 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f815_0_main_NULL : (-1.0 + A >= 0) 
+
+}
+

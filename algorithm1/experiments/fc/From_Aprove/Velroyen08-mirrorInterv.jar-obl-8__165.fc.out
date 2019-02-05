@@ -1,0 +1,29 @@
+{'f325_0_loop_GT': ()}
+exit conditions: 
+ {'f325_0_loop_GT': {'t3': (-5 + A + C >= 0 AND - C >= 0 AND - B + C >= 0), 't2': (-5 + A - C >= 0 AND - B + C >= 0 AND 4 - A - C >= 0), 't1': (4 - A + C >= 0 AND - B + C >= 0 AND A - C >= 0), 't5': (-1 + C == 0 AND -6 + A >= 0 AND 1 - B >= 0), 't4': (-2 + C >= 0 AND -5 + A - C >= 0 AND - B + C >= 0)}} 
+ ===========================
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+TOO MANY TRIES with node:  f325_0_loop_GT
+
+phi props: {
+	 f325_0_loop_GT : ((-5.0 + A + C >= 0 AND	 - C >= 0 AND	 - B + C >= 0) 	OR (3.703106935078105 + 0.049710271011839335 * A + 0.0008264619633395753 * B + 1.129525364326157 * C >= 0 AND	 (1.594351319046292 -0.15263009888255447 * A -0.03414487309077474 * B + 0.12390904347277804 * C >= 0 AND	 (-4.665966625891075 + 0.42545415040925727 * A -1.1574949182642 * B + 0.42545415040925727 * C >= 0 AND	 (-0.9043499571992805 + 1.1572746345656224 * A + 0.4173900019776551 * B -0.021719121101513528 * C >= 0 AND	 (-5.0 + A - C >= 0 AND	 - B + C >= 0 AND	 4.0 - A - C >= 0))))) 	OR (1.7915166354420637 -0.7352490149467448 * A -0.3552845398894385 * B -0.6587956395424341 * C >= 0 AND	 (2.550882039451038 -0.816848724668904 * A + 0.1303433002392702 * B + 1.1123239167632637 * C >= 0 AND	 (0.7208572687886186 + 0.2786719700593241 * A + 0.5423015887815823 * B -1.2662837730491718 * C >= 0 AND	 (0.9527216994176427 -0.04539583632390881 * A -0.4227916896454535 * B -0.3316508461051506 * C >= 0 AND	 (1.4192376425199384 -0.016012482861672724 * A + 0.16316819929131665 * B -0.028782687676574617 * C >= 0 AND	 (-0.23076923076923084 + 0.23076923076923078 * A + 0.07692307692307693 * B + 0.3076923076923077 * C >= 0 AND	 (4.0 - A + C >= 0 AND	 - B + C >= 0 AND	 A - C >= 0))))))) 	OR (-1.0 + C == 0 AND	 -6.0 + A >= 0 AND	 1.0 - B >= 0) 	OR (-2.0 + C >= 0 AND	 -5.0 + A - C >= 0 AND	 - B + C >= 0)) 
+
+}
+some nodes (['f325_0_loop_GT']) where ignored after 10 iterations. 
+Look at log.. there were WARNINGS
+

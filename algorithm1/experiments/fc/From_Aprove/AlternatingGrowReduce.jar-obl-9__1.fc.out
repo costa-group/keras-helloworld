@@ -1,0 +1,23 @@
+{'f346_0_main_NULL': ()}
+exit conditions: 
+ {'f346_0_main_NULL': {'t5': (-1 + A >= 0 AND -1 + B >= 0), 't4': (-2 + A == 0 AND -1 + B >= 0), 't3': (-1 + A == 0 AND -1 + B >= 0)}} 
+ ===========================
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+TOO MANY TRIES with node:  f346_0_main_NULL
+
+phi props: {
+	 f346_0_main_NULL : ((1.7763568394002505e-15 * B >= 0 AND	 (1.7763568394002505e-15 * B >= 0 AND	 (1.7763568394002505e-15 * B >= 0 AND	 (1.7763568394002505e-15 * B >= 0 AND	 (1.7763568394002505e-15 * B >= 0 AND	 (1.7763568394002505e-15 * B >= 0 AND	 (1.7763568394002505e-15 * B >= 0 AND	 (1.7763568394002505e-15 * B >= 0 AND	 (-5.801636006840107 -0.74607675317072 * A + 2.753923246829281 * B >= 0 AND	 (-2.0384615384615383 -0.17948717948717974 * A + 1.1025641025641022 * B >= 0 AND	 (-1.0 + A >= 0 AND	 -1.0 + B >= 0))))))))))) 	OR (-2.0 + A == 0 AND	 -1.0 + B >= 0) 	OR (-1.0 + A == 0 AND	 -1.0 + B >= 0)) 
+
+}
+some nodes (['f346_0_main_NULL']) where ignored after 10 iterations. 
+Look at log.. there were WARNINGS
+

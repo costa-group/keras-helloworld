@@ -1,0 +1,11 @@
+{'f3585_0_Display_GE': (), 'f3902_0_Display_GT': ()}
+exit conditions: 
+ {'f3585_0_Display_GE': {'t11': -1 + A >= 0}, 'f3902_0_Display_GT': {'t14': (-12 + C == 0 AND -1 + A >= 0), 't13': (-1 + A >= 0 AND 11 - C >= 0), 't12': (-1 + A >= 0 AND -13 + C >= 0)}} 
+ ===========================
+
+phi props: {
+	 f3585_0_Display_GE : (-1.0 + A >= 0) 
+	 f3902_0_Display_GT : ((-12.0 + C == 0 AND	 -1.0 + A >= 0) 	OR (-1.0 + A >= 0 AND	 11.0 - C >= 0) 	OR (-1.0 + A >= 0 AND	 -13.0 + C >= 0)) 
+
+}
+

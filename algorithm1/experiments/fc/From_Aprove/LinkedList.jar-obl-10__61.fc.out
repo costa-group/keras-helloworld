@@ -1,0 +1,12 @@
+{'f1058_0_size_NULL': ()}
+exit conditions: 
+ {'f1058_0_size_NULL': {'t3': -1 + A >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f1058_0_size_NULL
+
+phi props: {
+	 f1058_0_size_NULL : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 -1.0 + A >= 0))))))))))) 
+
+}
+some nodes (['f1058_0_size_NULL']) where ignored after 10 iterations. 
+

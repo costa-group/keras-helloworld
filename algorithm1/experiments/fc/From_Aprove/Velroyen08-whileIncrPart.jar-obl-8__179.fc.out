@@ -1,0 +1,6 @@
+{'f47_0_increase_LE': ()}
+exit conditions: 
+ {'f47_0_increase_LE': {'t1': (-1 + A >= 0 AND 3 - A >= 0), 't2': -4 + A >= 0}} 
+ ===========================
+Error: ValueError
+Found input variables with inconsistent numbers of samples: [11, 20]

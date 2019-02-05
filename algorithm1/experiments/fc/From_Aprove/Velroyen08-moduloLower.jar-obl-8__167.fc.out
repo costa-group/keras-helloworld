@@ -1,0 +1,11 @@
+{'f49_0_loop_LEp': (), 'f49_0_loop_LE': ()}
+exit conditions: 
+ {'f49_0_loop_LEp': {'t2': -3 + A >= 0}, 'f49_0_loop_LE': {'t3': -3 + A >= 0, 't1': -3 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f49_0_loop_LEp : (-3.0 + A >= 0) 
+	 f49_0_loop_LE : (-3.0 + A >= 0 	OR -3.0 + A >= 0) 
+
+}
+

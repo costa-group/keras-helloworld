@@ -1,0 +1,11 @@
+{'f74_0_loop_aux_LE': (), 'f135_0_loop_aux_InvokeMethod': ()}
+exit conditions: 
+ {'f74_0_loop_aux_LE': {'t3': (A - C == 0 AND -1 + A >= 0 AND -1 - A + B >= 0), 't5': (A - C == 0 AND -1 + C >= 0 AND B >= 0 AND - B + C >= 0 AND 4 - B >= 0 AND 4 + B - C >= 0), 't1': (A - C == 0 AND -5 + B >= 0 AND A - B >= 0), 't6': (A - C == 0 AND B >= 0 AND 4 - B >= 0 AND -5 + A - B >= 0)}, 'f135_0_loop_aux_InvokeMethod': {'t4': (- A + D >= 0 AND -2 + C >= 0 AND -1 + A >= 0 AND B - C >= 0 AND -1 - A + B >= 0)}} 
+ ===========================
+
+phi props: {
+	 f74_0_loop_aux_LE : ((A - C == 0 AND	 -1.0 + A >= 0 AND	 -1.0 - A + B >= 0) 	OR (-2.9985668225614566 + 0.9995941444421825 * A -0.0008658251900114287 * B + 0.9995941444421825 * C >= 0 AND	 (A - C == 0 AND	 -1.0 + C >= 0 AND	 B >= 0 AND	 - B + C >= 0 AND	 4.0 - B >= 0 AND	 4.0 + B - C >= 0)) 	OR (A - C == 0 AND	 -5.0 + B >= 0 AND	 A - B >= 0) 	OR (A - C == 0 AND	 B >= 0 AND	 4.0 - B >= 0 AND	 -5.0 + A - B >= 0)) 
+	 f135_0_loop_aux_InvokeMethod : ((- A + D >= 0 AND	 -2.0 + C >= 0 AND	 -1.0 + A >= 0 AND	 B - C >= 0 AND	 -1.0 - A + B >= 0)) 
+
+}
+

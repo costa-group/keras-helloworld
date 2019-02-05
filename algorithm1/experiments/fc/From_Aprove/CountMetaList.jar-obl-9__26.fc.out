@@ -1,0 +1,12 @@
+{'f724_0_countMetaList_NULL': ()}
+exit conditions: 
+ {'f724_0_countMetaList_NULL': {'t4': -3 + A >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f724_0_countMetaList_NULL
+
+phi props: {
+	 f724_0_countMetaList_NULL : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 -3.0 + A >= 0))))))))))) 
+
+}
+some nodes (['f724_0_countMetaList_NULL']) where ignored after 10 iterations. 
+

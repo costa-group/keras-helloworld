@@ -1,0 +1,10 @@
+{'f481_0_lcm_EQ': ()}
+exit conditions: 
+ {'f481_0_lcm_EQ': {'t12': (C - E == 0 AND D - F == 0 AND -1 + E - F >= 0), 't11': (D - F == 0 AND C - E == 0 AND -1 + D - E >= 0 AND - E >= 0 AND - A >= 0)}} 
+ ===========================
+
+phi props: {
+	 f481_0_lcm_EQ : ((0.25 - B >= 0 AND	 (C - E == 0 AND	 D - F == 0 AND	 -1.0 + E - F >= 0)) 	OR (D - F == 0 AND	 C - E == 0 AND	 -1.0 + D - E >= 0 AND	 - E >= 0 AND	 - A >= 0)) 
+
+}
+

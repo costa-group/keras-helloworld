@@ -1,0 +1,13 @@
+{'f169_0_loop_EQ': ()}
+exit conditions: 
+ {'f169_0_loop_EQ': {'t2': (-1 + A >= 0 AND -1 + C >= 0 AND B - C >= 0), 't1': (-1 + A >= 0 AND B + C >= 0 AND -1 - C >= 0), 't3': (-1 + A >= 0 AND -1 + B >= 0 AND -1 - B - C >= 0), 't5': (-1 + A >= 0 AND -1 + B >= 0 AND -1 - B + C >= 0)}} 
+ ===========================
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+
+phi props: {
+	 f169_0_loop_EQ : ((-1.0 + A >= 0 AND	 -1.0 + C >= 0 AND	 B - C >= 0) 	OR (-1.0 + A >= 0 AND	 B + C >= 0 AND	 -1.0 - C >= 0) 	OR (-1.0 + A >= 0 AND	 -1.0 + B >= 0 AND	 -1.0 - B - C >= 0) 	OR (-1.0 + A >= 0 AND	 -1.0 + B >= 0 AND	 -1.0 - B + C >= 0)) 
+
+}
+Look at log.. there were WARNINGS
+

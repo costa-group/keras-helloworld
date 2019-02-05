@@ -1,0 +1,10 @@
+{'f151_0_main_InvokeMethod': ()}
+exit conditions: 
+ {'f151_0_main_InvokeMethod': {'t2': (-1 + A >= 0 AND -1 + B >= 0), 't3': (-1 + A >= 0 AND -1 + B >= 0)}} 
+ ===========================
+
+phi props: {
+	 f151_0_main_InvokeMethod : ((-1.0 + A >= 0 AND	 -1.0 + B >= 0) 	OR (-1.0 + A >= 0 AND	 -1.0 + B >= 0)) 
+
+}
+

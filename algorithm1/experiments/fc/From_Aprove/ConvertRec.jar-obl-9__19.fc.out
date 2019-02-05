@@ -1,0 +1,10 @@
+{'f1347_0_convert_NONNULL': ()}
+exit conditions: 
+ {'f1347_0_convert_NONNULL': {'t23': -1 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f1347_0_convert_NONNULL : (-1.0 + A >= 0) 
+
+}
+

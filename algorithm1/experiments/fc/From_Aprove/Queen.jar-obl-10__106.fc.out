@@ -1,0 +1,11 @@
+{'f1944_0_displayChessboard_GE': (), 'f2167_0_displayChessboard_GE': ()}
+exit conditions: 
+ {'f1944_0_displayChessboard_GE': {'t6': ()}, 'f2167_0_displayChessboard_GE': {'t9': (), 't8': (), 't10': (), 't7': ()}} 
+ ===========================
+
+phi props: {
+	 f1944_0_displayChessboard_GE : (()) 
+	 f2167_0_displayChessboard_GE : (() 	OR () 	OR () 	OR ()) 
+
+}
+

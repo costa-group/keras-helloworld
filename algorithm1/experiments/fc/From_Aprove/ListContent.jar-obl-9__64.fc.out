@@ -1,0 +1,10 @@
+{'f376_0_main_FieldAccess': ()}
+exit conditions: 
+ {'f376_0_main_FieldAccess': {'t2': -1 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f376_0_main_FieldAccess : (-1.0 + A >= 0) 
+
+}
+

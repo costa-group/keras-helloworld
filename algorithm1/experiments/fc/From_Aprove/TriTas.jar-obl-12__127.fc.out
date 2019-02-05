@@ -1,0 +1,10 @@
+{'f763_0_HeapSort_GE': ()}
+exit conditions: 
+ {'f763_0_HeapSort_GE': {'t6': ()}} 
+ ===========================
+
+phi props: {
+	 f763_0_HeapSort_GE : (()) 
+
+}
+

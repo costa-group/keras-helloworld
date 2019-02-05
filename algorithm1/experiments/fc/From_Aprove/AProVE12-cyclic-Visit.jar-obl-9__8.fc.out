@@ -1,0 +1,12 @@
+{'f168_0_visit_NULL': ()}
+exit conditions: 
+ {'f168_0_visit_NULL': {'t4': -1 + A >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f168_0_visit_NULL
+
+phi props: {
+	 f168_0_visit_NULL : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 -1.0 + A >= 0))))))))))) 
+
+}
+some nodes (['f168_0_visit_NULL']) where ignored after 10 iterations. 
+

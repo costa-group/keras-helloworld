@@ -1,0 +1,10 @@
+{'f32_0_increase_LE': ()}
+exit conditions: 
+ {'f32_0_increase_LE': {'t1': -10 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f32_0_increase_LE : (-10.0 + A >= 0) 
+
+}
+

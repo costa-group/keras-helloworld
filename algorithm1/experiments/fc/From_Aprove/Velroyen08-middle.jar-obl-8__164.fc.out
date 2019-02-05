@@ -1,0 +1,10 @@
+{'f182_0_middle_EQ': ()}
+exit conditions: 
+ {'f182_0_middle_EQ': {'t1': -1 - A + B >= 0}} 
+ ===========================
+
+phi props: {
+	 f182_0_middle_EQ : (-1.0 - A + B >= 0) 
+
+}
+

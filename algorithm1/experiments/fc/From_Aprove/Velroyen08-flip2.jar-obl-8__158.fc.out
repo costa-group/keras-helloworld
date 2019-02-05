@@ -1,0 +1,6 @@
+{'f116_0_flip_LE': ()}
+exit conditions: 
+ {'f116_0_flip_LE': {'t3': (-1 + B >= 0 AND -1 + A - B >= 0), 't2': (-1 + A >= 0 AND -1 - A + B >= 0), 't1': (A - B == 0 AND -1 + A >= 0)}} 
+ ===========================
+Error: ValueError
+Found input variables with inconsistent numbers of samples: [11, 20]

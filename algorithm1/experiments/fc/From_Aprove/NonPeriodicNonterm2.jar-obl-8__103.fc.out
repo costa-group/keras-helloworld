@@ -1,0 +1,10 @@
+{'f162_0_main_LT': ()}
+exit conditions: 
+ {'f162_0_main_LT': {'t2': (A - B == 0 AND B >= 0), 't1': (B >= 0 AND -1 + A - B >= 0)}} 
+ ===========================
+
+phi props: {
+	 f162_0_main_LT : ((A - B == 0 AND	 B >= 0) 	OR (B >= 0 AND	 -1.0 + A - B >= 0)) 
+
+}
+

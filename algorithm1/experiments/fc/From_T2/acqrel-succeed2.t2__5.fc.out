@@ -1,0 +1,13 @@
+{'n_l1': (), 'n_l0': ()}
+exit conditions: 
+ {'n_l1': {'t3': - C >= 0}, 'n_l0': {'t0': - D >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  n_l0
+
+phi props: {
+	 n_l1 : ((0.001953125 - D >= 0 AND	 - C >= 0)) 
+	 n_l0 : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 - D >= 0))))))))))) 
+
+}
+some nodes (['n_l0']) where ignored after 10 iterations. 
+

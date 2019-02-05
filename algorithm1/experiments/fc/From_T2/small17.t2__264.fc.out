@@ -1,0 +1,29 @@
+{'n_l1': (), 'n_l0': ()}
+exit conditions: 
+ {'n_l1': {'t1': (), 't2': ()}, 'n_l0': {'t0': -1 + A >= 0}} 
+ ===========================
+Error: Exception
+something went wrong...
+Traceback (most recent call last):
+  File "main.py", line 166, in <module>
+    launch(config)
+  File "main.py", line 51, in launch
+    launch_file(config, files[i])
+  File "main.py", line 67, in launch_file
+    analyse(config, cfg)
+  File "main.py", line 96, in analyse
+    R = analyse_scc(scc, config["no_split"])
+  File "main.py", line 127, in analyse_scc
+    return alg.run(scc)
+  File "/home/friker/Systems/keras-helloworld/algorithm1/ntML.py", line 171, in run
+    bad_points = generateNpoints(sb, Npoints, vs)  # program terminates
+  File "/home/friker/Systems/keras-helloworld/algorithm1/ntML.py", line 112, in generateNpoints
+    raise Exception("something went wrong...")
+Exception: something went wrong...
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "main.py", line 169, in <module>
+    raise Exception() from e
+Exception

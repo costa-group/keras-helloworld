@@ -1,0 +1,15 @@
+{'n_l1': (), 'n_l2': (), 'n_l3': (), 'n_l0': ()}
+exit conditions: 
+ {'n_l1': {'t7': ()}, 'n_l2': {'t3': -4 + A == 0, 't1': -5 + A >= 0, 't2': 3 - A >= 0}, 'n_l3': {'t5': -1 + B >= 0, 't6': -1 - B >= 0}, 'n_l0': {'t0': ()}} 
+ ===========================
+TOO MANY TRIES with node:  n_l1
+
+phi props: {
+	 n_l1 : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 ()))))))))))) 
+	 n_l2 : (-4.0 + A == 0 	OR -5.0 + A >= 0 	OR 3.0 - A >= 0) 
+	 n_l3 : (-1.0 + B >= 0 	OR -1.0 - B >= 0) 
+	 n_l0 : (()) 
+
+}
+some nodes (['n_l1']) where ignored after 10 iterations. 
+

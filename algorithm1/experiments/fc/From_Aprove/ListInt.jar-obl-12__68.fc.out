@@ -1,0 +1,12 @@
+{'f1682_0_reverse_NONNULL': ()}
+exit conditions: 
+ {'f1682_0_reverse_NONNULL': {'t25': (-3 + A >= 0 AND -1 + B >= 0 AND -2 + A - C >= 0)}} 
+ ===========================
+TOO MANY TRIES with node:  f1682_0_reverse_NONNULL
+
+phi props: {
+	 f1682_0_reverse_NONNULL : ((1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (2.431372549019606 -0.35784313725490335 * A -0.3578431372549016 * B + 0.32843137254901933 * C >= 0 AND	 (-3.0 + A >= 0 AND	 -1.0 + B >= 0 AND	 -2.0 + A - C >= 0)))))))))))) 
+
+}
+some nodes (['f1682_0_reverse_NONNULL']) where ignored after 10 iterations. 
+

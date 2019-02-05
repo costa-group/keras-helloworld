@@ -1,0 +1,13 @@
+{'f80_0_main_EQp': (), 'f80_0_main_EQ': ()}
+exit conditions: 
+ {'f80_0_main_EQp': {'t3': -1 + B >= 0}, 'f80_0_main_EQ': {'t2': -1 + B >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f80_0_main_EQp
+
+phi props: {
+	 f80_0_main_EQp : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 -1.0 + B >= 0))))))))))) 
+	 f80_0_main_EQ : (-1.0 + B >= 0) 
+
+}
+some nodes (['f80_0_main_EQp']) where ignored after 10 iterations. 
+

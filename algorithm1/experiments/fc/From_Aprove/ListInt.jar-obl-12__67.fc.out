@@ -1,0 +1,12 @@
+{'f1570_0_reverseAcc_NONNULL': ()}
+exit conditions: 
+ {'f1570_0_reverseAcc_NONNULL': {'t22': (-3 + A >= 0 AND -1 + B >= 0 AND -2 + A - C >= 0)}} 
+ ===========================
+TOO MANY TRIES with node:  f1570_0_reverseAcc_NONNULL
+
+phi props: {
+	 f1570_0_reverseAcc_NONNULL : ((1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (1.7763568394002505e-15 * A >= 0 AND	 (2.431372549019606 -0.35784313725490335 * A -0.3578431372549016 * B + 0.32843137254901933 * C >= 0 AND	 (-3.0 + A >= 0 AND	 -1.0 + B >= 0 AND	 -2.0 + A - C >= 0)))))))))))) 
+
+}
+some nodes (['f1570_0_reverseAcc_NONNULL']) where ignored after 10 iterations. 
+

@@ -1,0 +1,10 @@
+{'f339_0_length_Load': ()}
+exit conditions: 
+ {'f339_0_length_Load': {'t3': -1 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f339_0_length_Load : (-1.0 + A >= 0) 
+
+}
+

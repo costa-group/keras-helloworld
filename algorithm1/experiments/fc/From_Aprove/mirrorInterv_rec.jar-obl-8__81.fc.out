@@ -1,0 +1,18 @@
+{'f437_0_loop_aux_GT': (), 'f509_0_loop_aux_InvokeMethod': ()}
+exit conditions: 
+ {'f437_0_loop_aux_GT': {'t5': (-2 + C >= 0 AND -5 + A - C >= 0 AND - B + C >= 0), 't6': (-1 + C == 0 AND -6 + A >= 0 AND 1 - B >= 0), 't4': (-5 + A + C >= 0 AND - C >= 0 AND - B + C >= 0), 't2': (-5 + A - C >= 0 AND - B + C >= 0 AND 4 - A - C >= 0), 't1': (A - C >= 0 AND - B + C >= 0 AND 4 - A + C >= 0)}, 'f509_0_loop_aux_InvokeMethod': {'t3': - A + C >= 0}} 
+ ===========================
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT
+
+phi props: {
+	 f437_0_loop_aux_GT : ((-2.0 + C >= 0 AND	 -5.0 + A - C >= 0 AND	 - B + C >= 0) 	OR (-1.0 + C == 0 AND	 -6.0 + A >= 0 AND	 1.0 - B >= 0) 	OR (-5.0 + A + C >= 0 AND	 - C >= 0 AND	 - B + C >= 0) 	OR (2.8446117652635974 -0.24537339858149654 * A -0.41660585606107325 * B + 1.398464910417439 * C >= 0 AND	 (-0.2422674400443275 + 0.7305657809395236 * A + 0.7305657809395232 * B + 0.7305657809395232 * C >= 0 AND	 (-5.0 + A - C >= 0 AND	 - B + C >= 0 AND	 4.0 - A - C >= 0))) 	OR (1.0 -0.6306245781066546 * A -0.20802421147933803 * B -0.6306245781066546 * C >= 0 AND	 (1.577667095160294 -0.2972689169035747 * A + 0.6520058549768785 * B + 0.7111683114736236 * C >= 0 AND	 (1.5156922991571988 + 0.5741768108410711 * A + 0.5115136521055638 * B + 0.5115136521055638 * C >= 0 AND	 (A - C >= 0 AND	 - B + C >= 0 AND	 4.0 - A + C >= 0))))) 
+	 f509_0_loop_aux_InvokeMethod : ((0.7260378897190094 + 0.09584847967067889 * A -0.9041515203293211 * B + 0.09584847967067889 * C >= 0 AND	 (0.5041258037090302 + 0.5614754098360656 * A -0.4385245901639344 * B + 0.5614754098360656 * C >= 0 AND	 (0.39869281045751637 + 0.5424836601307189 * A + 0.49673202614379086 * B + 0.5555555555555556 * C >= 0 AND	 (0.5 + B >= 0 AND	 - A + C >= 0))))) 
+
+}
+Look at log.. there were WARNINGS
+

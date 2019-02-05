@@ -1,0 +1,6 @@
+{'f104_0_loop_EQ': ()}
+exit conditions: 
+ {'f104_0_loop_EQ': {'t3': -5 + A >= 0, 't1': -1 - A >= 0, 't2': (-1 + A >= 0 AND 4 - A >= 0)}} 
+ ===========================
+Error: ValueError
+Found input variables with inconsistent numbers of samples: [11, 20]

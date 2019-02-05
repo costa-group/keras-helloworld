@@ -1,0 +1,10 @@
+{'f40_0_increase_LE': ()}
+exit conditions: 
+ {'f40_0_increase_LE': {'t1': -1 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f40_0_increase_LE : (-1.0 + A >= 0) 
+
+}
+

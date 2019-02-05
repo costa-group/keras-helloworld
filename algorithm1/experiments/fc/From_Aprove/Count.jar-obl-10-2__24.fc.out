@@ -1,0 +1,12 @@
+{'f2232_0_flatten_NONNULL': ()}
+exit conditions: 
+ {'f2232_0_flatten_NONNULL': {'t32': -2 + A >= 0, 't33': -3 + A >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f2232_0_flatten_NONNULL
+
+phi props: {
+	 f2232_0_flatten_NONNULL : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (-8.501951217651367 + A >= 0 AND	 (-6.751953125 + A >= 0 AND	 (-5.001953125 + A >= 0 AND	 (-4.324675324675325 + 1.3298701298701299 * A >= 0 AND	 -2.0 + A >= 0)))))))))) 	OR -3.0 + A >= 0) 
+
+}
+some nodes (['f2232_0_flatten_NONNULL']) where ignored after 10 iterations. 
+

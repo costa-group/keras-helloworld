@@ -1,0 +1,10 @@
+{'f112_0_loop_GE': ()}
+exit conditions: 
+ {'f112_0_loop_GE': {'t2': (B >= 0 AND A - B >= 0)}} 
+ ===========================
+
+phi props: {
+	 f112_0_loop_GE : ((B >= 0 AND	 A - B >= 0)) 
+
+}
+

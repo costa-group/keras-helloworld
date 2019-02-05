@@ -1,0 +1,10 @@
+{'f25_0_main_JMP': ()}
+exit conditions: 
+ {'f25_0_main_JMP': {'t0': ()}} 
+ ===========================
+
+phi props: {
+	 f25_0_main_JMP : (()) 
+
+}
+

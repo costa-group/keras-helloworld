@@ -1,0 +1,10 @@
+{'f30_0_loop_JMP': ()}
+exit conditions: 
+ {'f30_0_loop_JMP': {'t0': -1 + A >= 0}} 
+ ===========================
+
+phi props: {
+	 f30_0_loop_JMP : (-1.0 + A >= 0) 
+
+}
+

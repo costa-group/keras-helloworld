@@ -1,0 +1,12 @@
+{'f64_0_main_LT': ()}
+exit conditions: 
+ {'f64_0_main_LT': {'t1': -6 + A >= 0}} 
+ ===========================
+TOO MANY TRIES with node:  f64_0_main_LT
+
+phi props: {
+	 f64_0_main_LT : ((0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 (0 >= 0 AND	 -6.0 + A >= 0))))))))))) 
+
+}
+some nodes (['f64_0_main_LT']) where ignored after 10 iterations. 
+
