@@ -151,6 +151,7 @@ class ML:
 
             for t in scc.get_edges(source=node):
                 tname = t["name"]
+                print(tname)
                 good_cons = []
                 good_cons += [phi[node][tname]]  # phi[node][tname]
                 good_cons += t["polyhedron"].get_constraints()  # ti
@@ -167,6 +168,7 @@ class ML:
                 if sb.check() == sat:
                     sg = Solver()
                     sg.add(simplify(And(toz3(good_cons))))
+                    
                     if sg.check() == sat:
                         bad_points = generateNpoints(sb, Npoints, vs)  # program terminates
                         bad_y = [False] * Npoints
@@ -207,6 +209,7 @@ class ML:
                             plt.axis('tight')
                             plt.show()
                         phi[node][tname] = ExpAnd(new_phi, phi[node][tname])
+                        
                         S = Solver()
                         S.add(toz3(phi[node][tname]))
                         if S.check() == sat:
@@ -216,6 +219,12 @@ class ML:
                     else:
                         warnings = True
                         OM.printf("WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT")
+                        OM.printf("removing transition: {}".format(tname))
+                        OM.printif(2, "goods", sg)
+                        scc.remove_edge(t["source"], t["target"], t["name"])
+                        del phi[node][tname]
+                        continue
+                        # scc.remove_edge()
                         itis = TerminationResult.UNKNOWN
                 else:
                     OM.printif(1, "bads (terminating) are UNSAT")
