@@ -7,23 +7,10 @@ Created on Dec 4, 2018
 import argparse
 import os
 import sys
+from termination.output import Output_Manager as OM
 
 _name = "alg1"
 _version = "v0.0.0dev"
-verbosity = 0
-
-
-def printif(ver, *kwargs):
-    if verbosity < ver:
-        return
-    msg = ""
-    first = True
-    for m in kwargs:
-        if not first:
-            msg += " "
-            first = False
-        msg += str(m)
-    print(msg)
 
 
 def setArgumentParser():
@@ -36,6 +23,10 @@ def setArgumentParser():
                            help="increase output verbosity", default=0)
     argParser.add_argument("-V", "--version", required=False,
                            action='store_true', help="Shows the version.")
+    argParser.add_argument("--ei-out", required=False, action='store_true',
+                           help="Shows the output supporting ei")
+    argParser.add_argument("-ns", "--no-split", required=False, action='store_true',
+                           help="")
     argParser.add_argument("-sccd", "--scc-depth", type=int, default=4,
                            help="Strategy based on SCC to go through the CFG.")
 # IMPORTANT PARAMETERS
@@ -88,9 +79,9 @@ def analyse(config, cfg):
         current_cfg, sccd = CFGs.pop(0)
         removed = current_cfg.remove_unsat_edges()
         if len(removed) > 0:
-            printif(2, "Transition (" + removed + ") were removed because it is empty.")
+            OM.printif(2, "Transition (" + removed + ") were removed because it is empty.")
         if len(current_cfg.get_edges()) == 0:
-            printif(2, "This cfg has not transitions.")
+            OM.printif(2, "This cfg has not transitions.")
             continue
         cfg_cfr = current_cfg
         CFGs_aux = cfg_cfr.get_scc() if sccd > 0 else [cfg_cfr]
@@ -102,7 +93,7 @@ def analyse(config, cfg):
             if len(scc.get_edges()) == 0:
                 continue
             set_fancy_props(cfg, scc)
-            R = analyse_scc(scc)
+            R = analyse_scc(scc, config["no_split"])
             if R.get_status().is_terminate():
                 terminating_sccs.append(R)
             elif R.get_status().is_nonterminate():
@@ -126,9 +117,13 @@ def analyse(config, cfg):
     return response
 
 
-def analyse_scc(scc):
-    from ntML import ML
-    alg = ML()
+def analyse_scc(scc, no_split=True):
+    if no_split:
+        from ntML import ML2
+        alg = ML2()
+    else:
+        from ntML import ML
+        alg = ML()
     return alg.run(scc)
 
 
@@ -155,6 +150,7 @@ def set_fancy_props(cfg, scc):
     print(fancy)
     scc.set_nodes_info(fancy, "exit_props")
 
+
 if __name__ == '__main__':
     try:
         argv = sys.argv[1:]
@@ -163,6 +159,7 @@ if __name__ == '__main__':
         if args.version:
             print(_name + " version: " + _version)
             exit(0)
+        OM.restart(verbosity=args.verbosity, ei=args.ei_out)
         config = vars(args)
         if "verbosity" in config:
             verbosity = config["verbosity"]

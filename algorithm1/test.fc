@@ -3,7 +3,7 @@
 	initnode: node_init,
 	nodes: {
 	    node_init: {    },
-	    node_while: { fancy_prop: [[x > 0]] },
+	    node_while: { fancya_prop: [[x > 0]] },
       	node_exit: { },
   },
 	transitions: [
@@ -13,15 +13,15 @@
 			target: node_while,
 			constraints: [x' = 50, y' = 0, z'=z]
 		},{
-			name: t2,
-			source: node_while,
-			target: node_while,
-			constraints: [x >= 1, x' = x - y, y' = y, z'=z]
-		},{
 			name: t1,
 			source: node_while,
 			target: node_while,
 			constraints: [x >= 10, x' = x - y, y' = y, z'=z]
+		},{
+			name: t2,
+			source: node_while,
+			target: node_while,
+			constraints: [x >= 1, x' = x - y, y' = y, z'=z]
 		}
 	]
 }
