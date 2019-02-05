@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t19,
+        source: f1472_0_iter_NULL,
+        target: f1472_0_iter_NULL,
+        constraints: [A-C-2>=0, G>=0, -F+1=<0, -B+1=<0, 3-A=<0]
+    }
+    ],
+    initnode: f1472_0_iter_NULL
+ }
+ 

@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t14,
+        source: f1184_0_copyR_NULL,
+        target: f1184_0_copyR_NULL,
+        constraints: [2-I=<0, 2-H=<0, -G+1=<0, C>=0, 2-B=<0, 3-A=<0, C-I+2>=0, I-B=<0, A-I-1>=0]
+    },
+    {
+        name: t15,
+        source: f1184_0_copyR_NULL,
+        target: f1184_0_copyR_NULL,
+        constraints: [5-I=<0, 2-H=<0, -G+1=<0, -C+1=<0, 3-B=<0, 3-A=<0]
+    }
+    ],
+    initnode: f1184_0_copyR_NULL
+ }
+ 

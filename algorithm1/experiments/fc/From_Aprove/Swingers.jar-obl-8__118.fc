@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t0,
+        source: f53_0_main_Load,
+        target: f53_0_main_Load,
+        constraints: [A-D=0, B-C=0, 99-A-B>=0, -B+1=<0, -A+1=<0]
+    }
+    ],
+    initnode: f53_0_main_Load
+ }
+ 

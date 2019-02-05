@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t23,
+        source: f1347_0_convert_NONNULL,
+        target: f1347_0_convert_NONNULL,
+        constraints: [0>=0, -K+1=<0, F-A=<0, -A+1=<0, -F+1=<0]
+    }
+    ],
+    initnode: f1347_0_convert_NONNULL
+ }
+ 

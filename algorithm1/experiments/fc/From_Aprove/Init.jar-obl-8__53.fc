@@ -1,0 +1,13 @@
+{
+    vars: [A],
+    pvars: [B],
+    transitions: [    {
+        name: t0,
+        source: f38_0__clinit__Load,
+        target: f38_0__clinit__Load,
+        constraints: [0>=0]
+    }
+    ],
+    initnode: f38_0__clinit__Load
+ }
+ 

@@ -1,0 +1,19 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t5,
+        source: n_l3,
+        target: n_l4,
+        constraints: [A-C=0, B-D=0, B-D=0, A-C=0]
+    },
+    {
+        name: t6,
+        source: n_l4,
+        target: n_l3,
+        constraints: [A-C=0, B-D=0, B-D=0, A-C=0]
+    }
+    ],
+    initnode: n_l3
+ }
+ 

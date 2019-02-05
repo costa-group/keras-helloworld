@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t10,
+        source: f1294_0_applyTreeChanger_NULL,
+        target: f1288_0_applyTreeChanger_NULL,
+        constraints: [H>=0, G>=0, -A+1=<0, A-H-1>=0, A-G-1>=0]
+    },
+    {
+        name: t11,
+        source: f1288_0_applyTreeChanger_NULL,
+        target: f1294_0_applyTreeChanger_NULL,
+        constraints: [G>=0, -B+1=<0, A>=0, G-A=<0]
+    },
+    {
+        name: t8,
+        source: f1288_0_applyTreeChanger_NULL,
+        target: f1294_0_applyTreeChanger_NULL,
+        constraints: [G>=0, B>=0, A>=0, G-A=<0]
+    },
+    {
+        name: t9,
+        source: f1288_0_applyTreeChanger_NULL,
+        target: f1288_0_applyTreeChanger_NULL,
+        constraints: [H>=0, G>=0, -B+1=<0, A>=0, B-H-1>=0, B-G-1>=0]
+    }
+    ],
+    initnode: f1294_0_applyTreeChanger_NULL
+ }
+ 

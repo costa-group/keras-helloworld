@@ -1,0 +1,37 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t4,
+        source: f130_0_loop_GT,
+        target: f163_0_loop_GE,
+        constraints: [C=0, A=0]
+    },
+    {
+        name: t5,
+        source: f130_0_loop_GT,
+        target: f163_0_loop_GE,
+        constraints: [C-A+1=0, A-5=<0, -A+1=<0]
+    },
+    {
+        name: t6,
+        source: f131_0_loop_LT,
+        target: f163_0_loop_GE,
+        constraints: [A-C=0, A-C=0, 5+A>=0, A-5=<0, A=<0]
+    },
+    {
+        name: t7,
+        source: f163_0_loop_GE,
+        target: f130_0_loop_GT,
+        constraints: [A-C=0, A-C=0, A>=0]
+    },
+    {
+        name: t8,
+        source: f163_0_loop_GE,
+        target: f131_0_loop_LT,
+        constraints: [C-A-1=0, A+1=<0]
+    }
+    ],
+    initnode: f130_0_loop_GT
+ }
+ 

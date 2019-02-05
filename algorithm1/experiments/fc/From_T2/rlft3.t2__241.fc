@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I, J, K, L],
+    pvars: [M, N, O, P, Q, R, S, T, U, V, W, X],
+    transitions: [    {
+        name: t21,
+        source: n_l18,
+        target: n_l19,
+        constraints: [A-M=0, B-N=0, E-Q=0, F-R=0, G-S=0, H-T=0, I-U=0, I-U=0, H-T=0, G-S=0, F-R=0, E-Q=0, B-N=0, A-M=0, P-2-D=0, O-1-C=0, 0=0, 0=0, X-K=0, B-1-I>=0]
+    },
+    {
+        name: t27,
+        source: n_l19,
+        target: n_l20,
+        constraints: [A-M=0, B-N=0, C-O=0, D-P=0, E-Q=0, F-R=0, G-S=0, H-T=0, I-U=0, J-V=0, K-W=0, L-X=0, L-X=0, K-W=0, J-V=0, I-U=0, H-T=0, G-S=0, F-R=0, E-Q=0, D-P=0, C-O=0, B-N=0, A-M=0]
+    },
+    {
+        name: t24,
+        source: n_l20,
+        target: n_l9,
+        constraints: [A-M=0, B-N=0, C-O=0, D-P=0, E-Q=0, F-R=0, G-S=0, H-T=0, I-U=0, J-V=0, K-W=0, L-X=0, L-X=0, K-W=0, J-V=0, I-U=0, H-T=0, G-S=0, F-R=0, E-Q=0, D-P=0, C-O=0, B-N=0, A-M=0]
+    },
+    {
+        name: t33,
+        source: n_l9,
+        target: n_l18,
+        constraints: [A-M=0, B-N=0, C-O=0, D-P=0, E-Q=0, F-R=0, G-S=0, H-T=0, I-U=0, J-V=0, K-W=0, L-X=0, L-X=0, K-W=0, J-V=0, I-U=0, H-T=0, G-S=0, F-R=0, E-Q=0, D-P=0, C-O=0, B-N=0, A-M=0]
+    }
+    ],
+    initnode: n_l18
+ }
+ 

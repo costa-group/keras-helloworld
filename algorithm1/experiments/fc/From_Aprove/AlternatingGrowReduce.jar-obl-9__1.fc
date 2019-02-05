@@ -1,0 +1,25 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t3,
+        source: f346_0_main_NULL,
+        target: f346_0_main_NULL,
+        constraints: [2-C=0, 1-A=0, 3-D=<0, -B+1=<0, B-D+2>=0]
+    },
+    {
+        name: t4,
+        source: f346_0_main_NULL,
+        target: f346_0_main_NULL,
+        constraints: [C=0, 2-A=0, 5-D=<0, -B+1=<0, B-D+4>=0]
+    },
+    {
+        name: t5,
+        source: f346_0_main_NULL,
+        target: f346_0_main_NULL,
+        constraints: [-A+1=<0, -B+1=<0, C>=0]
+    }
+    ],
+    initnode: f346_0_main_NULL
+ }
+ 

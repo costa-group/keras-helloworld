@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t6,
+        source: f146_0_even_EQ,
+        target: f146_0_even_EQ,
+        constraints: [C-A+2=0, A-2=<0, A+1=<0]
+    }
+    ],
+    initnode: f146_0_even_EQ
+ }
+ 

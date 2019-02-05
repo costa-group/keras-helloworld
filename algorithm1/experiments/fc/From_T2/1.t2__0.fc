@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I, J, K, L],
+    pvars: [M, N, O, P, Q, R, S, T, U, V, W, X],
+    transitions: [    {
+        name: t11,
+        source: n_l10,
+        target: n_l8,
+        constraints: [A-M=0, B-N=0, C-O=0, D-P=0, E-Q=0, F-R=0, G-S=0, I-U=0, J-V=0, K-W=0, T-L=0, 0=0, X-Y=0, 0=0, A-M=0, B-N=0, C-O=0, D-P=0, E-Q=0, F-R=0, G-S=0, I-U=0, J-V=0, K-W=0]
+    },
+    {
+        name: t9,
+        source: n_l5,
+        target: n_l9,
+        constraints: [A-M=0, B-N=0, C-O=0, D-P=0, E-Q=0, F-R=0, G-S=0, H-T=0, I-U=0, J-V=0, K-W=0, L-X=0, L-X=0, K-W=0, J-V=0, I-U=0, H-T=0, G-S=0, F-R=0, E-Q=0, D-P=0, C-O=0, B-N=0, A-M=0, B>=0]
+    },
+    {
+        name: t12,
+        source: n_l8,
+        target: n_l5,
+        constraints: [A-M=0, B-N=0, C-O=0, D-P=0, E-Q=0, F-R=0, G-S=0, H-T=0, I-U=0, J-V=0, K-W=0, L-X=0, L-X=0, K-W=0, J-V=0, I-U=0, H-T=0, G-S=0, F-R=0, E-Q=0, D-P=0, C-O=0, B-N=0, A-M=0]
+    },
+    {
+        name: t10,
+        source: n_l9,
+        target: n_l10,
+        constraints: [A-M=0, B-N=0, C-O=0, D-P=0, E-Q=0, F-R=0, G-S=0, H-T=0, I-U=0, J-V=0, K-W=0, L-X=0, L-X=0, K-W=0, J-V=0, I-U=0, H-T=0, G-S=0, F-R=0, E-Q=0, D-P=0, C-O=0, B-N=0, A-M=0]
+    }
+    ],
+    initnode: n_l10
+ }
+ 

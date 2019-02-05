@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I],
+    pvars: [J, K, L, M, N, O, P, Q, R],
+    transitions: [    {
+        name: t29,
+        source: f844_0_getFirst_NONNULL,
+        target: f844_0_getFirst_NONNULL,
+        constraints: [A-C-2>=0, K>=0, -J+1=<0, -B+1=<0, 3-A=<0]
+    }
+    ],
+    initnode: f844_0_getFirst_NONNULL
+ }
+ 

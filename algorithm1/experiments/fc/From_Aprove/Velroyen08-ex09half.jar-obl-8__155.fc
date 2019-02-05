@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t1,
+        source: f74_0_loop_LE,
+        target: f74_0_loop_LEp,
+        constraints: [A-E=0, B-F=0, C-G=0, D-H=0, D>=0, -C+1=<0, I-A=<0, -A+1=<0, -I+1=<0, A-E=0, B-F=0, C-G=0, D-H=0]
+    },
+    {
+        name: t2,
+        source: f74_0_loop_LEp,
+        target: f74_0_loop_LE,
+        constraints: [D-H=0, D>=0, -C+1=<0, E-A=<0, -A+1=<0, -E+1=<0, 1-D+B+2*J>=0, -D+B+2*J=<0, F-B-J=0, G-D+B+J=0, D-H=0]
+    }
+    ],
+    initnode: f74_0_loop_LE
+ }
+ 

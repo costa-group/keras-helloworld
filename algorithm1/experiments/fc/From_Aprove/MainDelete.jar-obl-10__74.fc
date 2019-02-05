@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I, J, K, L],
+    pvars: [M, N, O, P, Q, R, S, T, U, V, W, X],
+    transitions: [    {
+        name: t27,
+        source: f1370_0_findR_NE,
+        target: f1370_0_findR_NE,
+        constraints: [B-N=0, B-N=0, A-C-2>=0, -M+1=<0, C-B+1=<0, 3-A=<0]
+    },
+    {
+        name: t28,
+        source: f1370_0_findR_NE,
+        target: f1370_0_findR_NE,
+        constraints: [B-N=0, B-N=0, A-C-2>=0, -M+1=<0, B-C+1=<0, 3-A=<0]
+    }
+    ],
+    initnode: f1370_0_findR_NE
+ }
+ 

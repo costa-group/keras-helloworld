@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t2,
+        source: f229_0_main_GE,
+        target: f357_0_main_ArrayAccess,
+        constraints: [K>=0, B-K+1=<0, C-K+1=<0, L>=0, C>=0, -A+1=<0, B-F=0, G-C-1=0]
+    },
+    {
+        name: t3,
+        source: f357_0_main_ArrayAccess,
+        target: f229_0_main_GE,
+        constraints: [A-M+1=<0, -F+1=<0, G-A-1=0, B-H=0]
+    }
+    ],
+    initnode: f229_0_main_GE
+ }
+ 

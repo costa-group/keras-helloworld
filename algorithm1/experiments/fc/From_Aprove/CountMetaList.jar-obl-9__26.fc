@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t4,
+        source: f724_0_countMetaList_NULL,
+        target: f724_0_countMetaList_NULL,
+        constraints: [-E+1=<0, 3-A=<0, E-A=<0]
+    }
+    ],
+    initnode: f724_0_countMetaList_NULL
+ }
+ 

@@ -1,0 +1,19 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f46_0_loop_EQ,
+        target: f46_0_loop_EQ,
+        constraints: [C+A-1=0, A+1=<0, A-1=<0]
+    },
+    {
+        name: t2,
+        source: f46_0_loop_EQ,
+        target: f46_0_loop_EQ,
+        constraints: [C+A+1=0, -A+1=<0]
+    }
+    ],
+    initnode: f46_0_loop_EQ
+ }
+ 

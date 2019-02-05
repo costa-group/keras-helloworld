@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t22,
+        source: f1570_0_reverseAcc_NONNULL,
+        target: f1570_0_reverseAcc_NONNULL,
+        constraints: [A-C-2>=0, G>=0, -F+1=<0, -B+1=<0, 3-A=<0]
+    }
+    ],
+    initnode: f1570_0_reverseAcc_NONNULL
+ }
+ 

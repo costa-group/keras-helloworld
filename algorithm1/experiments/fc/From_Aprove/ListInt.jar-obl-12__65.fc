@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t16,
+        source: f1341_0_append_NONNULL,
+        target: f1341_0_append_NONNULL,
+        constraints: [E-J=0, E-J=0, B-E-2>=0, A-D-2>=0, H>=0, -G+1=<0, -F+1=<0, -C+1=<0, -B+1=<0, 3-A=<0, G-B=<0]
+    }
+    ],
+    initnode: f1341_0_append_NONNULL
+ }
+ 

@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t5,
+        source: f1548_0_flatten_NULL,
+        target: f1548_0_flatten_NULL,
+        constraints: [H>=0, G>=0, 2-B=<0, 2-A=<0, B-H-2>=0, A-H-2>=0, B-G-2>=0, A-G-2>=0]
+    },
+    {
+        name: t6,
+        source: f1548_0_flatten_NULL,
+        target: f1548_0_flatten_NULL,
+        constraints: [3-H=<0, 3-G=<0, 3-B=<0, 3-A=<0, B-H+2>=0, A-H+2>=0, B-G+2>=0, A-G+2>=0]
+    }
+    ],
+    initnode: f1548_0_flatten_NULL
+ }
+ 

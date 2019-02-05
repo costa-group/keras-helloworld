@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t3,
+        source: f339_0_length_Load,
+        target: f339_0_length_Load,
+        constraints: [C-I=0, C-I=0, H-B-1=0, -G+1=<0, -A+1=<0, G-A=<0]
+    }
+    ],
+    initnode: f339_0_length_Load
+ }
+ 

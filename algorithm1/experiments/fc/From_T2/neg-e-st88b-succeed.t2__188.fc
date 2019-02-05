@@ -1,0 +1,73 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t8,
+        source: n_l10,
+        target: n_l2,
+        constraints: [A-D=0, B-E=0, C-F=0, C-F=0, B-E=0, A-D=0, A-2=<0]
+    },
+    {
+        name: t7,
+        source: n_l10,
+        target: n_l9,
+        constraints: [B-E=0, C-F=0, C-F=0, B-E=0, D+1-A=0, 3-A=<0]
+    },
+    {
+        name: t11,
+        source: n_l12,
+        target: n_l3,
+        constraints: [B-E=0, C-F=0, C-F=0, B-E=0, D-1-A=0, 6-A=<0]
+    },
+    {
+        name: t12,
+        source: n_l12,
+        target: n_l3,
+        constraints: [B-E=0, C-F=0, C-F=0, B-E=0, D-1-A=0, A-5=<0]
+    },
+    {
+        name: t13,
+        source: n_l13,
+        target: n_l12,
+        constraints: [A-D=0, B-E=0, C-F=0, C-F=0, B-E=0, A-D=0, C=<0]
+    },
+    {
+        name: t14,
+        source: n_l13,
+        target: n_l9,
+        constraints: [A-D=0, B-E=0, C-F=0, C-F=0, B-E=0, A-D=0, 1-C=<0]
+    },
+    {
+        name: t2,
+        source: n_l2,
+        target: n_l3,
+        constraints: [A-D=0, B-E=0, C-F=0, C-F=0, B-E=0, A-D=0]
+    },
+    {
+        name: t3,
+        source: n_l3,
+        target: n_l4,
+        constraints: [A-D=0, B-E=0, B-E=0, A-D=0, 0=0]
+    },
+    {
+        name: t15,
+        source: n_l4,
+        target: n_l12,
+        constraints: [A-D=0, B-E=0, C-F=0, C-F=0, B-E=0, A-D=0, 6-A=<0]
+    },
+    {
+        name: t16,
+        source: n_l4,
+        target: n_l13,
+        constraints: [A-D=0, B-E=0, C-F=0, C-F=0, B-E=0, A-D=0, A-5=<0]
+    },
+    {
+        name: t6,
+        source: n_l9,
+        target: n_l10,
+        constraints: [A-D=0, B-E=0, C-F=0, C-F=0, B-E=0, A-D=0]
+    }
+    ],
+    initnode: n_l10
+ }
+ 

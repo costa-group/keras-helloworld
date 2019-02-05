@@ -1,0 +1,43 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t1,
+        source: f437_0_loop_aux_GT,
+        target: f509_0_loop_aux_InvokeMethod,
+        constraints: [A-F=0, E+C=0, C-D=0, B-C=<0, C-A=<0, 4-A+C>=0]
+    },
+    {
+        name: t2,
+        source: f437_0_loop_aux_GT,
+        target: f509_0_loop_aux_InvokeMethod,
+        constraints: [A-F=0, E+C=0, C-D=0, 4-A-C>=0, 5-A+C=<0, B-C=<0, C-A=<0]
+    },
+    {
+        name: t3,
+        source: f509_0_loop_aux_InvokeMethod,
+        target: f437_0_loop_aux_GT,
+        constraints: [B-F=0, E+C=0, C-D=0, A-C=<0]
+    },
+    {
+        name: t4,
+        source: f437_0_loop_aux_GT,
+        target: f437_0_loop_aux_GT,
+        constraints: [F-C+1=0, E+A+1=0, D-A-1=0, C-A=<0, C=<0, 5-A-C=<0, 5-A+C=<0, B-C=<0, C-A=<0]
+    },
+    {
+        name: t5,
+        source: f437_0_loop_aux_GT,
+        target: f437_0_loop_aux_GT,
+        constraints: [F-C+1=0, E+A+1=0, D-A-1=0, C-A=<0, 2-C=<0, 5-A-C=<0, 5-A+C=<0, B-C=<0, C-A=<0]
+    },
+    {
+        name: t6,
+        source: f437_0_loop_aux_GT,
+        target: f437_0_loop_aux_GT,
+        constraints: [F=0, 1-E=0, D+1=0, 1-C=0, B-1=<0, 6-A=<0]
+    }
+    ],
+    initnode: f437_0_loop_aux_GT
+ }
+ 

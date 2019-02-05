@@ -1,0 +1,55 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t8,
+        source: f226_0_isZero_NONNULL,
+        target: f226_0_isZero_NONNULL,
+        constraints: [3-H=<0, 5-G=<0, 2-F=<0, 3-C=<0, 5-B=<0, 3-A=<0, H-C=<0, B-H-2>=0, C-G+2>=0, G-B=<0, C-F-1>=0, B-F-3>=0, A-F-1>=0]
+    },
+    {
+        name: t9,
+        source: f226_0_isZero_NONNULL,
+        target: f534_0_div_InvokeMethod,
+        constraints: [3-F=<0, 2-C=<0, 4-B=<0, 3-A=<0]
+    },
+    {
+        name: t10,
+        source: f226_0_isZero_NONNULL,
+        target: f534_0_div_InvokeMethod,
+        constraints: [2-F=<0, 2-C=<0, 4-B=<0, 3-A=<0, F-C=<0, B-F-2>=0, A-F-1>=0]
+    },
+    {
+        name: t11,
+        source: f534_0_div_InvokeMethod,
+        target: f226_0_isZero_NONNULL,
+        constraints: [2-H=<0, 4-G=<0, -F+1=<0, -A+1=<0, A-H+1>=0, A-G+3>=0, F-A=<0]
+    },
+    {
+        name: t12,
+        source: f226_0_isZero_NONNULL,
+        target: f555_0_div_InvokeMethod,
+        constraints: [6-G=<0, -F+1=<0, 4-C=<0, 6-B=<0, 3-A=<0, C-G+2>=0, G-B=<0, A-G+3>=0]
+    },
+    {
+        name: t13,
+        source: f226_0_isZero_NONNULL,
+        target: f555_0_div_InvokeMethod,
+        constraints: [7-G=<0, -F+1=<0, 5-C=<0, 7-B=<0, 3-A=<0, C-G+2>=0, G-B=<0]
+    },
+    {
+        name: t14,
+        source: f226_0_isZero_NONNULL,
+        target: f555_0_div_InvokeMethod,
+        constraints: [7-G=<0, 2-F=<0, 5-C=<0, 7-B=<0, 3-A=<0, C-G+2>=0, G-B=<0, C-F-3>=0, B-F-5>=0, A-F-1>=0]
+    },
+    {
+        name: t15,
+        source: f555_0_div_InvokeMethod,
+        target: f226_0_isZero_NONNULL,
+        constraints: [3-H=<0, 5-G=<0, -F+1=<0, 5-B=<0, -A+1=<0, B-H-2>=0, G-B=<0, F-A=<0]
+    }
+    ],
+    initnode: f226_0_isZero_NONNULL
+ }
+ 

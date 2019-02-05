@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t2,
+        source: f192_0_main_NE,
+        target: f192_0_main_NE,
+        constraints: [C-F=0, C-F=0, 4-E=<0, -D+1=<0, -B+1=<0, -A+1=<0, B-E+3>=0, A-E+3>=0, -C+1=<0, D-A=<0]
+    },
+    {
+        name: t2,
+        source: f192_0_main_NE,
+        target: f192_0_main_NE,
+        constraints: [F=0, C=0, -E+1=<0, 4-D=<0, -B+1=<0, -A+1=<0, E-B=<0, B-D+3>=0, A-D+3>=0]
+    }
+    ],
+    initnode: f192_0_main_NE
+ }
+ 

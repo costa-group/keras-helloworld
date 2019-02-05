@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t0,
+        source: f34_0_loop_Inc,
+        target: f34_0_loop_Inc,
+        constraints: [C-F=0, C-F=0, E-B-1=0, -D+1=<0, -A+1=<0, D-A=<0]
+    }
+    ],
+    initnode: f34_0_loop_Inc
+ }
+ 

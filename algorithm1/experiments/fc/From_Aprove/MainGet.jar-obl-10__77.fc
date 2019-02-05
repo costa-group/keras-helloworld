@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t18,
+        source: f739_0_getFirst_NONNULL,
+        target: f739_0_getFirst_NONNULL,
+        constraints: [A-C-2>=0, H>=0, -G+1=<0, -B+1=<0, 3-A=<0]
+    }
+    ],
+    initnode: f739_0_getFirst_NONNULL
+ }
+ 

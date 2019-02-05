@@ -1,0 +1,43 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f115_0_loop_LE,
+        target: f115_0_loop_LE,
+        constraints: [2-D=0, 1-C=0, 1-B=0]
+    },
+    {
+        name: t2,
+        source: f115_0_loop_LE,
+        target: f115_0_loop_LE,
+        constraints: [D-B-1=0, 1-C=0, 1-A=0, 2-B=<0, B-9=<0]
+    },
+    {
+        name: t3,
+        source: f115_0_loop_LE,
+        target: f115_0_loop_LE,
+        constraints: [D-B+1=0, C=0, A=0, 2-B=<0, B-9=<0]
+    },
+    {
+        name: t4,
+        source: f115_0_loop_LE,
+        target: f115_0_loop_LE,
+        constraints: [D-B-1=0, 1-C=0, 1-A=0, 11-B=<0]
+    },
+    {
+        name: t5,
+        source: f115_0_loop_LE,
+        target: f115_0_loop_LE,
+        constraints: [D-B+1=0, C=0, A=0, 11-B=<0]
+    },
+    {
+        name: t6,
+        source: f115_0_loop_LE,
+        target: f115_0_loop_LE,
+        constraints: [9-D=0, C=0, 10-B=0]
+    }
+    ],
+    initnode: f115_0_loop_LE
+ }
+ 

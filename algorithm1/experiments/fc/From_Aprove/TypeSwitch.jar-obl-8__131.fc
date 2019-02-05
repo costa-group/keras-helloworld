@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t2,
+        source: f151_0_main_InvokeMethod,
+        target: f151_0_main_InvokeMethod,
+        constraints: [C-F=0, C-F=0, -E+1=<0, -D+1=<0, -B+1=<0, -A+1=<0, E-B=<0, E-A=<0, D-B=<0, D-A=<0]
+    },
+    {
+        name: t3,
+        source: f151_0_main_InvokeMethod,
+        target: f151_0_main_InvokeMethod,
+        constraints: [C-F=0, C-F=0, -E+1=<0, -D+1=<0, -B+1=<0, -A+1=<0, E-B=<0, E-A=<0, D-B=<0, D-A=<0]
+    }
+    ],
+    initnode: f151_0_main_InvokeMethod
+ }
+ 

@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D, E, F, G],
+    pvars: [H, I, J, K, L, M, N],
+    transitions: [    {
+        name: t19,
+        source: f1026_0_findR_NE,
+        target: f1026_0_findR_NE,
+        constraints: [B-I=0, B-I=0, A-C-2>=0, -H+1=<0, C-B+1=<0, 3-A=<0]
+    },
+    {
+        name: t20,
+        source: f1026_0_findR_NE,
+        target: f1026_0_findR_NE,
+        constraints: [B-I=0, B-I=0, A-C-2>=0, -H+1=<0, B-C+1=<0, 3-A=<0]
+    }
+    ],
+    initnode: f1026_0_findR_NE
+ }
+ 

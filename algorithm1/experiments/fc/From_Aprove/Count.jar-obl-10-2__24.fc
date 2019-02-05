@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I],
+    pvars: [J, K, L, M, N, O, P, Q, R],
+    transitions: [    {
+        name: t32,
+        source: f2232_0_flatten_NONNULL,
+        target: f2232_0_flatten_NONNULL,
+        constraints: [J>=0, 2-A=<0, A-J-2>=0]
+    },
+    {
+        name: t33,
+        source: f2232_0_flatten_NONNULL,
+        target: f2232_0_flatten_NONNULL,
+        constraints: [3-J=<0, 3-A=<0, A-J+2>=0]
+    }
+    ],
+    initnode: f2232_0_flatten_NONNULL
+ }
+ 

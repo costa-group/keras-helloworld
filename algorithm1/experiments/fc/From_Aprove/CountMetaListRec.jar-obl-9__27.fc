@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t9,
+        source: f479_0_countMetaList_NONNULL,
+        target: f479_0_countMetaList_NONNULL,
+        constraints: [E-A=<0, -I+1=<0, 3-A=<0, -E+1=<0]
+    }
+    ],
+    initnode: f479_0_countMetaList_NONNULL
+ }
+ 

@@ -1,0 +1,37 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t1,
+        source: f74_0_loop_aux_LE,
+        target: f74_0_loop_aux_LE,
+        constraints: [G-A+1=0, F-B+1=0, E-A+1=0, A-C=0, 5-B=<0, 2-A=<0, B-A=<0]
+    },
+    {
+        name: t3,
+        source: f74_0_loop_aux_LE,
+        target: f135_0_loop_aux_InvokeMethod,
+        constraints: [A-E=0, B-F=0, H-B+1=0, G-A-1=0, B-F=0, A-E=0, A-C=0, -A+1=<0, A+2-2*B=<0, 2-B=<0, A-B+1=<0]
+    },
+    {
+        name: t4,
+        source: f135_0_loop_aux_InvokeMethod,
+        target: f74_0_loop_aux_LE,
+        constraints: [C-G=0, C-G=0, D-F=0, C-E=0, A-D=<0, C-B=<0, A-B+1=<0, -D+1=<0, 2-C=<0, 2-B=<0, -A+1=<0]
+    },
+    {
+        name: t5,
+        source: f74_0_loop_aux_LE,
+        target: f74_0_loop_aux_LE,
+        constraints: [G-A+1=0, F-B-2=0, E-A+1=0, A-C=0, B>=0, 4-A+B>=0, B-4=<0, B-A=<0, -A+1=<0]
+    },
+    {
+        name: t6,
+        source: f74_0_loop_aux_LE,
+        target: f74_0_loop_aux_LE,
+        constraints: [A-E=0, A-G=0, F-B-1=0, A-E=0, A-C=0, B>=0, 5-A+B=<0, B-4=<0, B-A=<0, -A+1=<0]
+    }
+    ],
+    initnode: f74_0_loop_aux_LE
+ }
+ 

@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I, J],
+    pvars: [K, L, M, N, O, P, Q, R, S, T],
+    transitions: [    {
+        name: t1,
+        source: n_l0,
+        target: n_l2,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, E-O=0, F-P=0, G-Q=0, H-R=0, J-T=0, J-T=0, H-R=0, G-Q=0, F-P=0, E-O=0, D-N=0, C-M=0, B-L=0, A-K=0, S-1-I=0, 2-G=<0]
+    },
+    {
+        name: t8,
+        source: n_l2,
+        target: n_l5,
+        constraints: [B-L=0, D-N=0, E-O=0, F-P=0, G-Q=0, H-R=0, I-S=0, I-S=0, H-R=0, G-Q=0, F-P=0, E-O=0, D-N=0, B-L=0, T=0, 0=0, F-1-H>=0, M-1=0]
+    },
+    {
+        name: t3,
+        source: n_l3,
+        target: n_l0,
+        constraints: [A-K=0, C-M=0, D-N=0, F-P=0, H-R=0, I-S=0, J-T=0, J-T=0, I-S=0, H-R=0, F-P=0, D-N=0, C-M=0, A-K=0, 0=0, O=0, L=0, 2-G=<0]
+    },
+    {
+        name: t6,
+        source: n_l5,
+        target: n_l3,
+        constraints: [A-K=0, C-M=0, D-N=0, E-O=0, F-P=0, H-R=0, I-S=0, J-T=0, J-T=0, I-S=0, H-R=0, F-P=0, E-O=0, D-N=0, C-M=0, A-K=0, 0=0, L-1=0, 1-A=<0]
+    }
+    ],
+    initnode: n_l0
+ }
+ 

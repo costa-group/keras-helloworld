@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t20,
+        source: f1431_0_samefringe_NULL,
+        target: f1431_0_samefringe_NULL,
+        constraints: [G>=0, F>=0, E>=0, -C+1=<0, -B+1=<0, -A+1=<0]
+    }
+    ],
+    initnode: f1431_0_samefringe_NULL
+ }
+ 

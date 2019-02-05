@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t4,
+        source: f348_0_duplicate_EQ,
+        target: f348_0_duplicate_EQ,
+        constraints: [B>=0, -K+1=<0, K-B+1=<0, K-G+1=<0, A=0, 1-F=0]
+    },
+    {
+        name: t5,
+        source: f348_0_duplicate_EQ,
+        target: f348_0_duplicate_EQ,
+        constraints: [L-B+1=<0, B>=0, A=0, 1-F=0, 1-G=0]
+    },
+    {
+        name: t6,
+        source: f348_0_duplicate_EQ,
+        target: f348_0_duplicate_EQ,
+        constraints: [B>=0, -M+1=<0, M-B+1=<0, M-N+1=<0, M-O+1=<0, 1-A=0, F=0, G=0]
+    },
+    {
+        name: t7,
+        source: f348_0_duplicate_EQ,
+        target: f348_0_duplicate_EQ,
+        constraints: [P-B+1=<0, B>=0, 1-A=0, F=0, 2-G=0]
+    }
+    ],
+    initnode: f348_0_duplicate_EQ
+ }
+ 

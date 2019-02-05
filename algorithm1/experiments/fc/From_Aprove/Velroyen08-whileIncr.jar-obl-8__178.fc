@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f40_0_increase_LE,
+        target: f40_0_increase_LE,
+        constraints: [C-A-1=0, -A+1=<0]
+    }
+    ],
+    initnode: f40_0_increase_LE
+ }
+ 

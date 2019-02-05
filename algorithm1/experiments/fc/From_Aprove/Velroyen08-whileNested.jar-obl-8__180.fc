@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t3,
+        source: f79_0_increase_LE,
+        target: f79_0_increase_LE,
+        constraints: [A-D=0, F-B-1=0, E-B-1=0, A-D=0, B-C=0, -B+1=<0]
+    }
+    ],
+    initnode: f79_0_increase_LE
+ }
+ 

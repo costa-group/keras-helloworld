@@ -1,0 +1,19 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t2,
+        source: f80_0_main_EQ,
+        target: f80_0_main_EQp,
+        constraints: [A-C=0, B-D=0, B-D=0, A-C=0, -B+1=<0]
+    },
+    {
+        name: t3,
+        source: f80_0_main_EQp,
+        target: f80_0_main_EQ,
+        constraints: [-B+1=<0, 1-A+3*E>=0, -A-1+3*E=<0, C-A-1=0, D-A-1+3*E=0]
+    }
+    ],
+    initnode: f80_0_main_EQ
+ }
+ 

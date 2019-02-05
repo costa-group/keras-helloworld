@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f32_0_increase_LE,
+        target: f32_0_increase_LE,
+        constraints: [A-C=0, A-C=0, 10-A=<0]
+    }
+    ],
+    initnode: f32_0_increase_LE
+ }
+ 

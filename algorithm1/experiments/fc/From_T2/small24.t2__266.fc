@@ -1,0 +1,20 @@
+{
+    vars: [],
+    pvars: [],
+    transitions: [    {
+        name: t0,
+        source: n_l0,
+        target: n_l1,
+        constraints: [0>=0, 0>=0]
+    },
+    {
+        name: t1,
+        source: n_l1,
+        target: n_l0,
+        constraints: [0 >= 0
+]
+    }
+    ],
+    initnode: n_l0
+ }
+ 

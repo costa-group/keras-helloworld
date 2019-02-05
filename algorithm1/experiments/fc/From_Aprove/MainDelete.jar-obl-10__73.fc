@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I, J, K, L],
+    pvars: [M, N, O, P, Q, R, S, T, U, V, W, X],
+    transitions: [    {
+        name: t24,
+        source: f1099_0_getFirst_NONNULL,
+        target: f1099_0_getFirst_NONNULL,
+        constraints: [A-D-2>=0, A-C-2>=0, N>=0, -M+1=<0, -B+1=<0, 3-A=<0]
+    }
+    ],
+    initnode: f1099_0_getFirst_NONNULL
+ }
+ 

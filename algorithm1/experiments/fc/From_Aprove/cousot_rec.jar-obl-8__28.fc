@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t2,
+        source: f79_0_loop_GE,
+        target: f100_0_loop_InvokeMethod,
+        constraints: [A-E=0, G-D-1=0, F-B-2=0, A-E=0, B-C=0, D>=0, -B+1=<0, D-B=<0]
+    },
+    {
+        name: t3,
+        source: f100_0_loop_InvokeMethod,
+        target: f79_0_loop_GE,
+        constraints: [B-F=0, C-H=0, B-G=0, B-F=0, B-E=0, 2-B=<0, 2-A=<0, -C+1=<0]
+    }
+    ],
+    initnode: f79_0_loop_GE
+ }
+ 

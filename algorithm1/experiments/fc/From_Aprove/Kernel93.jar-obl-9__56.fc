@@ -1,0 +1,31 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t8,
+        source: f951_0_slide93_EQ,
+        target: f951_0_slide93_EQp,
+        constraints: [A-C=0, B-D=0, 1-A+2*E=0, -B+1=<0, F-B+1=<0, G-A=<0, A-C=0, B-D=0]
+    },
+    {
+        name: t9,
+        source: f951_0_slide93_EQp,
+        target: f951_0_slide93_EQ,
+        constraints: [1-A+2*H=0, -B+1=<0, C-A=<0, I-B+1=<0, -A+2*H=<0, 1-A+2*H>=0, 1-A+2*C>=0, -A+2*C=<0, 1-D=0]
+    },
+    {
+        name: t10,
+        source: f951_0_slide93_EQ,
+        target: f951_0_slide93_EQp,
+        constraints: [A-C=0, B-D=0, -A+2*J=0, -B+1=<0, K-B+1=<0, L-A=<0, A-C=0, B-D=0]
+    },
+    {
+        name: t11,
+        source: f951_0_slide93_EQp,
+        target: f951_0_slide93_EQ,
+        constraints: [-A+2*M=0, -B+1=<0, C-A=<0, N-B+1=<0, -A+2*M=<0, 1-A+2*M>=0, 1-A+2*C>=0, -A+2*C=<0, 1-D=0]
+    }
+    ],
+    initnode: f951_0_slide93_EQ
+ }
+ 

@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t19,
+        source: f1783_0_Supprimer_GE,
+        target: f1821_0_Supprimer_ArrayAccess,
+        constraints: [A-F=0, B-G=0, I-2*A-1=0, B-G=0, A-F=0, C-J+1=<0, -H+1=<0, 2*A>=0, J-2*A-2=<0]
+    },
+    {
+        name: t21,
+        source: f1783_0_Supprimer_GE,
+        target: f1821_0_Supprimer_ArrayAccess,
+        constraints: [A-F=0, B-G=0, C-J+1=<0, 2*A>=0, 2*A+3-J=<0, 2*A+3-K=<0, L-M=<0, -H+1=<0, 2*A+2-K=<0, A-F=0, B-G=0, I-2*A-1=0]
+    },
+    {
+        name: t22,
+        source: f1783_0_Supprimer_GE,
+        target: f1821_0_Supprimer_ArrayAccess,
+        constraints: [A-F=0, B-G=0, C-J+1=<0, 2*A>=0, 2*A+3-J=<0, 2*A+3-N=<0, O-P+1=<0, -H+1=<0, 2*A+2-N=<0, A-F=0, B-G=0, I-2*A-2=0]
+    },
+    {
+        name: t23,
+        source: f1821_0_Supprimer_ArrayAccess,
+        target: f1783_0_Supprimer_GE,
+        constraints: [B-G=0, D-Q+1=<0, B-R+1=<0, 2*D>=0, A-Q+1=<0, -C+1=<0, D-F=0, B-G=0, H-2*D-1=0]
+    }
+    ],
+    initnode: f1783_0_Supprimer_GE
+ }
+ 

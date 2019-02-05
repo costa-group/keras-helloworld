@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t24,
+        source: n_l14,
+        target: n_l16,
+        constraints: [A-E=0, B-F=0, C-G=0, D-H=0, C-G=0, D-H=0, A-E=0, B-F=0]
+    },
+    {
+        name: t25,
+        source: n_l16,
+        target: n_l14,
+        constraints: [A-E=0, B-F=0, C-G=0, D-H=0, C-G=0, D-H=0, A-E=0, B-F=0]
+    }
+    ],
+    initnode: n_l14
+ }
+ 

@@ -1,0 +1,49 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I],
+    pvars: [J, K, L, M, N, O, P, Q, R],
+    transitions: [    {
+        name: t44,
+        source: f2743_0_determinant_NE,
+        target: f6845_0_determinant_GE,
+        constraints: [B-L=0, K=0, 3-J=<0, 3-A=<0, 2-B=<0, J-A=<0]
+    },
+    {
+        name: t45,
+        source: f6845_0_determinant_GE,
+        target: f6845_0_determinant_GEp,
+        constraints: [A-J=0, B-K=0, C-L=0, -C+1=<0, B-C+1=<0, 1-B+2*S=0, T-A=<0, 3-A=<0, 3-T=<0, U>=0, A-J=0, B-K=0, C-L=0]
+    },
+    {
+        name: t46,
+        source: f6845_0_determinant_GEp,
+        target: f7078_0_determinant_ArrayAccess,
+        constraints: [-C+1=<0, B-C+1=<0, 1-B+2*V=0, J-A=<0, 3-A=<0, 3-J=<0, K>=0, 1-B+2*V>=0, -B+2*V=<0, B-L=0, C-M=0]
+    },
+    {
+        name: 47,
+        source: f6845_0_determinant_GE,
+        target: f6845_0_determinant_GEp,
+        constraints: [A-J=0, B-K=0, C-L=0, -C+1=<0, B-C+1=<0, -B+2*W=0, X-A=<0, 3-A=<0, 3-X=<0, Y>=0, A-J=0, B-K=0, C-L=0]
+    },
+    {
+        name: t48,
+        source: f6845_0_determinant_GEp,
+        target: f7078_0_determinant_ArrayAccess,
+        constraints: [-C+1=<0, B-C+1=<0, -B+2*Z=0, J-A=<0, 3-A=<0, 3-J=<0, K>=0, 1-B+2*Z>=0, -B+2*Z=<0, B-L=0, C-M=0]
+    },
+    {
+        name: t49,
+        source: f7078_0_determinant_ArrayAccess,
+        target: f2743_0_determinant_NE,
+        constraints: [C-D+1=<0, -K+1=<0, 2-D=<0, C-A1+1=<0, A1>=0, J-A=<0, B-J+2>=0, 3-A=<0, -B+1=<0, 3-J=<0]
+    },
+    {
+        name: t50,
+        source: f7078_0_determinant_ArrayAccess,
+        target: f6845_0_determinant_GE,
+        constraints: [C-D+1=<0, 2-D=<0, C-B1+1=<0, -C1+1=<0, B1>=0, J-A=<0, B-J+2>=0, 3-A=<0, -B+1=<0, 3-J=<0, K-C-1=0, D-L=0]
+    }
+    ],
+    initnode: f2743_0_determinant_NE
+ }
+ 

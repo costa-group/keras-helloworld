@@ -1,0 +1,25 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t1,
+        source: f104_0_main_LE,
+        target: f157_0_main_LE,
+        constraints: [F-A-1=0, E-A-1=0, D-A-1=0, -A+1=<0]
+    },
+    {
+        name: t2,
+        source: f157_0_main_LE,
+        target: f104_0_main_LE,
+        constraints: [A-D=0, A-D=0, C=0, B=0]
+    },
+    {
+        name: t3,
+        source: f157_0_main_LE,
+        target: f157_0_main_LE,
+        constraints: [A-D=0, F-B+1=0, E-B+1=0, A-D=0, B-C=0, -B+1=<0]
+    }
+    ],
+    initnode: f104_0_main_LE
+ }
+ 

@@ -1,0 +1,31 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f84_0_main_LE,
+        target: f84_0_main_LEp,
+        constraints: [A-C=0, -A+2*E=0, F-A+1=<0, 2-A=<0, A-C=0]
+    },
+    {
+        name: t2,
+        source: f84_0_main_LEp,
+        target: f84_0_main_LE,
+        constraints: [-A+2*G=0, 2-A=<0, C-A+1=<0, -A+2*G=<0, 1-A+2*G>=0, 1-A+2*C>=0, -A+2*C=<0]
+    },
+    {
+        name: t3,
+        source: f84_0_main_LE,
+        target: f84_0_main_LEp,
+        constraints: [A-C=0, 1-A+2*H=0, -3*A+1=<0, 2-A=<0, A-C=0]
+    },
+    {
+        name: t4,
+        source: f84_0_main_LEp,
+        target: f84_0_main_LE,
+        constraints: [1-A+2*I=0, 2-A=<0, -3*A+1=<0, 1-A+2*I>=0, -A+2*I=<0, C-3*A-1=0]
+    }
+    ],
+    initnode: f84_0_main_LE
+ }
+ 

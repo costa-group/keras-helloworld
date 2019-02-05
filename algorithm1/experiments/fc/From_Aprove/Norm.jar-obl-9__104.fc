@@ -1,0 +1,6 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [
+    ],
+    

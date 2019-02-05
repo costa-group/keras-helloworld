@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t4,
+        source: f815_0_main_NULL,
+        target: f815_0_main_NULL,
+        constraints: [C-A=<0, -E+1=<0, -A+1=<0, -C+1=<0]
+    }
+    ],
+    initnode: f815_0_main_NULL
+ }
+ 

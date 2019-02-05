@@ -1,0 +1,49 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I, J, K, L, M],
+    pvars: [N, O, P, Q, R, S, T, U, V, W, X, Y, Z],
+    transitions: [    {
+        name: t0,
+        source: n_l0,
+        target: n_l1,
+        constraints: [A-N=0, B-O=0, C-P=0, D-Q=0, E-R=0, F-S=0, G-T=0, H-U=0, I-V=0, K-X=0, L-Y=0, M-Z=0, M-Z=0, L-Y=0, K-X=0, I-V=0, H-U=0, G-T=0, F-S=0, E-R=0, D-Q=0, C-P=0, B-O=0, A-N=0, 0=0, J-1=<0]
+    },
+    {
+        name: t6,
+        source: n_l1,
+        target: n_l3,
+        constraints: [A-N=0, B-O=0, C-P=0, D-Q=0, E-R=0, F-S=0, G-T=0, H-U=0, I-V=0, K-X=0, L-Y=0, M-Z=0, M-Z=0, L-Y=0, K-X=0, I-V=0, H-U=0, G-T=0, F-S=0, E-R=0, D-Q=0, C-P=0, B-O=0, A-N=0, 0=0, M-1-K>=0, E-L=<0]
+    },
+    {
+        name: t7,
+        source: n_l1,
+        target: n_l4,
+        constraints: [B-O=0, C-P=0, D-Q=0, E-R=0, F-S=0, G-T=0, J-W=0, K-X=0, L-Y=0, M-Z=0, M-Z=0, L-Y=0, K-X=0, J-W=0, G-T=0, F-S=0, E-R=0, D-Q=0, C-P=0, B-O=0, N=0, M-K=<0, U=0, V=0]
+    },
+    {
+        name: t2,
+        source: n_l2,
+        target: n_l0,
+        constraints: [A-N=0, B-O=0, C-P=0, D-Q=0, E-R=0, F-S=0, G-T=0, I-V=0, K-X=0, L-Y=0, M-Z=0, M-Z=0, L-Y=0, K-X=0, I-V=0, G-T=0, F-S=0, E-R=0, D-Q=0, C-P=0, B-O=0, A-N=0, 0=0, U-1=0, J-1=<0]
+    },
+    {
+        name: t4,
+        source: n_l3,
+        target: n_l2,
+        constraints: [A-N=0, B-O=0, C-P=0, D-Q=0, E-R=0, F-S=0, G-T=0, H-U=0, I-V=0, K-X=0, L-Y=0, M-Z=0, M-Z=0, L-Y=0, K-X=0, I-V=0, H-U=0, G-T=0, F-S=0, E-R=0, D-Q=0, C-P=0, B-O=0, A-N=0, 0=0, J-1=<0]
+    },
+    {
+        name: t5,
+        source: n_l3,
+        target: n_l2,
+        constraints: [A-N=0, D-Q=0, E-R=0, F-S=0, G-T=0, H-U=0, I-V=0, K-X=0, L-Y=0, M-Z=0, M-Z=0, L-Y=0, K-X=0, I-V=0, H-U=0, G-T=0, F-S=0, E-R=0, D-Q=0, A-N=0, 0=0, P-O-C=0, 1-O=<0, 0=0, 2-J=<0]
+    },
+    {
+        name: t9,
+        source: n_l4,
+        target: n_l1,
+        constraints: [B-O=0, D-Q=0, E-R=0, G-T=0, H-U=0, I-V=0, J-W=0, K-X=0, M-Z=0, M-Z=0, K-X=0, J-W=0, I-V=0, H-U=0, G-T=0, E-R=0, D-Q=0, B-O=0, N=0, S-1=0, P-1-C=0, Y-1-C=0]
+    }
+    ],
+    initnode: n_l0
+ }
+ 

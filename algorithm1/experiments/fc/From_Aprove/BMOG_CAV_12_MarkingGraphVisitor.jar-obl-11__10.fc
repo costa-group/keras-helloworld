@@ -1,0 +1,25 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t20,
+        source: f3446_0_visit_NE,
+        target: f3530_0_visit_NULL,
+        constraints: [B-G=0, B-C=0, A-B-2>=0, A-D-2>=0, H>=0, -A+1=<0]
+    },
+    {
+        name: t21,
+        source: f3530_0_visit_NULL,
+        target: f3446_0_visit_NE,
+        constraints: [A-H=0, -G+1=<0, -B+1=<0]
+    },
+    {
+        name: t22,
+        source: f3530_0_visit_NULL,
+        target: f3530_0_visit_NULL,
+        constraints: [A-G=0, C-I=0, C-I=0, A-G=0, H>=0, -B+1=<0, B-H-1>=0]
+    }
+    ],
+    initnode: f3446_0_visit_NE
+ }
+ 

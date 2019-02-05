@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t1,
+        source: f169_0_loop_EQ,
+        target: f169_0_loop_EQ,
+        constraints: [F=0, E-B-1=0, D-B-1=0, -A+1=<0, C-B=<0, -B+1=<0, C-B=<0, C+B>=0, C+1=<0]
+    },
+    {
+        name: t2,
+        source: f169_0_loop_EQ,
+        target: f169_0_loop_EQ,
+        constraints: [F=0, E-B-1=0, D-B-1=0, -A+1=<0, C-B=<0, -B+1=<0, C-B=<0, C+B>=0, -C+1=<0]
+    },
+    {
+        name: t3,
+        source: f169_0_loop_EQ,
+        target: f169_0_loop_EQ,
+        constraints: [F+C-1=0, E-B-1=0, D-B-1=0, -B+1=<0, -A+1=<0, C+B+1=<0, C+1=<0]
+    },
+    {
+        name: t5,
+        source: f169_0_loop_EQ,
+        target: f169_0_loop_EQ,
+        constraints: [F+C+1=0, E-B-1=0, D-B-1=0, -B+1=<0, C-B-1>=0, 1+C>=0, -A+1=<0, B-C+1=<0, 2-C=<0, C+B>=0]
+    }
+    ],
+    initnode: f169_0_loop_EQ
+ }
+ 

@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t0,
+        source: f30_0_loop_JMP,
+        target: f30_0_loop_JMP,
+        constraints: [B-D=0, B-D=0, -C+1=<0, -A+1=<0, C-A=<0]
+    }
+    ],
+    initnode: f30_0_loop_JMP
+ }
+ 

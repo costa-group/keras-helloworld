@@ -1,0 +1,19 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f124_0_main_GT,
+        target: f124_0_main_GT,
+        constraints: [B-D=0, B-D=0, C-A-1=0, 1-B+A=<0, A-B=<0, A>=0, B>=0]
+    },
+    {
+        name: t2,
+        source: f124_0_main_GT,
+        target: f124_0_main_GT,
+        constraints: [D-B-2=0, C-A-1=0, A-B=<0, B>=0, -B+A=0, A>=0]
+    }
+    ],
+    initnode: f124_0_main_GT
+ }
+ 

@@ -1,0 +1,13 @@
+{
+    vars: [A],
+    pvars: [B],
+    transitions: [    {
+        name: t0,
+        source: f25_0_main_JMP,
+        target: f25_0_main_JMP,
+        constraints: [0>=0]
+    }
+    ],
+    initnode: f25_0_main_JMP
+ }
+ 

@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t11,
+        source: f3585_0_Display_GE,
+        target: f3902_0_Display_GT,
+        constraints: [B-H=0, G-A=<0, B-M+1=<0, -A+1=<0, -G+1=<0, B-H=0, I=0]
+    },
+    {
+        name: t12,
+        source: f3902_0_Display_GT,
+        target: f3585_0_Display_GE,
+        constraints: [H-B-1=0, -G+1=<0, -A+1=<0, 13-C=<0, G-A=<0]
+    },
+    {
+        name: t13,
+        source: f3902_0_Display_GT,
+        target: f3902_0_Display_GT,
+        constraints: [B-H=0, I-C-1=0, B-H=0, -G+1=<0, -A+1=<0, G-A=<0, C-11=<0, C-12=<0]
+    },
+    {
+        name: t14,
+        source: f3902_0_Display_GT,
+        target: f3902_0_Display_GT,
+        constraints: [B-H=0, 13-I=0, B-H=0, 12-C=0, -G+1=<0, -A+1=<0, G-A=<0]
+    }
+    ],
+    initnode: f3585_0_Display_GE
+ }
+ 

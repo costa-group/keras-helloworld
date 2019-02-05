@@ -1,0 +1,37 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t1,
+        source: f325_0_loop_GT,
+        target: f325_0_loop_GT,
+        constraints: [A-D=0, F+C=0, E+A=0, A-D=0, B-C=<0, C-A=<0, 4-A+C>=0]
+    },
+    {
+        name: t2,
+        source: f325_0_loop_GT,
+        target: f325_0_loop_GT,
+        constraints: [A-D=0, F+C=0, E+A=0, A-D=0, 4-A-C>=0, 5-A+C=<0, B-C=<0, C-A=<0]
+    },
+    {
+        name: t3,
+        source: f325_0_loop_GT,
+        target: f325_0_loop_GT,
+        constraints: [F-C+1=0, E+A+1=0, D-A-1=0, C=<0, 5-A-C=<0, 5-A+C=<0, B-C=<0, C-A=<0]
+    },
+    {
+        name: t4,
+        source: f325_0_loop_GT,
+        target: f325_0_loop_GT,
+        constraints: [F-C+1=0, E+A+1=0, D-A-1=0, 2-C=<0, 5-A-C=<0, 5-A+C=<0, B-C=<0, C-A=<0]
+    },
+    {
+        name: t5,
+        source: f325_0_loop_GT,
+        target: f325_0_loop_GT,
+        constraints: [F=0, 1-E=0, D+1=0, 1-C=0, B-1=<0, 6-A=<0]
+    }
+    ],
+    initnode: f325_0_loop_GT
+ }
+ 

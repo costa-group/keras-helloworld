@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I],
+    pvars: [J, K, L, M, N, O, P, Q, R],
+    transitions: [    {
+        name: t12,
+        source: f1392_0_get_LE,
+        target: f1392_0_get_LE,
+        constraints: [C-L=0, D-M=0, D-M=0, C-L=0, K>=0, -J+1=<0, -B+1=<0, -A+1=<0, J-B=<0, -C+1=<0, J-A=<0]
+    }
+    ],
+    initnode: f1392_0_get_LE
+ }
+ 

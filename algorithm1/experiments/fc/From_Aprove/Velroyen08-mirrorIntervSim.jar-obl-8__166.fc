@@ -1,0 +1,25 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f53_0_loop_EQ,
+        target: f53_0_loop_EQ,
+        constraints: [C=0, 36-A=<0]
+    },
+    {
+        name: t2,
+        source: f53_0_loop_EQ,
+        target: f53_0_loop_EQ,
+        constraints: [C-A+1=0, -A+1=<0, A-35=<0, A-30=<0]
+    },
+    {
+        name: t3,
+        source: f53_0_loop_EQ,
+        target: f53_0_loop_EQ,
+        constraints: [35-C=0, A-35=<0, 31-A=<0]
+    }
+    ],
+    initnode: f53_0_loop_EQ
+ }
+ 

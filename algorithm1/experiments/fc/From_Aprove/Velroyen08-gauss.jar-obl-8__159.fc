@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t4,
+        source: f171_0_sum_EQ,
+        target: f171_0_sum_EQ,
+        constraints: [C-A+1=0, A+1=<0]
+    }
+    ],
+    initnode: f171_0_sum_EQ
+ }
+ 

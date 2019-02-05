@@ -1,0 +1,55 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t3,
+        source: n_l2,
+        target: n_l4,
+        constraints: [A-G=0, B-H=0, C-I=0, D-J=0, E-K=0, F-L=0, F-L=0, D-J=0, E-K=0, C-I=0, A-G=0, B-H=0]
+    },
+    {
+        name: t11,
+        source: n_l4,
+        target: n_l7,
+        constraints: [A-G=0, B-H=0, C-I=0, D-J=0, E-K=0, F-L=0, F-L=0, D-J=0, E-K=0, C-I=0, A-G=0, B-H=0, A-1-D>=0]
+    },
+    {
+        name: t4,
+        source: n_l5,
+        target: n_l2,
+        constraints: [B-H=0, C-I=0, D-J=0, E-K=0, F-L=0, F-L=0, D-J=0, E-K=0, C-I=0, B-H=0, G-1-A=0, 13-D=<0]
+    },
+    {
+        name: t5,
+        source: n_l5,
+        target: n_l2,
+        constraints: [B-H=0, C-I=0, D-J=0, E-K=0, F-L=0, F-L=0, D-J=0, E-K=0, C-I=0, B-H=0, G-10-A=0, D-12=<0]
+    },
+    {
+        name: t6,
+        source: n_l6,
+        target: n_l2,
+        constraints: [B-H=0, C-I=0, D-J=0, E-K=0, F-L=0, F-L=0, D-J=0, E-K=0, C-I=0, B-H=0, G-1-A=0, 9-D>=0]
+    },
+    {
+        name: t7,
+        source: n_l6,
+        target: n_l5,
+        constraints: [A-G=0, B-H=0, C-I=0, D-J=0, E-K=0, F-L=0, F-L=0, D-J=0, E-K=0, C-I=0, A-G=0, B-H=0, 10-D=<0]
+    },
+    {
+        name: t8,
+        source: n_l7,
+        target: n_l6,
+        constraints: [A-G=0, B-H=0, C-I=0, E-K=0, F-L=0, F-L=0, E-K=0, C-I=0, A-G=0, B-H=0, J-2-D=0, D-5=<0]
+    },
+    {
+        name: t9,
+        source: n_l7,
+        target: n_l6,
+        constraints: [A-G=0, B-H=0, C-I=0, E-K=0, F-L=0, F-L=0, E-K=0, C-I=0, A-G=0, B-H=0, 0=0, 6-D=<0]
+    }
+    ],
+    initnode: n_l2
+ }
+ 

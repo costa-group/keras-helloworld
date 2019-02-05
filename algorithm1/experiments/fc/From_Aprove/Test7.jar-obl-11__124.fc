@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t14,
+        source: f541_0_bubble_NULL,
+        target: f541_0_bubble_NULL,
+        constraints: [D-A=<0, G-H+1=<0, D-B=<0, E-A=<0, E-B=<0, 3-A=<0, 3-B=<0, -D+1=<0, -E+1=<0]
+    }
+    ],
+    initnode: f541_0_bubble_NULL
+ }
+ 

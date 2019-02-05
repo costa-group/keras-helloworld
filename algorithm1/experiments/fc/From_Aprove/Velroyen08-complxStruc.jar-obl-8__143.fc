@@ -1,0 +1,25 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f54_0_loop_LE,
+        target: f54_0_loop_LE,
+        constraints: [D-B+1=0, C-A+1=0, A-B=<0, -B+1=<0, 5-A=<0]
+    },
+    {
+        name: t2,
+        source: f54_0_loop_LE,
+        target: f54_0_loop_LE,
+        constraints: [D-B+1=0, C-A-2=0, A>=0, 4-B+A>=0, A-4=<0, A-B=<0, -B+1=<0]
+    },
+    {
+        name: t5,
+        source: f54_0_loop_LE,
+        target: f54_0_loop_LE,
+        constraints: [D-B-1=0, C-A+1=0, -B+1=<0, B+2-2*A=<0, 2-A=<0, B-A+1=<0]
+    }
+    ],
+    initnode: f54_0_loop_LE
+ }
+ 

@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t21,
+        source: f1394_0_less_leaves_NULL,
+        target: f1554_0_less_leaves_InvokeMethod,
+        constraints: [F>=0, E>=0, -C+1=<0, -B+1=<0, -A+1=<0, B-F-1>=0]
+    },
+    {
+        name: t22,
+        source: f1394_0_less_leaves_NULL,
+        target: f1554_0_less_leaves_InvokeMethod,
+        constraints: [F>=0, -E+1=<0, -C+1=<0, -B+1=<0, -A+1=<0, B-F-1>=0]
+    },
+    {
+        name: t24,
+        source: f1554_0_less_leaves_InvokeMethod,
+        target: f1394_0_less_leaves_NULL,
+        constraints: [G>=0, F>=0, E>=0, B>=0, A>=0, G-A=<0, E-A=<0]
+    },
+    {
+        name: t25,
+        source: f1554_0_less_leaves_InvokeMethod,
+        target: f1394_0_less_leaves_NULL,
+        constraints: [G>=0, -F+1=<0, E>=0, B>=0, A>=0, G-A=<0, E-A=<0]
+    }
+    ],
+    initnode: f1394_0_less_leaves_NULL
+ }
+ 

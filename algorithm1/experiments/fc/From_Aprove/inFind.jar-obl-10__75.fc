@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E, F, G],
+    pvars: [H, I, J, K, L, M, N],
+    transitions: [    {
+        name: t16,
+        source: f752_0_getFirst_NONNULL,
+        target: f752_0_getFirst_NONNULL,
+        constraints: [A-D-2>=0, A-C-2>=0, I>=0, -H+1=<0, -B+1=<0, 3-A=<0]
+    }
+    ],
+    initnode: f752_0_getFirst_NONNULL
+ }
+ 

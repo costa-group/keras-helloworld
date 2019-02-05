@@ -1,0 +1,13 @@
+{
+    vars: [A],
+    pvars: [B],
+    transitions: [    {
+        name: t4,
+        source: f168_0_visit_NULL,
+        target: f168_0_visit_NULL,
+        constraints: [B>=0, -A+1=<0]
+    }
+    ],
+    initnode: f168_0_visit_NULL
+ }
+ 

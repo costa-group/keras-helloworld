@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t4,
+        source: f119_0_loop_LE,
+        target: f119_0_loop_LE,
+        constraints: [C=0, A=0]
+    }
+    ],
+    initnode: f119_0_loop_LE
+ }
+ 

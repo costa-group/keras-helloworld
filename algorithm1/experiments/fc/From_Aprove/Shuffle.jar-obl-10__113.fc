@@ -1,0 +1,19 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t2,
+        source: f570_0_main_NULL,
+        target: f570_0_main_NULL,
+        constraints: [D>=0, -C+1=<0, 2-B=<0, -A+1=<0, B-D-2>=0, A-D-1>=0, B-C-1>=0, C-A=<0]
+    },
+    {
+        name: t3,
+        source: f570_0_main_NULL,
+        target: f570_0_main_NULL,
+        constraints: [-E+1=<0, -F+1=<0, C-A=<0, B-C-2>=0, -A+1=<0, 3-B=<0, -C+1=<0, D>=0]
+    }
+    ],
+    initnode: f570_0_main_NULL
+ }
+ 

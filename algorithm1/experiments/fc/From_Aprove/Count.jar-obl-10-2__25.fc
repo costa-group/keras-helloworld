@@ -1,0 +1,37 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I],
+    pvars: [J, K, L, M, N, O, P, Q, R],
+    transitions: [    {
+        name: t38,
+        source: f2161_0_count_NONNULL,
+        target: f2161_0_count_NONNULL,
+        constraints: [J>=0, 2-A=<0, A-J-2>=0]
+    },
+    {
+        name: t39,
+        source: f2161_0_count_NONNULL,
+        target: f2411_0_count_InvokeMethod,
+        constraints: [J>=0, 3-A=<0, A-J-3>=0]
+    },
+    {
+        name: t40,
+        source: f2161_0_count_NONNULL,
+        target: f2411_0_count_InvokeMethod,
+        constraints: [J>=0, 3-A=<0]
+    },
+    {
+        name: t41,
+        source: f2161_0_count_NONNULL,
+        target: f2411_0_count_InvokeMethod,
+        constraints: [2-J=<0, 3-A=<0]
+    },
+    {
+        name: t42,
+        source: f2411_0_count_InvokeMethod,
+        target: f2161_0_count_NONNULL,
+        constraints: [J>=0, A>=0, J-A=<0]
+    }
+    ],
+    initnode: f2161_0_count_NONNULL
+ }
+ 

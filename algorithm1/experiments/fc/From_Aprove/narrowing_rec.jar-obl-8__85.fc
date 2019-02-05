@@ -1,0 +1,67 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t2,
+        source: f887_0_loop_aux_GT,
+        target: f961_0_loop_aux_NE,
+        constraints: [J-A+2=0, I-C-1=0, B-H=0, A-G=0, C-F=0, -B+1=<0, A>=0, C-A+1=<0, -C+1=<0]
+    },
+    {
+        name: t3,
+        source: f887_0_loop_aux_GT,
+        target: f962_0_loop_aux_NE,
+        constraints: [I-A+2=0, H-C+1=0, A-G=0, C-F=0, B=0, C-A+1=<0, -C+1=<0, A>=0]
+    },
+    {
+        name: t4,
+        source: f887_0_loop_aux_GT,
+        target: f970_0_loop_aux_NE,
+        constraints: [A-F=0, H-A+2=0, G-A+1=0, A-F=0, A-C=0, -A+1=<0]
+    },
+    {
+        name: t5,
+        source: f961_0_loop_aux_NE,
+        target: f887_0_loop_aux_GT,
+        constraints: [D-H=0, C-G=0, B-F=0, D-E+1=<0, A-B+1=<0, 2-D=<0, -A+1=<0]
+    },
+    {
+        name: t7,
+        source: f961_0_loop_aux_NE,
+        target: f887_0_loop_aux_GT,
+        constraints: [D-H=0, C-G=0, B-F=0, E-D+1=<0, A-B+1=<0, 2-D=<0, -A+1=<0]
+    },
+    {
+        name: t9,
+        source: f962_0_loop_aux_NE,
+        target: f887_0_loop_aux_GT,
+        constraints: [C-H=0, C-H=0, G=0, B-F=0, C-D+1=<0, A-B+1=<0, -A+1=<0]
+    },
+    {
+        name: t16,
+        source: f970_0_loop_aux_NE,
+        target: f887_0_loop_aux_GT,
+        constraints: [A-F=0, B-H=0, G=0, A-F=0, C-B+1=<0]
+    },
+    {
+        name: t17,
+        source: f887_0_loop_aux_GT,
+        target: f887_0_loop_aux_GT,
+        constraints: [A-F=0, 1-H=0, 1-G=0, A-F=0, C=0, A-2=<0, -A+1=<0]
+    },
+    {
+        name: t18,
+        source: f887_0_loop_aux_GT,
+        target: f887_0_loop_aux_GT,
+        constraints: [A-F=0, 1-H=0, 1-G=0, A-F=0, C=0, 4-A=<0]
+    },
+    {
+        name: t21,
+        source: f887_0_loop_aux_GT,
+        target: f887_0_loop_aux_GT,
+        constraints: [H+1=0, G=0, F=0, C=0, A=0]
+    }
+    ],
+    initnode: f887_0_loop_aux_GT
+ }
+ 

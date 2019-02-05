@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t2,
+        source: f376_0_main_FieldAccess,
+        target: f376_0_main_FieldAccess,
+        constraints: [C-A=<0, -E+1=<0, -A+1=<0, -C+1=<0]
+    }
+    ],
+    initnode: f376_0_main_FieldAccess
+ }
+ 

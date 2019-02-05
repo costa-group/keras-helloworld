@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t2,
+        source: f128_0_loop_GE,
+        target: f128_0_loop_GE,
+        constraints: [C-A+1=0, A+1=<0]
+    }
+    ],
+    initnode: f128_0_loop_GE
+ }
+ 

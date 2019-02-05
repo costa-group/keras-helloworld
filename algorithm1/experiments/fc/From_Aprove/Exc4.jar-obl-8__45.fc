@@ -1,0 +1,13 @@
+{
+    vars: [A],
+    pvars: [B],
+    transitions: [    {
+        name: t2,
+        source: f58_0_main_GE,
+        target: f58_0_main_GE,
+        constraints: [A-B=0, A-B=0, A-19=<0, 12-A=<0]
+    }
+    ],
+    initnode: f58_0_main_GE
+ }
+ 

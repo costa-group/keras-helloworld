@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t14,
+        source: f2102_0_flatten_NULL,
+        target: f2102_0_flatten_NULL,
+        constraints: [E>=0, 2-A=<0, A-E-2>=0]
+    },
+    {
+        name: t15,
+        source: f2102_0_flatten_NULL,
+        target: f2102_0_flatten_NULL,
+        constraints: [3-E=<0, 3-A=<0, A-E+2>=0]
+    }
+    ],
+    initnode: f2102_0_flatten_NULL
+ }
+ 

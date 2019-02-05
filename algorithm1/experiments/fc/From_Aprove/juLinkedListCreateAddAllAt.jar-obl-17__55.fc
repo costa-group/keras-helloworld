@@ -1,0 +1,43 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, A1, B1, C1],
+    pvars: [D1, E1, F1, G1, H1, I1, J1, K1, L1, M1, N1, O1, P1, Q1, R1, S1, T1, U1, V1, W1, X1, Y1, Z1, A2, B2, C2, D2, E2, F2],
+    transitions: [    {
+        name: t52,
+        source: f9470_0_hasNext_EQ,
+        target: f9470_0_hasNext_EQ,
+        constraints: [G2>=0, H-F+1=<0, H2-G2+1=<0, C>=0, E>=0, 8-A=<0, 3-B=<0, 8-D1=<0, 3-E1=<0, A-C-7>=0, A-E-5>=0, A-D-2>=0, B-F-7>=0, B-H-2>=0, B-G-5>=0, G-I=0, F1-C-1=0, G1-D-1=0, H1-E-1=0, K1-H-1=0, G-L1=0]
+    },
+    {
+        name: t53,
+        source: f9470_0_hasNext_EQ,
+        target: f9470_0_hasNext_EQ,
+        constraints: [I2>=0, F-H+1=<0, J2-I2+1=<0, C>=0, E>=0, 8-A=<0, 3-B=<0, 8-D1=<0, 3-E1=<0, A-C-7>=0, A-E-5>=0, A-D-2>=0, B-F-7>=0, B-H-2>=0, B-G-5>=0, G-I=0, F1-C-1=0, G1-D-1=0, H1-E-1=0, K1-H-1=0, G-L1=0]
+    },
+    {
+        name: t54,
+        source: f9470_0_hasNext_EQ,
+        target: f9470_0_hasNext_EQ,
+        constraints: [K2>=0, H-F+1=<0, L2-K2+1=<0, C>=0, -L2+1=<0, E>=0, 8-A=<0, 3-B=<0, 8-D1=<0, 3-E1=<0, A-C-7>=0, A-E-5>=0, A-D-2>=0, B-F-7>=0, B-H-2>=0, B-G-5>=0, G-I=0, F1-C-1=0, G1-D-1=0, H1-E-1=0, K1-H-1=0, G-L1=0]
+    },
+    {
+        name: 55,
+        source: f9470_0_hasNext_EQ,
+        target: f9470_0_hasNext_EQ,
+        constraints: [M2>=0, F-H+1=<0, N2-M2+1=<0, C>=0, -N2+1=<0, E>=0, 8-A=<0, 3-B=<0, 8-D1=<0, 3-E1=<0, A-C-7>=0, A-E-5>=0, A-D-2>=0, B-F-7>=0, B-H-2>=0, B-G-5>=0, G-I=0, F1-C-1=0, G1-D-1=0, H1-E-1=0, K1-H-1=0, G-L1=0]
+    },
+    {
+        name: t56,
+        source: f9470_0_hasNext_EQ,
+        target: f9470_0_hasNext_EQ,
+        constraints: [O2=<0, H-F+1=<0, C>=0, E>=0, 8-A=<0, 3-B=<0, 8-D1=<0, 3-E1=<0, A-C-7>=0, A-E-5>=0, A-D-2>=0, B-F-7>=0, B-H-2>=0, B-G-5>=0, G-I=0, F1-C-1=0, G1-D-1=0, H1-E-1=0, K1-H-1=0, G-L1=0]
+    },
+    {
+        name: t57,
+        source: f9470_0_hasNext_EQ,
+        target: f9470_0_hasNext_EQ,
+        constraints: [P2=<0, F-H+1=<0, C>=0, E>=0, 8-A=<0, 3-B=<0, 8-D1=<0, 3-E1=<0, A-C-7>=0, A-E-5>=0, A-D-2>=0, B-F-7>=0, B-H-2>=0, B-G-5>=0, G-I=0, F1-C-1=0, G1-D-1=0, H1-E-1=0, K1-H-1=0, G-L1=0]
+    }
+    ],
+    initnode: f9470_0_hasNext_EQ
+ }
+ 

@@ -1,0 +1,73 @@
+{
+    vars: [A, B, C, D, E, F, G, H, I, J],
+    pvars: [K, L, M, N, O, P, Q, R, S, T],
+    transitions: [    {
+        name: t1,
+        source: n_l0,
+        target: n_l2,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, E-O=0, F-P=0, G-Q=0, H-R=0, I-S=0, J-T=0, J-T=0, H-R=0, I-S=0, G-Q=0, E-O=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0, C-1-E>=0]
+    },
+    {
+        name: t3,
+        source: n_l2,
+        target: n_l4,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, E-O=0, F-P=0, G-Q=0, H-R=0, I-S=0, J-T=0, J-T=0, H-R=0, I-S=0, G-Q=0, E-O=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0]
+    },
+    {
+        name: t2,
+        source: n_l3,
+        target: n_l0,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, E-O=0, F-P=0, G-Q=0, H-R=0, I-S=0, J-T=0, J-T=0, H-R=0, I-S=0, G-Q=0, E-O=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0]
+    },
+    {
+        name: t10,
+        source: n_l4,
+        target: n_l3,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, F-P=0, G-Q=0, I-S=0, J-T=0, J-T=0, I-S=0, G-Q=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0, R+A-H=0, O-2-E=0, E-H=<0]
+    },
+    {
+        name: t11,
+        source: n_l4,
+        target: n_l7,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, E-O=0, F-P=0, G-Q=0, H-R=0, I-S=0, J-T=0, J-T=0, H-R=0, I-S=0, G-Q=0, E-O=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0, E-1-H>=0]
+    },
+    {
+        name: t4,
+        source: n_l5,
+        target: n_l2,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, F-P=0, G-Q=0, H-R=0, I-S=0, J-T=0, J-T=0, H-R=0, I-S=0, G-Q=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0, O-1-E=0, H-1-B>=0]
+    },
+    {
+        name: t5,
+        source: n_l5,
+        target: n_l2,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, F-P=0, G-Q=0, H-R=0, I-S=0, J-T=0, J-T=0, H-R=0, I-S=0, G-Q=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0, O-A-E=0, H-B=<0]
+    },
+    {
+        name: t6,
+        source: n_l6,
+        target: n_l2,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, F-P=0, G-Q=0, H-R=0, I-S=0, J-T=0, J-T=0, H-R=0, I-S=0, G-Q=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0, O-1-E=0, A-1-H>=0]
+    },
+    {
+        name: t7,
+        source: n_l6,
+        target: n_l5,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, E-O=0, F-P=0, G-Q=0, H-R=0, I-S=0, J-T=0, J-T=0, H-R=0, I-S=0, G-Q=0, E-O=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0, A-H=<0]
+    },
+    {
+        name: t8,
+        source: n_l7,
+        target: n_l6,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, E-O=0, F-P=0, G-Q=0, I-S=0, J-T=0, J-T=0, I-S=0, G-Q=0, E-O=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0, R-2-H=0, H-D=<0]
+    },
+    {
+        name: t9,
+        source: n_l7,
+        target: n_l6,
+        constraints: [A-K=0, B-L=0, C-M=0, D-N=0, E-O=0, F-P=0, G-Q=0, I-S=0, J-T=0, J-T=0, I-S=0, G-Q=0, E-O=0, F-P=0, D-N=0, C-M=0, B-L=0, A-K=0, 0=0, H-1-D>=0]
+    }
+    ],
+    initnode: n_l0
+ }
+ 

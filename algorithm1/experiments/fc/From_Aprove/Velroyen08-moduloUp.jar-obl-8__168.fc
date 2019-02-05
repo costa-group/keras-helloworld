@@ -1,0 +1,19 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f48_0_up_GE,
+        target: f48_0_up_GEp,
+        constraints: [A-C=0, A-C=0, A-14=<0]
+    },
+    {
+        name: t2,
+        source: f48_0_up_GEp,
+        target: f48_0_up_GE,
+        constraints: [A-14=<0, 8-A+10*E>=0, -A-1+10*E=<0, C-A-1+10*E=0]
+    }
+    ],
+    initnode: f48_0_up_GE
+ }
+ 

@@ -1,0 +1,25 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t5,
+        source: f274_0_growReduce_NONNULL,
+        target: f274_0_growReduce_NONNULL,
+        constraints: [1-C=0, A=0, D>=0, -B+1=<0, B-D-1>=0]
+    },
+    {
+        name: t6,
+        source: f274_0_growReduce_NONNULL,
+        target: f274_0_growReduce_NONNULL,
+        constraints: [C=0, 2-A=0, D>=0, -B+1=<0, B-D-1>=0]
+    },
+    {
+        name: t7,
+        source: f274_0_growReduce_NONNULL,
+        target: f274_0_growReduce_NONNULL,
+        constraints: [2-C=0, 1-A=0, 3-D=<0, -B+1=<0, B-D+2>=0]
+    }
+    ],
+    initnode: f274_0_growReduce_NONNULL
+ }
+ 

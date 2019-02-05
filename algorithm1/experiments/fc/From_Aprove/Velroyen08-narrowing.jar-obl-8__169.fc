@@ -1,0 +1,73 @@
+{
+    vars: [A, B, C, D],
+    pvars: [E, F, G, H],
+    transitions: [    {
+        name: t2,
+        source: f490_0_loop_GT,
+        target: f564_0_loop_NE,
+        constraints: [A-E=0, B-F=0, H-A+2=0, G-C-1=0, B-F=0, A-E=0, -B+1=<0, A>=0, C-A+1=<0, -C+1=<0]
+    },
+    {
+        name: t3,
+        source: f490_0_loop_GT,
+        target: f565_0_loop_NE,
+        constraints: [A-E=0, G-A+2=0, F-C+1=0, A-E=0, B=0, C-A+1=<0, -C+1=<0, A>=0]
+    },
+    {
+        name: t4,
+        source: f490_0_loop_GT,
+        target: f573_0_loop_NE,
+        constraints: [A-E=0, G-A+2=0, F-A+1=0, A-E=0, A-C=0, -A+1=<0]
+    },
+    {
+        name: t5,
+        source: f564_0_loop_NE,
+        target: f490_0_loop_GT,
+        constraints: [A-E=0, B-F=0, C-G=0, C-G=0, B-F=0, A-E=0, C-D+1=<0]
+    },
+    {
+        name: t6,
+        source: f564_0_loop_NE,
+        target: f490_0_loop_GT,
+        constraints: [A-E=0, B-F=0, C-G=0, C-G=0, B-F=0, A-E=0, D-C+1=<0]
+    },
+    {
+        name: t7,
+        source: f565_0_loop_NE,
+        target: f490_0_loop_GT,
+        constraints: [A-E=0, B-G=0, F=0, A-E=0, B-C+1=<0]
+    },
+    {
+        name: t10,
+        source: f573_0_loop_NE,
+        target: f490_0_loop_GT,
+        constraints: [A-E=0, B-G=0, F=0, A-E=0, C-B+1=<0]
+    },
+    {
+        name: t11,
+        source: f490_0_loop_GT,
+        target: f490_0_loop_GT,
+        constraints: [A-E=0, 1-G=0, 1-F=0, A-E=0, C=0, A-2=<0, -A+1=<0]
+    },
+    {
+        name: t12,
+        source: f490_0_loop_GT,
+        target: f490_0_loop_GT,
+        constraints: [A-E=0, 1-G=0, 1-F=0, A-E=0, C=0, 4-A=<0]
+    },
+    {
+        name: t13,
+        source: f564_0_loop_NE,
+        target: f490_0_loop_GT,
+        constraints: [B-F=0, C-G=0, C-G=0, B-F=0, E-A+1=0, C-D=0]
+    },
+    {
+        name: t14,
+        source: f490_0_loop_GT,
+        target: f490_0_loop_GT,
+        constraints: [G+1=0, F=0, E=0, C=0, A=0]
+    }
+    ],
+    initnode: f490_0_loop_GT
+ }
+ 

@@ -1,0 +1,13 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t2,
+        source: f162_0_main_GE,
+        target: f162_0_main_GE,
+        constraints: [D-B-1=0, C-B+1=0, A-B+2=0, 1>=0]
+    }
+    ],
+    initnode: f162_0_main_GE
+ }
+ 

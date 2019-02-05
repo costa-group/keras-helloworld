@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t3,
+        source: n_l1,
+        target: n_l4,
+        constraints: [A-G=0, B-H=0, E-K=0, F-L=0, F-L=0, E-K=0, B-H=0, A-G=0, A-1-J>=0, I+1-J>=0, I+1-J=<0, I+1-C=0, A-1-C>=0, 0=0]
+    },
+    {
+        name: t4,
+        source: n_l4,
+        target: n_l1,
+        constraints: [A-G=0, B-H=0, C-I=0, D-J=0, E-K=0, F-L=0, F-L=0, E-K=0, D-J=0, C-I=0, B-H=0, A-G=0]
+    }
+    ],
+    initnode: n_l1
+ }
+ 

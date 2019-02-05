@@ -1,0 +1,19 @@
+{
+    vars: [A, B],
+    pvars: [C, D],
+    transitions: [    {
+        name: t1,
+        source: f79_0_main_GE,
+        target: f79_0_main_GE,
+        constraints: [D-B-1=0, C-A+1=0, A-B+1=<0, B-51=<0]
+    },
+    {
+        name: t2,
+        source: f79_0_main_GE,
+        target: f79_0_main_GE,
+        constraints: [D-B+1=0, C-A-1=0, A-B+1=<0, 52-B=<0]
+    }
+    ],
+    initnode: f79_0_main_GE
+ }
+ 

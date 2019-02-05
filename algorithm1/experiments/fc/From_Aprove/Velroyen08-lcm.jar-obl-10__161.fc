@@ -1,0 +1,19 @@
+{
+    vars: [A, B, C, D, E, F],
+    pvars: [G, H, I, J, K, L],
+    transitions: [    {
+        name: t11,
+        source: f481_0_lcm_EQ,
+        target: f481_0_lcm_EQ,
+        constraints: [A-G=0, B-H=0, D-J=0, D-L=0, K-C-A=0, D-J=0, I-C-A=0, B-H=0, A-G=0, D-F=0, C-E=0, C-D+1=<0, A=<0, C=<0]
+    },
+    {
+        name: t12,
+        source: f481_0_lcm_EQ,
+        target: f481_0_lcm_EQ,
+        constraints: [A-G=0, B-H=0, C-I=0, L-D-B=0, C-K=0, J-D-B=0, C-I=0, B-H=0, A-G=0, D-F=0, C-E=0, D-C+1=<0]
+    }
+    ],
+    initnode: f481_0_lcm_EQ
+ }
+ 

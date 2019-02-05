@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t8,
+        source: f292_0_isZero_NONNULL,
+        target: f292_0_isZero_NONNULL,
+        constraints: [-I+1=<0, 3-H=<0, 3-G=<0, -F+1=<0, -D+1=<0, 3-C=<0, 2-B=<0, -A+1=<0, I-D=<0, C-I-2>=0, D-H+2>=0, H-C=<0, D-G+2>=0, G-C=<0, F-A=<0]
+    }
+    ],
+    initnode: f292_0_isZero_NONNULL
+ }
+ 

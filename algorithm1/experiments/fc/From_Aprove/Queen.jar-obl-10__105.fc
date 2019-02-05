@@ -1,0 +1,31 @@
+{
+    vars: [A, B, C],
+    pvars: [D, E, F],
+    transitions: [    {
+        name: t1,
+        source: f1549_0_search_LT,
+        target: f1911_0_search_GE,
+        constraints: [A-D=0, A-G+1=<0, A-D=0, E=0]
+    },
+    {
+        name: t2,
+        source: f1911_0_search_GE,
+        target: f1911_0_search_GE,
+        constraints: [A-D=0, B-H+1=<0, -H+1=<0, A-D=0, E-B-1=0]
+    },
+    {
+        name: t3,
+        source: f1911_0_search_GE,
+        target: f1549_0_search_LT,
+        constraints: [-I+1=<0, B-I+1=<0, -J+1=<0, A>=0, A-I+1=<0, 0>=0, D-A-1=0]
+    },
+    {
+        name: t4,
+        source: f1911_0_search_GE,
+        target: f1911_0_search_GE,
+        constraints: [A-D=0, -K+1=<0, B-K+1=<0, -L+1=<0, A>=0, A-K+1=<0, 0>=0, A-D=0, E-B-1=0]
+    }
+    ],
+    initnode: f1549_0_search_LT
+ }
+ 

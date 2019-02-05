@@ -1,0 +1,13 @@
+{
+    vars: [A, B, C, D, E],
+    pvars: [F, G, H, I, J],
+    transitions: [    {
+        name: t6,
+        source: f763_0_HeapSort_GE,
+        target: f763_0_HeapSort_GE,
+        constraints: [A-K+1=<0, -K+1=<0, F-A-1=0]
+    }
+    ],
+    initnode: f763_0_HeapSort_GE
+ }
+ 
