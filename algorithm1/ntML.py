@@ -1,19 +1,39 @@
-
-from z3 import sat
-from z3 import Real
-from z3 import Solver, And, Or
 import numpy as np
 from sklearn.svm import SVC, LinearSVC
-from z3 import simplify
 # from .manager import Algorithm
 import matplotlib.pyplot as plt
 from lpi import Expression
-from lpi.constraints import Or as ExpOr
-from lpi.constraints import And as ExpAnd
+from lpi import Solver
+from lpi.constraints import Or
+from lpi.constraints import And
 from termination.result import Result
 from termination.result import TerminationResult
 from termination.output import Output_Manager as OM
 from termination.algorithm.utils import generate_prime_names
+
+
+class ML_:
+    ID = "ml"
+    NAME = "ml"
+    DESC = "non termination using ML"
+
+    @staticmethod
+    def parse_props(properties, token):
+        props = dict(properties)
+        ops = list(token)
+        props["phi"] = "one"
+        props["roundup"] = False
+        for o in ops:
+            if o == "one" or o == "dis":
+                props["phi"] = o
+            elif o == "up":
+                props["roundup"] = True
+        return props
+
+    @staticmethod
+    def run(cls, cfg, properties={}, token=[]):
+        pass
+        # props = .parse_props(properties, token)
 
 
 def set_fancy_props_neg(cfg, scc):
@@ -33,11 +53,11 @@ def set_fancy_props_neg(cfg, scc):
             if len(cs) == 1:
                 ors.append(cs[0])
             else:
-                ors.append(ExpAnd(cs))
+                ors.append(And(cs))
         if len(ors) == 0:
-            fancy[node] = ExpOr(Expression(0) == Expression(0))
+            fancy[node] = Or(Expression(0) == Expression(0))
         else:
-            fancy[node] = ExpOr([o.negate() for o in ors])
+            fancy[node] = Or([o.negate() for o in ors])
     OM.printf("exit conditions: \n", fancy, "\n ===========================")
     scc.set_nodes_info(fancy, "exit_props")
 
@@ -58,50 +78,28 @@ def set_fancy_props(scc):
             if len(cs) == 1:
                 ors[tname] = cs[0]
             else:
-                ors[tname] = ExpAnd(cs)
+                ors[tname] = And(cs)
         fancy[node] = ors
     OM.printf("exit conditions: \n", fancy, "\n ===========================")
     # scc.set_nodes_info(fancy, "exit_props")
     return fancy
 
 
-def toz3(c):
-    if isinstance(c, list):
-        if len(c) > 0 and isinstance(c[0], list):
-            ors = []
-            for a in c:
-                ands = [toz3(e) for e in a]
-                if len(ands) == 1:
-                    ors.append(ands[0])
-                elif len(ands) > 1:
-                    ors.append(And(ands))
-            if len(ors) == 1:
-                return ors[0]
-            elif len(ors) > 1:
-                return Or(ors)
-            else:
-                return None
-        else:
-            if len(c) == 1:
-                return toz3(c[0])
-            return And([toz3(e) for e in c])
-    return c.get(Real, float, ignore_zero=True, toOr=Or, toAnd=And)
-
-
 def generateNpoints(s, N, vs):
     s.push()
     ps = []
-    rvs = [Real(v) for v in vs]
-    while s.check() == sat:
-        m = s.model()
+    # rvs = [Real(v) for v in vs]
+    while s.is_sat():
+        m, __ = s.get_point(vs)
         p = []
         exp = []
-        for v in rvs:
+        for v in vs:
             if m[v] is None:
                 pi = 0.0
             else:
-                exp.append(v != m[v])
-                pi = float(int(str(m[v].numerator())) / int(str(m[v].denominator())))
+                exp.append(Expression(v) > Expression(m[v]))
+                exp.append(Expression(v) < Expression(m[v]))
+                pi = m[v]  # float(int(str(m[v].numerator())) / int(str(m[v].denominator())))
             p.append(pi)
         ps.append(p)
         if len(ps) == N:
@@ -111,6 +109,7 @@ def generateNpoints(s, N, vs):
         else:
             raise Exception("something went wrong...")
     s.pop()
+    print(ps)
     return ps
 
 
@@ -122,9 +121,10 @@ class ML:
     def __init__(self, properties={}):
         self.props = properties
 
-    def run(self, scc):
+    @classmethod
+    def run(cls, scc):
         Npoints = 10
-        OM.printif(1, "--> with " + self.NAME)
+        OM.printif(1, "--> with " + cls.NAME)
         global_vars = scc.get_info("global_vars")
         Nvars = int(len(global_vars) / 2)
         vs = global_vars[:Nvars]
@@ -155,25 +155,24 @@ class ML:
                 good_cons = []
                 good_cons += [phi[node][tname]]  # phi[node][tname]
                 good_cons += t["polyhedron"].get_constraints()  # ti
-                good_cons += [ExpOr([phi[t["target"]][k].renamed(vs, pvs) for k in phi[t["target"]]])]  # phi[ti[target]]
+                good_cons += [Or([phi[t["target"]][k].renamed(vs, pvs) for k in phi[t["target"]]])]  # phi[ti[target]]
                 bad_cons = []
                 bad_cons += [phi[node][tname]]  # phi[node][tname]
                 bad_cons += t["polyhedron"].get_constraints()  # ti
-                bad_cons += [ExpAnd([phi[t["target"]][k].negate().renamed(vs, pvs) for k in phi[t["target"]]])]  # ¬ phi[ti[target]]
+                bad_cons += [And([phi[t["target"]][k].negate().renamed(vs, pvs) for k in phi[t["target"]]])]  # ¬ phi[ti[target]]
                 OM.printif(2, "good cons:", good_cons)
                 OM.printif(2, "bad cons:", bad_cons)
                 sb = Solver()
-                sb.add(simplify(And(toz3(bad_cons))))
+                sb.add((And(bad_cons)))
                 OM.printif(2, "bad", sb)
-                if sb.check() == sat:
+                if sb.is_sat():
                     sg = Solver()
-                    sg.add(simplify(And(toz3(good_cons))))
-                    
-                    if sg.check() == sat:
+                    sg.add((And(good_cons)))
+                    if sg.is_sat():
                         bad_points = generateNpoints(sb, Npoints, vs)  # program terminates
-                        bad_y = [False] * Npoints
+                        bad_y = [False] * len(bad_points)
                         good_points = generateNpoints(sg, Npoints, vs)
-                        good_y = [True] * Npoints
+                        good_y = [True] * len(good_points)
                         X = np.array(bad_points + good_points)
                         Y = np.array(bad_y + good_y)
                         clf = SVC(kernel="linear")
@@ -208,11 +207,10 @@ class ML:
                             plt.legend()
                             plt.axis('tight')
                             plt.show()
-                        phi[node][tname] = ExpAnd(new_phi, phi[node][tname])
-                        
+                        phi[node][tname] = And([new_phi, phi[node][tname]])
                         S = Solver()
-                        S.add(toz3(phi[node][tname]))
-                        if S.check() == sat:
+                        S.add((phi[node][tname]))
+                        if S.is_sat():
                             queue.append(node)
                         else:
                             OM.printif(1, "node {} (tr {}) got unsat phi".format(node, tname))
@@ -220,7 +218,7 @@ class ML:
                         warnings = True
                         OM.printf("WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT")
                         OM.printf("removing transition: {}".format(tname))
-                        OM.printif(2, "goods", sg)
+                        OM.printif(2, "goods", "{{{}}}".format(",\n".join([c.toString(str, str, and_symb=",\n") for c in sg.get_constraints()])))
                         scc.remove_edge(t["source"], t["target"], t["name"])
                         del phi[node][tname]
                         continue
@@ -231,7 +229,8 @@ class ML:
 
         cad = ("\nphi props: {\n")
         for node in phi:
-            cad += ("\t {} : {} \n".format(node, ExpOr([phi[node][tname] for tname in phi[node]]).toString(str, float, and_symb="AND\t", or_symb="\tOR")))
+            cad += ("\t {} : {} \n".format(node, Or([phi[node][tname]
+                                                     for tname in phi[node]]).toString(str, float, and_symb="AND\t", or_symb="\tOR")))
         cad += ("\n}\n")
         if len(skiped) > 0:
             itis = TerminationResult.UNKNOWN
@@ -267,12 +266,7 @@ class ML:
         return desc
 
     def __repr__(self):
-        cad_alg = self.NAME
-        if "version" in self.props:
-            cad_alg += "v" + str(self.props["version"])
-        if "nonoptimal" in self.props and self.props["nonoptimal"]:
-            cad_alg += "_nonoptimal"
-        return cad_alg
+        return self.NAME
 
     def set_prop(self, key, value):
         self.props[key] = value
@@ -284,16 +278,7 @@ class ML:
         return key in self.props
 
     def get_name(self):
-        cad_name = self.NAME
-        if "nonoptimal" in self.props and self.props["nonoptimal"]:
-            cad_name += "_nonoptimal"
-        if "version" in self.props and str(self.props["version"]) != 1:
-            cad_name += "v" + str(self.props["version"])
-        if "min_depth" in self.props:
-            cad_name += "_" + str(self.props["min_depth"])
-        if "max_depth" in self.props:
-            cad_name += "_" + str(self.props["max_depth"])
-        return cad_name
+        return self.NAME
 
 
 class ML2(ML):
