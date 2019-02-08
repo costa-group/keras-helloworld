@@ -1,6 +1,4 @@
 import numpy as np
-from sklearn.svm import SVC, LinearSVC
-# from .manager import Algorithm
 import matplotlib.pyplot as plt
 from lpi import Expression
 from lpi import Solver
@@ -9,31 +7,66 @@ from lpi.constraints import And
 from termination.result import Result
 from termination.result import TerminationResult
 from termination.output import Output_Manager as OM
-from termination.algorithm.utils import generate_prime_names
 
 
-class ML_:
-    ID = "ml"
-    NAME = "ml"
-    DESC = "non termination using ML"
+def plot(classifier, X, Y, variables):
+    # if len(variables) != 2:
+    #     return
+    # get the separating hyperplane
+    W = classifier.coef_[0]
+    print(classifier.intercept_[0])
+    w = list(W)
+    print(w)
 
-    @staticmethod
-    def parse_props(properties, token):
-        props = dict(properties)
-        ops = list(token)
-        props["phi"] = "one"
-        props["roundup"] = False
-        for o in ops:
-            if o == "one" or o == "dis":
-                props["phi"] = o
-            elif o == "up":
-                props["roundup"] = True
-        return props
+    if w[1] == 0:
+        yy = yy_down = yy_up = np.linspace(min([Xi[1] for Xi in X]) - 2, max([Xi[1] for Xi in X]) + 2)
+        a = 0
+        xx = [- (classifier.intercept_[0]) / w[0]] * len(yy)
+        # support vectors
+        b = classifier.support_vectors_[0]
+        xx_down = [b[0]] * len(yy)
+        b = classifier.support_vectors_[-1]
+        xx_up = [b[0]] * len(yy)
+    else:
+        xx = xx_down = xx_up = np.linspace(min([Xi[0] for Xi in X]) - 2, max([Xi[0] for Xi in X]) + 2)
+        a = -w[0] / w[1]
+        yy = a * xx - (classifier.intercept_[0]) / w[1]
+        # support vectors
+        b = classifier.support_vectors_[0]
+        yy_down = a * xx + (b[1] - a * b[0])
+        b = classifier.support_vectors_[-1]
+        yy_up = a * xx + (b[1] - a * b[0])
+    # plot the parallels to the separating hyperplane that pass through the
 
-    @staticmethod
-    def run(cls, cfg, properties={}, token=[]):
-        pass
-        # props = .parse_props(properties, token)
+    # plot the line, the points, and the nearest vectors to the plane
+    plt.plot(xx, yy, 'k-')
+    plt.plot(xx_down, yy_down, 'k--')
+    plt.plot(xx_up, yy_up, 'k--')
+    plt.xlabel(variables[0])
+    plt.ylabel(variables[1])
+    plt.scatter(classifier.support_vectors_[:, 0], classifier.support_vectors_[:, 1],
+                s=80, facecolors='none')
+    plt.scatter(X[:, 0], X[:, 1], c=Y)
+    plt.legend()
+    plt.axis('tight')
+    plt.show()
+
+
+def split(bad_points, good_points, variables):
+    from sklearn.svm import SVC, LinearSVC
+    bad_y = [False] * len(bad_points)
+    good_y = [True] * len(good_points)
+    X = np.array(bad_points + good_points)
+    Y = np.array(bad_y + good_y)
+    clf = SVC(kernel="linear")
+    clf.fit(X, Y)
+    OM.printif(2, clf.intercept_)
+    new_phi = Expression(1 * clf.intercept_[0])
+    for i in range(len(variables)):
+        new_phi += Expression(1 * clf.coef_[0][i]) * Expression(variables[i])
+    new_phi = new_phi >= 0
+    plot(clf, X, Y, variables)
+    return new_phi
 
 
 def set_fancy_props_neg(cfg, scc):
@@ -62,29 +95,6 @@ def set_fancy_props_neg(cfg, scc):
     scc.set_nodes_info(fancy, "exit_props")
 
 
-def set_fancy_props(scc):
-    fancy = {}
-    nodes = scc.get_nodes()
-    gvs = scc.get_info("global_vars")
-    Nvars = int(len(gvs) / 2)
-    vs = gvs[:Nvars]
-    for node in nodes:
-        ors = {}
-        for tr in scc.get_edges(source=node):
-            cs = tr["polyhedron"].project(vs).get_constraints()
-            tname = tr["name"]
-            if len(cs) == 0:
-                ors[tname] = Expression(0) == Expression(0)
-            if len(cs) == 1:
-                ors[tname] = cs[0]
-            else:
-                ors[tname] = And(cs)
-        fancy[node] = ors
-    OM.printf("exit conditions: \n", fancy, "\n ===========================")
-    # scc.set_nodes_info(fancy, "exit_props")
-    return fancy
-
-
 def generateNpoints(s, N, vs):
     s.push()
     ps = []
@@ -109,17 +119,79 @@ def generateNpoints(s, N, vs):
         else:
             raise Exception("something went wrong...")
     s.pop()
-    print(ps)
     return ps
+
+
+class MLPhi:
+    def __init__(self, scc, method="disjuntive"):
+        if method == "disjuntive":
+            self.get = self.get_disjuntive
+            self.create = self.create_disjuntive
+            self.append = self.append_disjuntive
+        elif method == "conjuntive":
+            self.get = self.get_conjuntive
+            self.create = self.create_conjuntive
+            self.append = self.append_conjuntive
+        else:
+            raise ValueError("Unknown method for phis")
+        self.phi = self.create(scc)
+
+    def append_disjuntive(self, node, tr, value):
+        self.phi[node][tr] = And([value, self.phi[node][tr]])
+
+    def append_conjuntive(self, node, tr, value):
+        self.phi[node] = And([value, self.phi[node]])
+
+    @staticmethod
+    def create_disjuntive(scc):
+        fancy = {}
+        nodes = scc.get_nodes()
+        gvs = scc.get_info("global_vars")
+        Nvars = int(len(gvs) / 2)
+        vs = gvs[:Nvars]
+        for node in nodes:
+            ors = {}
+            for tr in scc.get_edges(source=node):
+                cs = tr["polyhedron"].project(vs).get_constraints()
+                tname = tr["name"]
+                if len(cs) == 0:
+                    ors[tname] = Expression(0) == Expression(0)
+                if len(cs) == 1:
+                    ors[tname] = cs[0]
+                else:
+                    ors[tname] = And(cs)
+            fancy[node] = ors
+        return fancy
+
+    @staticmethod
+    def create_conjuntive(scc):
+        fancy = MLPhi.create_phi_disjuntive(scc)
+        f = {k: Or(fancy[k][t]) for k in fancy for t in fancy[k]}
+        return f
+
+    def get_disjuntive(self, node, tr=None, vs=None, pvs=None):
+        rename = not (vs is None and pvs is None)
+        if tr is None:
+            if rename:
+                mphi = [self.phi[node][k].renamed(vs, pvs) for k in self.phi[node]]
+            else:
+                mphi = [self.phi[node][k] for k in self.phi[node]]
+            return Or(mphi)
+        else:
+            return self.phi[node][tr].renamed(vs, pvs) if rename else self.phi[node][tr]
+
+    def get_conjuntive(self, node, tr=None, vs=None, pvs=None):
+        rename = not (vs is None and pvs is None)
+        return self.phi[node].renamed(vs, pvs) if rename else self.phi[node]
+
+    def __repr__(self):
+        return str(self.phi)
 
 
 class ML:
     ID = "ml"
     NAME = "ml"
     DESC = "non termination using ML"
-
-    def __init__(self, properties={}):
-        self.props = properties
 
     @classmethod
     def run(cls, scc):
@@ -129,15 +201,13 @@ class ML:
         Nvars = int(len(global_vars) / 2)
         vs = global_vars[:Nvars]
         pvs = global_vars[Nvars:]
-        fancy = set_fancy_props(scc)
-        phi = {n: fancy[n] for n in fancy}
+        phi = MLPhi(scc, method="disjuntive")
+        print(phi)
         # phi = {n: v for n, v in scc.nodes.data("exit_props", default=ExpOr([]))}
         # phi = {n: ExpOr([ExpAnd(e) for e in v]) for n, v in scc.nodes.data("fancy_prop", default=[])}
-        queue = [n for n in phi if len(phi[n].keys()) > 0]
-        bad_points = []
-        bad_y = []
+        queue = [n for n in scc.get_nodes()]
         max_tries = 10
-        tries = {n: max_tries for n in phi}
+        tries = {n: max_tries for n in scc.get_nodes()}
         skiped = []
         warnings = False
         itis = TerminationResult.NONTERMINATE
@@ -148,72 +218,41 @@ class ML:
                 skiped.append(node)
                 continue
             tries[node] -= 1
-
             for t in scc.get_edges(source=node):
                 tname = t["name"]
                 print(tname)
                 good_cons = []
-                good_cons += [phi[node][tname]]  # phi[node][tname]
+                good_cons += [phi.get(node, tname)]  # phi[node][tname]
                 good_cons += t["polyhedron"].get_constraints()  # ti
-                good_cons += [Or([phi[t["target"]][k].renamed(vs, pvs) for k in phi[t["target"]]])]  # phi[ti[target]]
+                good_cons += [phi.get(t["target"], vs=vs, pvs=pvs)]  # phi[ti[target]]
                 bad_cons = []
-                bad_cons += [phi[node][tname]]  # phi[node][tname]
+                bad_cons += [phi.get(node, tname)]  # phi[node][tname]
                 bad_cons += t["polyhedron"].get_constraints()  # ti
-                bad_cons += [And([phi[t["target"]][k].negate().renamed(vs, pvs) for k in phi[t["target"]]])]  # ¬ phi[ti[target]]
-                OM.printif(2, "good cons:", good_cons)
-                OM.printif(2, "bad cons:", bad_cons)
+                bad_cons += [phi.get(t["target"], vs=vs, pvs=pvs).negate()]  # ¬ phi[ti[target]]
                 sb = Solver()
                 sb.add((And(bad_cons)))
-                OM.printif(2, "bad", sb)
                 if sb.is_sat():
                     sg = Solver()
                     sg.add((And(good_cons)))
                     if sg.is_sat():
-                        bad_points = generateNpoints(sb, Npoints, vs)  # program terminates
-                        bad_y = [False] * len(bad_points)
+                        print(vs)
+                        print("good")
+                        print(sg)
                         good_points = generateNpoints(sg, Npoints, vs)
-                        good_y = [True] * len(good_points)
-                        X = np.array(bad_points + good_points)
-                        Y = np.array(bad_y + good_y)
-                        clf = SVC(kernel="linear")
-                        clf.fit(X, Y)
-                        OM.printif(2, clf.intercept_)
-                        new_phi = Expression(1 * clf.intercept_[0])
-                        for i in range(Nvars):
-                            new_phi += Expression(1 * clf.coef_[0][i]) * Expression(vs[i])
-                        new_phi = new_phi >= 0
+                        print(good_points)
+                        print("bad")
+                        print(sb)
+                        bad_points = generateNpoints(sb, Npoints, vs)  # program terminates
+                        print(bad_points)
+                        new_phi = split(bad_points, good_points, vs)
                         OM.printif(2, "adding constraint for: {} (tr{})".format(node, tname), new_phi.toString(str, float))
-                        if False and Nvars == 2:
-                            # get the separating hyperplane
-                            w = clf.coef_[0]
-                            a = -w[0] / w[1]
-                            xx = np.linspace(2, 80)
-                            yy = a * xx - (clf.intercept_[0]) / w[1]
-                            # plot the parallels to the separating hyperplane that pass through the
-                            # support vectors
-                            b = clf.support_vectors_[0]
-                            yy_down = a * xx + (b[1] - a * b[0])
-                            b = clf.support_vectors_[-1]
-                            yy_up = a * xx + (b[1] - a * b[0])
-                            # plot the line, the points, and the nearest vectors to the plane
-                            plt.plot(xx, yy, 'k-')
-                            plt.plot(xx, yy_down, 'k--')
-                            plt.plot(xx, yy_up, 'k--')
-                            plt.xlabel(vs[0])
-                            plt.ylabel(vs[1])
-                            plt.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1],
-                                        s=80, facecolors='none')
-                            plt.scatter(X[:, 0], X[:, 1], c=Y)
-                            plt.legend()
-                            plt.axis('tight')
-                            plt.show()
-                        phi[node][tname] = And([new_phi, phi[node][tname]])
-                        S = Solver()
-                        S.add((phi[node][tname]))
-                        if S.is_sat():
-                            queue.append(node)
-                        else:
-                            OM.printif(1, "node {} (tr {}) got unsat phi".format(node, tname))
+                        phi.append(node, tname, new_phi)
+                        # S = Solver()
+                        # S.add((phi[node][tname]))
+                        # if S.is_sat():
+                        #     queue.append(node)
+                        # else:
+                        #     OM.printif(1, "node {} (tr {}) got unsat phi".format(node, tname))
                     else:
                         warnings = True
                         OM.printf("WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT")
@@ -222,15 +261,12 @@ class ML:
                         scc.remove_edge(t["source"], t["target"], t["name"])
                         del phi[node][tname]
                         continue
-                        # scc.remove_edge()
-                        itis = TerminationResult.UNKNOWN
                 else:
                     OM.printif(1, "bads (terminating) are UNSAT")
 
         cad = ("\nphi props: {\n")
-        for node in phi:
-            cad += ("\t {} : {} \n".format(node, Or([phi[node][tname]
-                                                     for tname in phi[node]]).toString(str, float, and_symb="AND\t", or_symb="\tOR")))
+        for node in scc.get_nodes():
+            cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, float, and_symb="AND\t", or_symb="\tOR")))
         cad += ("\n}\n")
         if len(skiped) > 0:
             itis = TerminationResult.UNKNOWN
@@ -279,129 +315,3 @@ class ML:
 
     def get_name(self):
         return self.NAME
-
-
-class ML2(ML):
-    ID = "ml2"
-    NAME = "ml2"
-    DESC = "non termination using ML"
-
-    def __init__(self, properties={}):
-        self.props = properties
-
-    def run(self, scc):
-        Npoints = 10
-        OM.printif(1, "--> with " + self.NAME)
-        global_vars = scc.get_info("global_vars")
-        Nvars = int(len(global_vars) / 2)
-        vs = global_vars[:Nvars]
-        pvs = global_vars[Nvars:]
-        fancy = set_fancy_props(scc)
-        phi = {n: ExpOr([fancy[n][k] for k in fancy[n]]) for n in fancy}
-        # phi = {n: v for n, v in scc.nodes.data("exit_props", default=ExpOr([]))}
-        # phi = {n: ExpOr([ExpAnd(e) for e in v]) for n, v in scc.nodes.data("fancy_prop", default=[])}
-        queue = [n for n in phi if phi[n].len() > 0]
-        bad_points = []
-        bad_y = []
-        max_tries = 10
-        tries = {n: max_tries for n in phi}
-        skiped = []
-        warnings = False
-        itis = TerminationResult.NONTERMINATE
-        while len(queue) > 0:
-            node = queue.pop()
-            if tries[node] == 0:
-                OM.printf("TOO MANY TRIES with node: ", node)
-                skiped.append(node)
-                continue
-            tries[node] -= 1
-            good_cons = [toz3(phi[node])]  # phi[node] ^ ti ^ phi[ti[target]]  ^ ...
-            bad_cons = []  # phi[node] ^ ti ^ ¬ phi[ti[target]] V ...
-            taken_vars = []
-            for t in scc.get_edges(source=node):
-                OM.printif(1, t["name"])
-                lvs = t["local_vars"]
-                taken_vars += lvs
-                newprimevars = generate_prime_names(vs, taken_vars)
-                taken_vars += newprimevars
-                good_cons.append(toz3(t["polyhedron"].get_constraints(vs + newprimevars + lvs)))
-                good_cons.append(toz3(phi[t["target"]].renamed(vs, newprimevars)))
-                bad_cons.append(And(toz3(phi[node]),
-                                    toz3(t["polyhedron"].get_constraints()),
-                                    toz3(phi[t["target"]].negate().renamed(vs, pvs))))
-                OM.printif(2, "good cons:", good_cons)
-                OM.printif(2, "bad cons:", bad_cons)
-            Sb = Solver()
-
-            Sb.add(simplify(Or(bad_cons)))
-            OM.printif(2, "bad", Sb)
-            if Sb.check() == sat:
-                # bad_points = [[0, i * -100] for i in range(3, 3 + Npoints)]
-                bad_points = generateNpoints(Sb, Npoints, vs)  # program terminates
-                bad_y = [False] * Npoints
-                Sg = Solver()
-                Sg.add(And(good_cons))
-                if Sg.check() == sat:
-                    # good_points = [[0, i * 100] for i in range(3, 3 + Npoints)]
-                    good_points = generateNpoints(Sg, Npoints, vs)
-                    good_y = [True] * Npoints
-                    X = np.array(bad_points + good_points)
-                    Y = np.array(bad_y + good_y)
-                    clf = SVC(kernel="linear")
-                    clf.fit(X, Y)
-                    OM.printif(2, clf.intercept_)
-                    new_phi = Expression(1 * clf.intercept_[0])
-                    for i in range(Nvars):
-                        new_phi += Expression(1 * clf.coef_[0][i]) * Expression(vs[i])
-                    new_phi = new_phi >= 0
-                    OM.printif(2, "adding constraint for: {}".format(node), new_phi.toString(str, float))
-                    if False and Nvars == 2:
-                        # get the separating hyperplane
-                        w = clf.coef_[0]
-                        a = -w[0] / w[1]
-                        xx = np.linspace(2, 80)
-                        yy = a * xx - (clf.intercept_[0]) / w[1]
-                        # plot the parallels to the separating hyperplane that pass through the
-                        # support vectors
-                        b = clf.support_vectors_[0]
-                        yy_down = a * xx + (b[1] - a * b[0])
-                        b = clf.support_vectors_[-1]
-                        yy_up = a * xx + (b[1] - a * b[0])
-                        # plot the line, the points, and the nearest vectors to the plane
-                        plt.plot(xx, yy, 'k-')
-                        plt.plot(xx, yy_down, 'k--')
-                        plt.plot(xx, yy_up, 'k--')
-                        plt.xlabel(vs[0])
-                        plt.ylabel(vs[1])
-                        plt.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1],
-                                    s=80, facecolors='none')
-                        plt.scatter(X[:, 0], X[:, 1], c=Y)
-                        plt.legend()
-                        plt.axis('tight')
-                        plt.show()
-                    phi[node] = ExpAnd(new_phi, phi[node])
-                    S = Solver()
-                    S.add(toz3(phi[node]))
-                    if S.check() == sat:
-                        queue.append(node)
-                    else:
-                        OM.printif(1, "node {}, got unsat phi".format(node))
-                else:
-                    warnings = True
-                    OM.printf("WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT")
-                    itis = TerminationResult.UNKNOWN
-            else:
-                OM.printif(1, "bads (terminating) are UNSAT")
-        cad = ("\nphi props: {\n")
-        for node in phi:
-            cad += ("\t {} : {} \n".format(node, phi[node].toString(str, float, and_symb="AND\t", or_symb="\tOR")))
-        cad += ("\n}\n")
-        if len(skiped) > 0:
-            itis = TerminationResult.UNKNOWN
-            cad += ("some nodes ({}) where ignored after {} iterations. \n".format(skiped, max_tries))
-        if warnings:
-            cad += ("Look at log.. there were WARNINGS\n")
-        OM.printf(cad)
-        response = Result()
-        response.set_response(status=itis, info=cad)
-        return response
