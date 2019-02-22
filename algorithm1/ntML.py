@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from lpi import Expression
+from lpi.expressions import Term
 from lpi import Solver
 from lpi.constraints import Or
 from lpi.constraints import And
@@ -68,6 +69,113 @@ class MLConf:
     def create_phi(self, scc):
         return MLPhi(scc, phi_method=self.phi_method)
 
+    def generateRay_cons(self, cons, vs, all_vars, other=[], tags=None):
+        from lpi import C_Polyhedron
+        from ppl import Variable
+        from termination.algorithm.utils import get_free_name
+        print(vs)
+        constr = []
+        for c in cons:
+            if isinstance(c, And):
+                constr += c._boolexps
+            else:
+                constr.append(c)
+        poly = C_Polyhedron(constr, variables=vs)
+        gene = poly.get_generators()
+        g_points = [g for g in gene if g.is_point()]
+        g_lines = [g for g in gene if g.is_line()]
+        g_rays = [g for g in gene if g.is_ray()]
+        N_lines = len(g_lines)
+        p_vars = get_free_name(all_vars, name="_a", num=len(g_points))
+        r_vars = get_free_name(all_vars, name="_br", num=len(g_rays))
+        l_vars = get_free_name(all_vars, name="_bl", num=2 * N_lines)
+        ray_cons = []
+        print(gene)
+        for i in range(len(vs)):
+            exp = Term(0)
+            for pi in range(len(g_points)):
+                exp += Term(p_vars[pi], g_points[pi].divisor()) * int(g_points[pi].coefficient(Variable(i)))
+            for ri in range(len(g_rays)):
+                exp += Term(r_vars[ri]) * int(g_rays[ri].coefficient(Variable(i)))
+            if N_lines > 0:
+                for li in range(N_lines):
+                    exp += Term(l_vars[li]) * int(g_lines[li].coefficient(Variable(i)))
+                    exp += Term(l_vars[li + N_lines]) * - int(g_lines[li].coefficient(Variable(i)))
+            print(exp, vs[i])
+            ray_cons.append(exp == Term(vs[i]))
+        exp = Term(0)
+        for a in p_vars:
+            ai = Term(a)
+            exp += ai
+            ray_cons.append(ai >= 0)
+        ray_cons.append(exp == 1)
+        exp = Term(0)
+        for b in r_vars + l_vars:
+            bi = Term(b)
+            exp += bi
+            ray_cons.append(bi >= 0)
+        ray_cons.append(exp >= 1)
+        return ray_cons, p_vars + r_vars + l_vars
+
+    def generatePoints_test(self, cons, vs, all_vars, other=[], tags=None):
+        from lpi import C_Polyhedron
+        from ppl import Variable
+        print(vs)
+        constr = []
+        for c in cons:
+            if isinstance(c, And):
+                constr += c._boolexps
+            else:
+                constr.append(c)
+        poly = C_Polyhedron(constr, variables=vs)
+        gene = poly.get_generators()
+        g_points = [g for g in gene if g.is_point()]
+        g_lines = [g for g in gene if g.is_line()]
+        g_rays = [g for g in gene if g.is_ray()]
+        rs = []
+        ps = []
+        for l in g_lines:
+            item = {}
+            item2 = {}
+            for i in range(len(vs)):
+                item[vs[i]] = int(l.coefficient(Variable(i)))
+                item2[vs[i]] = -int(l.coefficient(Variable(i)))
+            rs.append(item)
+            rs.append(item2)
+        for r in g_rays:
+            item = {}
+            for i in range(len(vs)):
+                item[vs[i]] = int(r.coefficient(Variable(i)))
+            rs.append(item)
+        for p in g_points:
+            item = {}
+            for i in range(len(vs)):
+                item[vs[i]] = int(p.coefficient(Variable(i)))
+            ps.append((item, int(p.divisor())))
+
+        def combine(p, rays, coeffs, vs, incr):
+            print("trying ", coeffs)
+            point = {v: p[v] for v in vs}
+            for i in range(len(coeffs)):
+                for v in vs:
+                    point[v] += coeffs[i] * rays[i][v]
+            if coeffs[incr] < 10:
+                yield from combine(p, rays, coeffs[:i] + [coeffs[i] + 1] + coeffs[i + 1:], vs, incr)
+            elif incr < len(coeffs):
+                yield from combine(p, rays, coeffs, vs, incr + 1)
+            yield point
+        points = []
+        for p, d in ps:
+            points.append({v: (p[v] / d) for v in vs})
+            for r in rs:
+                for k in range(1, 100):
+                    points.append({v: ((p[v] + k * r[v]) / d) for v in vs})
+        points = []
+        for p, d in ps:
+            points += list(combine(p, rs, [0 for __ in rs], vs, 0))
+        print(points, "\n", gene)
+        return points
+
     def generatePoints_lp(self, s, vs, all_vars, other=[], tags=None):
         from lpi import C_Polyhedron
         cons = And(s.get_constraints())
@@ -76,11 +184,9 @@ class MLConf:
         ps = []
         queue = [[c for c in cs if c.is_linear()] for cs in cons_dnf]
         while len(ps) < self.sampling["N"] and len(queue) > 0:
-            print("iteration on generate")
             cs = queue.pop()
             poly = C_Polyhedron(constraints=cs, variables=all_vars)
             if poly.is_empty():
-                print("ppl empty", cs)
                 continue
             m, __ = poly.get_point()
             p = []
@@ -146,10 +252,13 @@ class MLConf:
         clf = self.create_classifier()
         clf.fit(X, Y)
         OM.printif(2, clf.intercept_)
+        print(clf.intercept_)
         new_phi = Expression(1 * clf.intercept_[0])
         for i in range(len(variables)):
             new_phi += Expression(1 * clf.coef_[0][i]) * Expression(variables[i])
-        new_phi = new_phi >= 0
+        print(clf.coef_)
+        new_phi = new_phi > 0
+        print(new_phi.toString(str, str))
         self.plot(clf, X, Y, variables)
         return new_phi
 
@@ -314,7 +423,7 @@ class ML:
             tries[node] -= 1
             for t in scc.get_edges(source=node):
                 tname = t["name"]
-                lvs = t["local_vars"]
+                # lvs = t["local_vars"]
                 all_vars = global_vars + t["local_vars"]
                 OM.printif(1, "Analyzing transition: ", tname)
                 s = Solver()
@@ -322,24 +431,32 @@ class ML:
                 s.add(t["polyhedron"].get_constraints())
                 s.add(phi.get(t["target"], vs=vs, pvs=pvs, only_deterministic=True), name="_good")
                 s.add(phi.get(t["target"], vs=vs, pvs=pvs, only_deterministic=True).negate(), name="_bad")
-                # good_cons = []
-                # good_cons += [phi.get(node, tname)]  # phi[node][tname]
-                # good_cons +=   # ti
-                # good_cons += []  # phi[ti[target]]
-                # bad_cons = []
-                # bad_cons += [phi.get(node, tname)]  # phi[node][tname]
-                # bad_cons += t["polyhedron"].get_constraints()  # ti
-                # bad_cons += [phi.get(t["target"], vs=vs, pvs=pvs, only_deterministic=True).negate()]  # ¬ phi[ti[target]]
-                # sb = Solver()
-                # sb.add((And(bad_cons)))
-                if s.is_sat(["good"]):
-                    if s.is_sat(["bad"]):
-                        bad_points = conf.generatePoints(s, vs+lvs, all_vars, tags=["_bad"])  # program terminates
-                        good_points = conf.generatePoints(s, vs+lvs, all_vars, tags=["_good"], others=bad_points)
-                        print("bads", bad_points, "goods", good_points)
-                        for p in good_points:
-                            if p in bad_points:
-                                OM.printf("FIX NON-DETERMINISM MANUALLY", tname, "point: ", {v: pi for v, pi in zip(vs, p)})
+                if s.is_sat(["_bad"]):
+                    if s.is_sat(["_good"]):
+                        # points = conf.generatePoints_test([phi.get(node, tname)], vs, all_vars)
+                        ray_cons, ray_vars = conf.generateRay_cons([phi.get(node, tname)], vs, all_vars)
+                        s.add(ray_cons, name="_rays")
+                        print(ray_cons)
+                        if s.is_sat(["_bad", "_rays"]):
+                            print("holi")
+                            print(s.get_point(ray_vars, ["_bad", "_rays"]))
+                        if s.is_sat(["_good", "_rays"]):
+                            print("bye")
+                            print(s.get_point(ray_vars, ["_good", "_rays"]))
+                        good_points = []
+                        bad_points = []
+                        for p in points:
+                            if s.is_in(p, names=["_bad"]):
+                                bad_points.append([p[v] for v in vs])
+                            elif s.is_in(p, names=["_good"]):
+                                good_points.append([p[v] for v in vs])
+                            elif s.is_in(p, names=["_bad"]):
+                                bad_points.append([p[v] for v in vs])
+                            else:
+                                print("ignoring point: ", p)
+                        print(s, "\n", "good: ", len(good_points), "bad: ", len(bad_points))
+                        print("BADS: ", bad_points)
+                        print("GOODS: ", good_points)
                         new_phi = conf.split(bad_points, good_points, vs)
                         OM.printif(2, "original constraint".format(node, tname), new_phi)
                         OM.printif(2, "rounded constraint".format(node, tname), new_phi.toString(str, mround))
@@ -351,15 +468,16 @@ class ML:
                         S.add((phi.get(node, tname, only_deterministic=True).negate()))
                         S.add(old)
                         if S.is_sat():
-                            queue.append(node)
+                            # queue.append(node)
+                            pass
                         else:
                             OM.printif(1, "node {} (tr {}) got unsat phi".format(node, tname))
                             itis = TerminationResult.UNKNOWN
+                        queue.append(node)
                     else:
                         warnings = True
                         OM.printf("WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT")
                         OM.printf("removing transition: {}".format(tname))
-                        OM.printif(2, "goods", "{{{}}}".format(",\n".join([c.toString(str, str, and_symb=",\n") for c in sg.get_constraints()])))
                         scc.remove_edge(t["source"], t["target"], t["name"])
                         # phi.remove(node, tname)
                         continue
