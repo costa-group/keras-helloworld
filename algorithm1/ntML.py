@@ -69,7 +69,7 @@ class MLConf:
     def create_phi(self, scc):
         return MLPhi(scc, phi_method=self.phi_method)
 
-    def generateRay_cons(self, cons, vs, all_vars, other=[], tags=None):
+    def generateRay_cons(self, cons, vs, lvs, all_vars, other=[], tags=None):
         from lpi import C_Polyhedron
         from ppl import Variable
         from termination.algorithm.utils import get_free_name
@@ -80,7 +80,9 @@ class MLConf:
                 constr += c._boolexps
             else:
                 constr.append(c)
-        poly = C_Polyhedron(constr, variables=vs)
+        poly = C_Polyhedron(constr, variables=vs+lvs)
+        poly = poly.project(vs)
+        print(poly.get_constraints())
         gene = poly.get_generators()
         g_points = [g for g in gene if g.is_point()]
         g_lines = [g for g in gene if g.is_line()]
@@ -96,11 +98,17 @@ class MLConf:
             for pi in range(len(g_points)):
                 exp += Term(p_vars[pi], g_points[pi].divisor()) * int(g_points[pi].coefficient(Variable(i)))
             for ri in range(len(g_rays)):
-                exp += Term(r_vars[ri]) * int(g_rays[ri].coefficient(Variable(i)))
+                ci = int(g_rays[ri].coefficient(Variable(i)))
+                if ci == 0:
+                    continue
+                exp += Term(r_vars[ri]) * ci
             if N_lines > 0:
                 for li in range(N_lines):
-                    exp += Term(l_vars[li]) * int(g_lines[li].coefficient(Variable(i)))
-                    exp += Term(l_vars[li + N_lines]) * - int(g_lines[li].coefficient(Variable(i)))
+                    ci = int(g_lines[li].coefficient(Variable(i)))
+                    if ci == 0:
+                        continue
+                    exp += Term(l_vars[li]) * ci
+                    exp += Term(l_vars[li + N_lines]) * - ci
             print(exp, vs[i])
             ray_cons.append(exp == Term(vs[i]))
         exp = Term(0)
@@ -434,17 +442,18 @@ class ML:
                 if s.is_sat(["_bad"]):
                     if s.is_sat(["_good"]):
                         # points = conf.generatePoints_test([phi.get(node, tname)], vs, all_vars)
-                        ray_cons, ray_vars = conf.generateRay_cons([phi.get(node, tname)], vs, all_vars)
+                        ray_cons, ray_vars = conf.generateRay_cons([phi.get(node, tname)], vs, t["local_vars"], all_vars)
                         s.add(ray_cons, name="_rays")
                         print(ray_cons)
                         if s.is_sat(["_bad", "_rays"]):
-                            print("holi")
+                            print("bad")
                             print(s.get_point(ray_vars, ["_bad", "_rays"]))
                         if s.is_sat(["_good", "_rays"]):
-                            print("bye")
+                            print("good")
                             print(s.get_point(ray_vars, ["_good", "_rays"]))
                         good_points = []
                         bad_points = []
+                        continue
                         for p in points:
                             if s.is_in(p, names=["_bad"]):
                                 bad_points.append([p[v] for v in vs])
