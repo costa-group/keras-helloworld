@@ -1,0 +1,27 @@
+{
+	vars: [x, y],
+	initnode: node_init,
+	nodes: {
+	    node_init: { },
+	    node_while: { },
+	    node_exit: { },
+  },
+	transitions: [
+		{
+			name: t0,
+			source: node_init,
+			target: node_while,
+			constraints: [x' = x, y' = y]
+		},{
+			name: t1,
+			source: node_while,
+			target: node_while,
+			constraints: [x >= 0, x' = x + y, y' = y]
+		},{
+			name: t2,
+			source: node_while,
+			target: node_exit,
+			constraints: [x <  0, x' = x, y' = y]
+		}
+	]
+}
