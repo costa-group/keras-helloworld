@@ -64,32 +64,36 @@ class MLConf:
         return MLPhi(scc, phi_method=self.phi_method)
 
     def generateRay_cons(self, generators, vs, lvs, all_vars):
-        from ppl import Variable
+        from ppl import Variable, Linear_Expression, ray
         from termination.algorithm.utils import get_free_name
         g_points = [g for g in generators if g.is_point()]
         g_lines = [g for g in generators if g.is_line()]
         g_rays = [g for g in generators if g.is_ray()]
+        for l in g_lines:
+            exp = Linear_Expression(0)
+            for i in range(len(vs)):
+                ci = int(l.coefficient(Variable(i)))
+                exp += ci * Variable(i)
+            g_rays.append(ray(exp))
+            g_rays.append(ray(-exp))
         N_lines = len(g_lines)
         p_vars = get_free_name(all_vars, name="_a", num=len(g_points))
         r_vars = get_free_name(all_vars, name="_br", num=len(g_rays))
-        l_vars = get_free_name(all_vars, name="_bl", num=2 * N_lines)
         ray_cons = []
+        relation = {}
         for i in range(len(vs)):
             exp = Term(0)
             for pi in range(len(g_points)):
+                if i == 0:
+                    relation[p_vars[pi]] = g_points[pi]
                 exp += Term(p_vars[pi], g_points[pi].divisor()) * int(g_points[pi].coefficient(Variable(i)))
             for ri in range(len(g_rays)):
+                if i == 0:
+                    relation[r_vars[ri]] = g_rays[ri]
                 ci = int(g_rays[ri].coefficient(Variable(i)))
                 if ci == 0:
                     continue
                 exp += Term(r_vars[ri]) * ci
-            if N_lines > 0:
-                for li in range(N_lines):
-                    ci = int(g_lines[li].coefficient(Variable(i)))
-                    if ci == 0:
-                        continue
-                    exp += Term(l_vars[li]) * ci
-                    exp += Term(l_vars[li + N_lines]) * - ci
             ray_cons.append(exp == Term(vs[i]))
         exp = Term(0)
         for a in p_vars:
@@ -98,12 +102,17 @@ class MLConf:
             ray_cons.append(ai >= 0)
         ray_cons.append(exp == 1)
         exp = Term(0)
-        for b in r_vars + l_vars:
+        for b in r_vars:
             bi = Term(b)
             exp += bi
             ray_cons.append(bi >= 0)
         ray_cons.append(exp >= 1)
-        return ray_cons, p_vars + r_vars + l_vars
+        ors = []
+        for b in r_vars:
+            bi = Term(b)
+            ors.append(exp == bi)
+        ray_cons.append(Or(ors))
+        return ray_cons, relation
 
     def split(self, bad_points, good_points, variables):
         bad_y = [-1000] * len(bad_points)
@@ -166,10 +175,12 @@ class MLPhi:
             self.get = self.get_disjuntive
             self.create = self.create_disjuntive
             self.append = self.append_disjuntive
+            self.set = self.set_disjuntive
         else:
             self.get = self.get_conjuntive
             self.create = self.create_conjuntive
             self.append = self.append_conjuntive
+            self.set = self.set_conjuntive
         self.phi = self.create(scc)
 
     def append_disjuntive(self, node, tr, value, deterministic=True):
@@ -179,6 +190,14 @@ class MLPhi:
     def append_conjuntive(self, node, tr, value, deterministic=True):
         idx = 0 if deterministic else 1
         self.phi[node][idx] = And([value, self.phi[node][idx]])
+
+    def set_disjuntive(self, node, tr, value, deterministic=True):
+        idx = 0 if deterministic else 1
+        self.phi[node][tr][idx] = And(value)
+
+    def set_conjuntive(self, node, tr, value, deterministic=True):
+        idx = 0 if deterministic else 1
+        self.phi[node][idx] = And(value)
 
     @classmethod
     def create_disjuntive(cls, scc):
@@ -302,51 +321,30 @@ class ML:
                             else:
                                 constr.append(c)
                         poly = C_Polyhedron(constr, variables=vs + lvs)
-                        poly = poly.project(vs)
-                        gene = poly.get_generators()
-                        ray_cons, ray_vars = conf.generateRay_cons(gene, vs, lvs, all_vars)
+                        proj_poly = poly.project(vs)
+                        gene = proj_poly.get_generators()
+                        ray_cons, relation = conf.generateRay_cons(gene, vs, lvs, all_vars)
+                        ray_vars = list(relation.keys())
                         s.add(ray_cons, name="_rays")
-                        print(ray_cons)
+                        if not s.is_sat(["_good", "_rays"]):
+                            raise Exception("Something went wrong ??no good points?.")
                         if s.is_sat(["_bad", "_rays"]):
                             print("bad")
-                            point = s.get_point(ray_vars, ["_bad", "_rays"])
-                            print(point)
-                        if s.is_sat(["_good", "_rays"]):
-                            print("good")
-                            point = s.get_point(ray_vars, ["_good", "_rays"])
-                            print(point)
-                        good_points = []
-                        bad_points = []
-                        continue
-                        for p in points:
-                            if s.is_in(p, names=["_bad"]):
-                                bad_points.append([p[v] for v in vs])
-                            elif s.is_in(p, names=["_good"]):
-                                good_points.append([p[v] for v in vs])
-                            elif s.is_in(p, names=["_bad"]):
-                                bad_points.append([p[v] for v in vs])
+                            point, div = s.get_point(ray_vars, ["_bad", "_rays"])
+                            for v in ray_vars:
+                                if point[v] != 0 and relation[v].is_ray():
+                                    print("removing ray: {}".format(relation[v]))
+                                    del relation[v]
+                                    break
+                            new_poly = C_Polyhedron(variables=vs+lvs, generators=[relation[v] for v in relation])
+                            print(poly)
+                            print(new_poly)
+                            if new_poly == poly:
+                                print("we've finished with tr: {}".format(tname))
                             else:
-                                print("ignoring point: ", p)
-                        print(s, "\n", "good: ", len(good_points), "bad: ", len(bad_points))
-                        print("BADS: ", bad_points)
-                        print("GOODS: ", good_points)
-                        new_phi = conf.split(bad_points, good_points, vs)
-                        OM.printif(2, "original constraint".format(node, tname), new_phi)
-                        OM.printif(2, "rounded constraint".format(node, tname), new_phi.toString(str, mround))
-                        new_phi.aproximate_coeffs(max_coeff=1e10, max_dec=10)
-                        OM.printif(2, "constraint added to: {} (tr {})".format(node, tname), new_phi.toString(str, str))
-                        old = phi.get(node, tname, only_deterministic=True)
-                        phi.append(node, tname, new_phi)
-                        S = Solver()
-                        S.add((phi.get(node, tname, only_deterministic=True).negate()))
-                        S.add(old)
-                        if S.is_sat():
-                            # queue.append(node)
-                            pass
-                        else:
-                            OM.printif(1, "node {} (tr {}) got unsat phi".format(node, tname))
-                            itis = TerminationResult.UNKNOWN
-                        queue.append(node)
+                                phi.set(node, tname, new_poly.get_constraints())
+                                print("adding node: {}".format(node))
+                                queue.append(node)
                     else:
                         warnings = True
                         OM.printf("WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT")
@@ -356,9 +354,11 @@ class ML:
                         continue
                 else:
                     OM.printif(1, "bads (terminating) are UNSAT")
+                    OM.printif(1, "tr {} finished".format(tname))
 
         cad = ("\nphi props: {\n")
         for node in scc.get_nodes():
+            cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, str, and_symb="AND", or_symb="OR")))
             cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, float, and_symb="AND", or_symb="OR")))
             cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, mround, and_symb="AND", or_symb="OR")))
         cad += ("\n}\n")
