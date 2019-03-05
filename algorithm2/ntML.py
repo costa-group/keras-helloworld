@@ -76,7 +76,6 @@ class MLConf:
                 exp += ci * Variable(i)
             g_rays.append(ray(exp))
             g_rays.append(ray(-exp))
-        N_lines = len(g_lines)
         p_vars = get_free_name(all_vars, name="_a", num=len(g_points))
         r_vars = get_free_name(all_vars, name="_br", num=len(g_rays))
         ray_cons = []
@@ -176,11 +175,13 @@ class MLPhi:
             self.create = self.create_disjuntive
             self.append = self.append_disjuntive
             self.set = self.set_disjuntive
+            self.remove = self.remove_disjuntive
         else:
             self.get = self.get_conjuntive
             self.create = self.create_conjuntive
             self.append = self.append_conjuntive
             self.set = self.set_conjuntive
+            self.remove = self.remove_conjuntive
         self.phi = self.create(scc)
 
     def append_disjuntive(self, node, tr, value, deterministic=True):
@@ -198,6 +199,12 @@ class MLPhi:
     def set_conjuntive(self, node, tr, value, deterministic=True):
         idx = 0 if deterministic else 1
         self.phi[node][idx] = And(value)
+
+    def remove_disjuntive(self, node, tr):
+        del self.phi[node][tr]
+
+    def remove_conjuntive(self, node, tr):
+        del self.phi[node]
 
     @classmethod
     def create_disjuntive(cls, scc):
@@ -294,7 +301,8 @@ class ML:
         skiped = []
         warnings = False
         itis = TerminationResult.NONTERMINATE
-        while len(queue) > 0:
+        startagain = False
+        while not startagain and len(queue) > 0:
             node = queue.pop()
             if tries[node] == 0:
                 OM.printf("TOO MANY TRIES with node: ", node)
@@ -323,11 +331,20 @@ class ML:
                         poly = C_Polyhedron(constr, variables=vs + lvs)
                         proj_poly = poly.project(vs)
                         gene = proj_poly.get_generators()
+                        print(gene)
                         ray_cons, relation = conf.generateRay_cons(gene, vs, lvs, all_vars)
                         ray_vars = list(relation.keys())
                         s.add(ray_cons, name="_rays")
                         if not s.is_sat(["_good", "_rays"]):
-                            raise Exception("Something went wrong ??no good points?.")
+                            warnings = True
+                            OM.printf("WARNING: NO GOOD RAYS!")
+                            OM.printf("removing transition: {}".format(tname))
+                            scc.remove_edge(t["source"], t["target"], t["name"])
+                            phi.remove(node, tname)
+                            startagain = True
+                            break
+                        else:
+                            print("good rays:", s.get_point(ray_vars, ["_good", "_rays"]))
                         if s.is_sat(["_bad", "_rays"]):
                             print("bad")
                             point, div = s.get_point(ray_vars, ["_bad", "_rays"])
@@ -336,28 +353,45 @@ class ML:
                                     print("removing ray: {}".format(relation[v]))
                                     del relation[v]
                                     break
-                            new_poly = C_Polyhedron(variables=vs+lvs, generators=[relation[v] for v in relation])
-                            print(poly)
-                            print(new_poly)
+                            new_poly = C_Polyhedron(variables=vs + lvs, generators=[relation[v] for v in relation])
+                            # print(poly)
+                            # print(new_poly)
                             if new_poly == poly:
                                 print("we've finished with tr: {}".format(tname))
                             else:
                                 phi.set(node, tname, new_poly.get_constraints())
                                 print("adding node: {}".format(node))
                                 queue.append(node)
+                        else:
+                            warnings = True
+                            OM.printf("WARNING: bads (terminating) are sat, but NO BAD RAYS")
+                            OM.printf("removing transition: {}".format(tname))
+                            scc.remove_edge(t["source"], t["target"], t["name"])
+                            phi.remove(node, tname)
+                            startagain = True
+                            break
                     else:
                         warnings = True
                         OM.printf("WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT")
                         OM.printf("removing transition: {}".format(tname))
                         scc.remove_edge(t["source"], t["target"], t["name"])
-                        # phi.remove(node, tname)
-                        continue
+                        phi.remove(node, tname)
+                        startagain = True
+                        break
                 else:
+                    print("holi")
                     OM.printif(1, "bads (terminating) are UNSAT")
                     OM.printif(1, "tr {} finished".format(tname))
-
+        if startagain:
+            if len(scc.get_edges()) > 0:
+                print("STARTING AGAIN!")
+                from main import analyse
+                return analyse(config, scc)
+            else:
+                itis = TerminationResult.UNKNOWN
         cad = ("\nphi props: {\n")
         for node in scc.get_nodes():
+            cad += ("\t {} : {} \n".format(node, phi))
             cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, str, and_symb="AND", or_symb="OR")))
             cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, float, and_symb="AND", or_symb="OR")))
             cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, mround, and_symb="AND", or_symb="OR")))

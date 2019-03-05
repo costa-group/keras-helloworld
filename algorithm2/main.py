@@ -76,13 +76,16 @@ def launch_file(config, f):
         raise Exception() from e
         return False
     config["vars_name"] = cfg.get_info("global_vars")
-    cfg.build_polyhedrons()
+    from nodeproperties import compute_invariants
+    compute_invariants(cfg, abstract_domain="polyhedra",
+                       threshold_modes=[],
+                       add_to_polyhedron=True)
     analyse(config, cfg)
     return True
 
 
 def analyse(config, cfg):
-    max_sccd = config["scc_depth"]
+    max_sccd = 5
     CFGs = [(cfg, max_sccd)]
     stop = False
     maybe_sccs = []
@@ -97,8 +100,9 @@ def analyse(config, cfg):
     while (not stop and CFGs):
         current_cfg, sccd = CFGs.pop(0)
         removed = current_cfg.remove_unsat_edges()
+        print([t["name"] for t in current_cfg.get_edges()])
         if len(removed) > 0:
-            OM.printif(2, "Transition (" + removed + ") were removed because it is empty.")
+            OM.printif(2, "Transition (" + str(removed) + ") were removed because it is empty.")
         if len(current_cfg.get_edges()) == 0:
             OM.printif(2, "This cfg has not transitions.")
             continue
@@ -108,9 +112,9 @@ def analyse(config, cfg):
         CFGs_aux.sort()
 
         for scc in CFGs_aux:
-            scc.remove_unsat_edges()
             if len(scc.get_edges()) == 0:
                 continue
+            print([t["name"] for t in scc.get_edges()])
             cons, nivars = scc.remove_no_important_variables()
             OM.printif(1, "Removed {} constraint(s) with variable(s) for one scc: [{}]".format(cons, ",".join(nivars)))
             R = analyse_scc(scc, ntMLconf)
@@ -122,18 +126,17 @@ def analyse(config, cfg):
                 maybe_sccs.append(R)
         # end for
     # end while
-    status = "maybe"
+    from termination import TerminationResult, Result
+    status = TerminationResult.UNKNOWN
     if len(nonterminating_sccs) > 0:
-        status = "no"
-    elif len(maybe_sccs) > 0:
-        status = "maybe"
-    else:
-        status = "yes"
-    response = {"status": status,
-                "terminate": terminating_sccs,
-                "nonterminate": nonterminating_sccs,
-                "unknown_sccs": maybe_sccs,
-                "graph": cfg}
+        status = TerminationResult.NONTERMINATE
+    response = Result()
+    response.set_response(status=status,
+                          terminate=terminating_sccs[:],
+                          nonterminate=nonterminating_sccs[:],
+                          unknown_sccs=maybe_sccs[:],
+                          graph=cfg)
+    print(nonterminating_sccs)
     return response
 
 
