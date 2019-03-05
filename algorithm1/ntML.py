@@ -121,8 +121,9 @@ class MLConf:
                     exp.append(Expression(v) + self.sampling["threshold"] < Expression(pi))
                 p.append(pi)
             if p not in others:
-                print("ignore", p)
                 ps.append(p)
+            else:
+                print("ignore", p)
             if len(ps) == self.sampling["N"]:
                 break
             final_exp = []
@@ -150,7 +151,7 @@ class MLConf:
             new_phi = Expression(1 * clf.intercept_[0])
             for i in range(len(variables)):
                 new_phi += Expression(1 * clf.coef_[0][i]) * Expression(variables[i])
-            new_phi = new_phi >= 0
+            new_phi = new_phi > 0
             self.plot(clf, X, Y, variables)
             return new_phi
         except TypeError:
@@ -335,10 +336,12 @@ class ML:
                 # bad_cons += [phi.get(t["target"], vs=vs, pvs=pvs, only_deterministic=True).negate()]  # ¬ phi[ti[target]]
                 # sb = Solver()
                 # sb.add((And(bad_cons)))
-                if s.is_sat(["good"]):
-                    if s.is_sat(["bad"]):
+                if s.is_sat(["_good"]):
+                    if s.is_sat(["_bad"]):
                         bad_points = conf.generatePoints(s, vs + lvs, all_vars, tags=["_bad"])  # program terminates
                         good_points = conf.generatePoints(s, vs + lvs, all_vars, tags=["_good"], others=bad_points)
+                        print("bad", bad_points)
+                        print("good", good_points)
                         for p in good_points:
                             if p in bad_points:
                                 OM.printf("FIX NON-DETERMINISM MANUALLY", tname, "point: ", {v: pi for v, pi in zip(vs, p)})
@@ -373,7 +376,7 @@ class ML:
 
         cad = ("\nphi props: {\n")
         for node in scc.get_nodes():
-            cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, float, and_symb="AND", or_symb="OR")))
+            cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, str, and_symb="AND", or_symb="OR")))
             cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, mround, and_symb="AND", or_symb="OR")))
         cad += ("\n}\n")
         if len(skiped) > 0:
