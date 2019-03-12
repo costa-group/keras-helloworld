@@ -37,7 +37,8 @@ def set_fancy_props_neg(cfg, scc):
 
 class MLConf:
 
-    def __init__(self, classifier="linear", phi_transition=False, phi_nondeterminism=False, sampling="solver", sampling_number=10, sampling_threshold=2, plot=False):
+    def __init__(self, classifier="linear", phi_transition=False, phi_nondeterminism=False, sampling="solver",
+                 sampling_number=10, sampling_threshold=2, plot=False):
         from sklearn.svm import SVC, LinearSVC
         self.classifier_plot = plot
         self.phi_method = (phi_transition, phi_nondeterminism)
@@ -54,11 +55,46 @@ class MLConf:
             raise ValueError("Unknown method ({}) for phis".format(classifier))
 
         if sampling == "solver":
+            self.getPoints = self.getPoints_after
             self.generatePoints = self.generatePoints_solver
         elif sampling == "lp":
+            self.getPoints = self.getPoints_after
             self.generatePoints = self.generatePoints_lp
+        elif sampling == "rays":
+            self.getPoints = self.getPoints_before
+            self.generatePoints = self.generatePoints_rays
         else:
             raise ValueError("Unknown method ({}) for sampling".format(sampling))
+
+    def getPoints_after(self, solver, vs, lvs, all_vars, others=[]):
+        bad_points = self.generatePoints(solver, vs + lvs, all_vars, tags=["_phi", "_tr", "_bad"], others=others)  # program terminates
+        good_points = self.generatePoints(solver, vs + lvs, all_vars, tags=["_phi", "_tr", "_good"], others=others + bad_points)
+        OM.printif(1, "goods: ", len(good_points), "bads: ", len(bad_points))
+        if len(lvs) > 0:
+            extra_p = self.generatePoints(solver, vs + lvs, all_vars, tags=["_phi", "_no_tr"])
+            OM.printif(1, "also bad points:", len(extra_p))
+            bad_points += extra_p
+        return bad_points, good_points
+
+    def getPoints_before(self, solver, vs, lvs, all_vars, others=[]):
+        points = self.generatePoints(solver, vs + lvs, all_vars, tags=["_phi"])
+        bad_points = []
+        good_points = []
+        for p in points:
+            if p in others:
+                continue
+            if solver.is_in(p, names=["_phi", "_tr", "_bad"]):
+                bad_points.append([p[v] for v in vs + lvs])
+            elif solver.is_in(p, names=["_phi", "_tr", "_good"]):
+                good_points.append([p[v] for v in vs + lvs])
+            else:
+                OM.printif(1, "ignoring point: ", p)
+        OM.printif(1, "goods: ", len(good_points), "bads: ", len(bad_points))
+        if len(lvs) > 0:
+            extra_p = self.generatePoints(solver, vs + lvs, all_vars, tags=["_phi", "_no_tr"])
+            OM.printif(1, "also bad points:", len(extra_p))
+            bad_points += extra_p
+        return bad_points, good_points
 
     def create_classifier(self, *args, **kwargs):
         kargs = dict(self.classifier_defaultvalues)
@@ -68,19 +104,72 @@ class MLConf:
     def create_phi(self, scc):
         return MLPhi(scc, phi_method=self.phi_method)
 
-    def generatePoints_lp(self, s, vs, all_vars, other=[], tags=None):
+    def generatePoints_rays(self, s, vs, all_vars, others=[], tags=None):
         from lpi import C_Polyhedron
-        cons = And(s.get_constraints())
-        print(cons)
+        cons = And(s.get_constraints(tags=tags))
+        from ppl import Variable
+        poly = C_Polyhedron(cons, variables=vs)
+        gene = poly.get_generators()
+        g_points = [g for g in gene if g.is_point()]
+        g_lines = [g for g in gene if g.is_line()]
+        g_rays = [g for g in gene if g.is_ray()]
+        rs = []
+        ps = []
+        for l in g_lines:
+            item = {}
+            item2 = {}
+            for i in range(len(vs)):
+                item[vs[i]] = int(l.coefficient(Variable(i)))
+                item2[vs[i]] = -int(l.coefficient(Variable(i)))
+            rs.append(item)
+            rs.append(item2)
+        for r in g_rays:
+            item = {}
+            for i in range(len(vs)):
+                item[vs[i]] = int(r.coefficient(Variable(i)))
+            rs.append(item)
+        for p in g_points:
+            item = {}
+            for i in range(len(vs)):
+                item[vs[i]] = int(p.coefficient(Variable(i)))
+            ps.append((item, int(p.divisor())))
+
+        def combine(p, rays, coeffs, vs, incr):
+            point = {v: p[v] for v in vs}
+            for i in range(len(coeffs)):
+                for v in vs:
+                    point[v] += coeffs[i] * rays[i][v]
+            if coeffs[incr] < 10:
+                yield from combine(p, rays, coeffs[:i] + [coeffs[i] + 1] + coeffs[i + 1:], vs, incr)
+            elif incr < len(coeffs):
+                yield from combine(p, rays, coeffs, vs, incr + 1)
+            yield point
+        points = []
+        for p, d in ps:
+            points.append({v: (p[v] / d) for v in vs})
+            for r in rs:
+                for k in range(1, 100):
+                    points.append({v: ((p[v] + k * r[v]) / d) for v in vs})
+        return points
+        points = []
+        for p, d in ps:
+            points += list(combine(p, rs, [0 for __ in rs], vs, 0))
+        print(points, "\n", gene)
+        return points
+
+    def generatePoints_lp(self, s, vs, all_vars, others=[], tags=None):
+        from lpi import C_Polyhedron
+        cons = And(s.get_constraints(tags=tags))
         cons_dnf = cons.to_DNF()
         ps = []
         queue = [[c for c in cs if c.is_linear()] for cs in cons_dnf]
+        count = 0
         while len(ps) < self.sampling["N"] and len(queue) > 0:
-            print("iteration on generate")
+            if count == 10:
+                raise ValueError()
             cs = queue.pop()
             poly = C_Polyhedron(constraints=cs, variables=all_vars)
             if poly.is_empty():
-                print("ppl empty", cs)
                 continue
             m, __ = poly.get_point()
             p = []
@@ -93,8 +182,10 @@ class MLConf:
                     exp.append(Expression(v) > Expression(pi) + self.sampling["threshold"])
                     exp.append(Expression(v) < Expression(pi) - self.sampling["threshold"])
                 p.append(pi)
-            if p not in ps:
+            if p not in ps and p not in others:
                 ps.append(p)
+            else:
+                count += 1
             if len(ps) == self.sampling["N"]:
                 break
             for e in exp:
@@ -107,7 +198,6 @@ class MLConf:
         # rvs = [Real(v) for v in vs]
         while len(ps) < self.sampling["N"] and s.is_sat(tags):
             m, __ = s.get_point(vs, tags)
-            print("->", m)
             p = []
             exp = []
             for v in vs:
@@ -122,8 +212,6 @@ class MLConf:
                 p.append(pi)
             if p not in others:
                 ps.append(p)
-            else:
-                print("ignore", p)
             if len(ps) == self.sampling["N"]:
                 break
             final_exp = []
@@ -198,21 +286,32 @@ class MLPhi:
     def __init__(self, scc, phi_method=(False, False)):
         if phi_method[0]:
             self.get = self.get_disjuntive
+            self.remove = self.remove_disjuntive
             self.create = self.create_disjuntive
             self.append = self.append_disjuntive
         else:
             self.get = self.get_conjuntive
+            self.remove = self.remove_conjuntive
             self.create = self.create_conjuntive
             self.append = self.append_conjuntive
         self.phi = self.create(scc)
 
     def append_disjuntive(self, node, tr, value, deterministic=True):
+        if self.phi[node][tr] is None:
+            return
         idx = 0 if deterministic else 1
         self.phi[node][tr][idx] = And([value, self.phi[node][tr][idx]])
 
     def append_conjuntive(self, node, tr, value, deterministic=True):
         idx = 0 if deterministic else 1
         self.phi[node][idx] = And([value, self.phi[node][idx]])
+
+    def remove_disjuntive(self, node, tr):
+        self.phi[node][tr] = None
+        return
+
+    def remove_conjuntive(self, node, tr):
+        return
 
     @classmethod
     def create_disjuntive(cls, scc):
@@ -261,17 +360,25 @@ class MLPhi:
         mphi = []
         for k in trs:
             cs = []
-            if not only_deterministic:
-                cs = [self.phi[node][k][1]]
-            if rename:
-                cs += [self.phi[node][k][0].renamed(vs, pvs)]
+            if self.phi[node][k] is None:
+                continue
+                cs = [Expression(0) >= Expression(1)]
             else:
-                cs += [self.phi[node][k][0]]
-            if len(cs) == 1:
+                if not only_deterministic:
+                    cs = [self.phi[node][k][1]]
+                if rename:
+                    cs += [self.phi[node][k][0].renamed(vs, pvs)]
+                else:
+                    cs += [self.phi[node][k][0]]
+            if len(cs) == 0:
+                continue
+            elif len(cs) == 1:
                 mphi.append(cs[0])
             else:
                 mphi.append(And(cs))
-        if len(mphi) == 1:
+        if len(mphi) == 0:
+            return Expression(0) >= Expression(1)
+        elif len(mphi) == 1:
             return mphi[0]
         else:
             return Or(mphi)
@@ -302,92 +409,142 @@ class ML:
         pvs = global_vars[Nvars:]
         conf = MLConf(**config)
         phi = conf.create_phi(scc)
-        OM.printf("initial phi", phi)
-        queue = [n for n in scc.get_nodes()]
+        OM.printif(1, "initial phi", phi)
         max_tries = 10
-        tries = {n: max_tries for n in scc.get_nodes()}
+        trs = {t["name"]: t for t in scc.get_edges()}
+        tr_queue = list(trs.keys())
+        tr_tries = {n: max_tries for n in tr_queue}
         skiped = []
-        warnings = False
-        itis = TerminationResult.NONTERMINATE
-        while len(queue) > 0:
-            node = queue.pop()
-            if tries[node] == 0:
-                OM.printf("TOO MANY TRIES with node: ", node)
-                skiped.append(node)
+        itis = TerminationResult.UNKNOWN
+        while tr_queue:
+            tname = tr_queue.pop(0)
+            if tr_tries[tname] == 0:
+                OM.printif(1, "TOO MANY TRIES with tr: ", tname)
+                skiped.append(tname)
                 continue
-            tries[node] -= 1
-            for t in scc.get_edges(source=node):
+            t = trs[tname]
+            source = t["source"]
+            target = t["target"]
+            srcphi = phi.get(source, tname)
+            s = Solver()
+            s.add(srcphi, name="_phi")
+            if not s.is_sat(["_phi"]):
+                continue
+            OM.printif(0, "Analyzing transition: ", tname)
+            lvs = t["local_vars"]
+            all_vars = global_vars + lvs
+            s.add(t["polyhedron"].get_constraints(), name="_tr")
+            if len(lvs) > 0:
+                s.add(And([c for c in t["polyhedron"].get_constraints()]).negate(), name="_no_tr")
+            s.add(phi.get(target, vs=vs, pvs=pvs, only_deterministic=True), name="_good")  # phi[ti[target]]
+            s.add(phi.get(target, vs=vs, pvs=pvs, only_deterministic=True).negate(), name="_bad")  # not phi[ti[target]]
+            goods = s.is_sat(["_phi", "_tr", "_good"])
+            bads = s.is_sat(["_phi", "_tr", "_bad"]) or (len(lvs) > 0 and s.is_sat(["_phi", "_no_tr"]))
+            modified = False
+            mixed = False
+            bad_points = []
+            while goods and bads:
+                if tr_tries[tname] == 0:
+                    OM.printif(1, "TOO MANY TRIES with tr: ", tname)
+                    skiped.append(tname)
+                    mixed = True
+                    break
+                tr_tries[tname] -= 1
+                new_bad_points, good_points = conf.getPoints(s, vs, lvs, all_vars, others=bad_points)
+                bad_points += new_bad_points
+                OM.printif(2, "bad:", bad_points)
+                OM.printif(2, "good:", good_points)
+                if len(bad_points) == 0 or len(good_points) == 0:
+                    mixed = True
+                    modified = True
+                    OM.printif(1, "WARNING: Couldn't generate points of both groups.")
+                    break
+                new_phi = conf.split(bad_points, good_points, vs)
+                if new_phi is None:
+                    modified = True
+                    mixed = True
+                    OM.printif(1, "WARNING: Couldn't find a line")
+                    break
+                else:
+                    new_phi.aproximate_coeffs(max_coeff=1e10, max_dec=10)
+                    s.add(new_phi, name="_phi")
+                    modified = True
+                    phi.append(source, tname, new_phi)
+                goods = s.is_sat(["_phi", "_tr", "_good"])
+                bads = s.is_sat(["_phi", "_tr", "_bad"])
+            if modified:
+                for k in trs:
+                    if trs[k]["target"] == source and trs[k]["name"] not in tr_queue:
+                        if trs[k]["name"] == tname and mixed:
+                            continue
+                        tr_queue.append(trs[k]["name"])
+            if mixed:
+                OM.printf("removing transition: {}".format(tname))
+                scc.remove_edge(t["source"], t["target"], t["name"])
+                phi.remove(source, tname)
+            elif not bads:
+                OM.printif(1, "{}: bads (terminating) are UNSAT".format(tname))
+            elif not goods:
+                OM.printf("{}: bads (terminating) are SAT, but goods (non-terminating) are UNSAT".format(tname))
+                OM.printf("removing transition: {}".format(tname))
+                scc.remove_edge(t["source"], t["target"], t["name"])
+                phi.remove(source, tname)
+
+        nonterminate = False
+        for sub_scc in scc.get_scc():
+            if len(sub_scc.get_edges()) == 0:
+                continue
+            sub_nont = True
+            for t in sub_scc.get_edges():
+                source = t["source"]
+                target = t["target"]
                 tname = t["name"]
+                OM.printif(1, "Checking transition: ", tname)
+                srcphi = phi.get(source, tname)
+                s = Solver()
+                s.add(srcphi, name="_phi")
                 lvs = t["local_vars"]
                 all_vars = global_vars + t["local_vars"]
-                OM.printif(1, "Analyzing transition: ", tname)
-                s = Solver()
-                s.add(phi.get(node, tname))
-                s.add(t["polyhedron"].get_constraints())
-                s.add(phi.get(t["target"], vs=vs, pvs=pvs, only_deterministic=True), name="_good")
-                s.add(phi.get(t["target"], vs=vs, pvs=pvs, only_deterministic=True).negate(), name="_bad")
-                # good_cons = []
-                # good_cons += [phi.get(node, tname)]  # phi[node][tname]
-                # good_cons +=   # ti
-                # good_cons += []  # phi[ti[target]]
-                # bad_cons = []
-                # bad_cons += [phi.get(node, tname)]  # phi[node][tname]
-                # bad_cons += t["polyhedron"].get_constraints()  # ti
-                # bad_cons += [phi.get(t["target"], vs=vs, pvs=pvs, only_deterministic=True).negate()]  # ¬ phi[ti[target]]
-                # sb = Solver()
-                # sb.add((And(bad_cons)))
-                if s.is_sat(["_good"]):
-                    if s.is_sat(["_bad"]):
-                        bad_points = conf.generatePoints(s, vs + lvs, all_vars, tags=["_bad"])  # program terminates
-                        good_points = conf.generatePoints(s, vs + lvs, all_vars, tags=["_good"], others=bad_points)
-                        print("bad", bad_points)
-                        print("good", good_points)
-                        for p in good_points:
-                            if p in bad_points:
-                                OM.printf("FIX NON-DETERMINISM MANUALLY", tname, "point: ", {v: pi for v, pi in zip(vs, p)})
-                        new_phi = conf.split(bad_points, good_points, vs)
-                        if new_phi is None:
-                            warnings = True
-                            OM.printif(1, "WARNING: Couldn't find a line\n", "bad: ", bad_points, "\n", "good: ", good_points)
-                            break
-                        OM.printif(2, "original constraint".format(node, tname), new_phi)
-                        OM.printif(2, "rounded constraint".format(node, tname), new_phi.toString(str, mround))
-                        new_phi.aproximate_coeffs(max_coeff=1e10, max_dec=10)
-                        OM.printif(2, "constraint added to: {} (tr {})".format(node, tname), new_phi.toString(str, str))
-                        old = phi.get(node, tname, only_deterministic=True)
-                        phi.append(node, tname, new_phi)
-                        S = Solver()
-                        S.add((phi.get(node, tname, only_deterministic=True).negate()))
-                        S.add(old)
-                        if S.is_sat():
-                            queue.append(node)
-                        else:
-                            OM.printif(1, "node {} (tr {}) got unsat phi".format(node, tname))
-                            itis = TerminationResult.UNKNOWN
-                    else:
-                        warnings = True
-                        OM.printf("WARNING: bads (terminating) are sat, but goods (non-terminating) are UNSAT")
-                        OM.printf("removing transition: {}".format(tname))
-                        scc.remove_edge(t["source"], t["target"], t["name"])
-                        # phi.remove(node, tname)
-                        continue
-                else:
-                    OM.printif(1, "bads (terminating) are UNSAT")
-
-        cad = ("\nphi props: {\n")
-        for node in scc.get_nodes():
-            cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, str, and_symb="AND", or_symb="OR")))
-            cad += ("\t {} : {} \n".format(node, phi.get(node).toString(str, mround, and_symb="AND", or_symb="OR")))
-        cad += ("\n}\n")
+                s.add(t["polyhedron"].get_constraints(), name="_tr")
+                s.add(phi.get(target, vs=vs, pvs=pvs, only_deterministic=True), name="_good")  # phi[ti[target]]
+                s.add(phi.get(target, vs=vs, pvs=pvs, only_deterministic=True).negate(), name="_bad")  # not phi[ti[target]]
+                goods = s.is_sat(["_phi", "_tr", "_good"])
+                bads = s.is_sat(["_phi", "_tr", "_bad"])
+                OM.printif(1, "goods: {}, bads: {}".format(goods, bads))
+                if not goods or bads:
+                    sub_nont = False
+                    break
+            if sub_nont:
+                nonterminate = True
+                for node in sub_scc.get_nodes():
+                    OM.printif(2, "\t {} :".format(node))
+                    for t in sub_scc.get_edges(source=node):
+                        tname = t["name"]
+                        OM.printif(2, "\t\t {} : {}".format(tname, phi.get(node, tname).toString(str, str, and_symb="AND", or_symb="OR")))
+                        OM.printif(3, "\t\t {}(rounded) : {}".format(tname, phi.get(node, tname).toString(str, mround, and_symb="AND", or_symb="OR")))
+                break
         if len(skiped) > 0:
-            itis = TerminationResult.UNKNOWN
-            cad += ("some nodes ({}) where ignored after {} iterations. \n".format(skiped, max_tries))
-        if warnings:
-            cad += ("Look at log.. there were WARNINGS\n")
-        cad += ("Answer: {}\n".format(itis))
-        OM.printf(cad)
+            OM.printf("some transitions ({}) where ignored after {} iterations.".format(skiped, max_tries))
+
+        if nonterminate:
+            itis = TerminationResult.NONTERMINATE
+            OM.printf("phi props: {")
+            for node in scc.get_nodes():
+                OM.printf("\t {} :".format(node))
+                for edge in scc.get_edges(source=node):
+                    tname = edge["name"]
+                    OM.printf("\t\t {} : {}".format(tname, phi.get(node, tname).toString(str, str, and_symb="AND", or_symb="OR")))
+                    OM.printif(2, "\t\t {}(rounded) : {}".format(tname, phi.get(node, tname).toString(str, mround, and_symb="AND", or_symb="OR")))
+            OM.printf("}")
+        OM.printf("Answer: {}".format(itis))
+        max_iterations_needed = max_tries - min([tr_tries[k] for k in tr_tries])
+        OM.printf("Iterations: {}".format(max_iterations_needed))
+        OM.printif(1, "Graph:")
+        for e in scc.get_edges():
+            OM.printif(1, e["name"], ":", e["source"], "-->", e["target"])
+
         response = Result()
-        response.set_response(status=itis, info=cad)
+        response.set_response(status=itis)
         return response
 
     @classmethod

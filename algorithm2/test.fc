@@ -16,7 +16,7 @@
 			name: t1,
 			source: node_while,
 			target: node_while,
-			constraints: [x >= 0, x' = x + y, y' = y]
+			constraints: [x >= 0, y >= 0, x' = x + y, y' = y]
 		},{
 			name: t2,
 			source: node_while,

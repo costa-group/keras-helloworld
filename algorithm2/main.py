@@ -76,10 +76,9 @@ def launch_file(config, f):
         raise Exception() from e
         return False
     config["vars_name"] = cfg.get_info("global_vars")
-    from nodeproperties import compute_invariants
-    compute_invariants(cfg, abstract_domain="polyhedra",
-                       threshold_modes=[],
-                       add_to_polyhedron=True)
+    from nodeproperties import invariant
+    invariant.set_configuration({"invariants": "polyhedra", "invariants_threshold": []})
+    invariant.compute_invariants(cfg, add_to_polyhedron=True)
     analyse(config, cfg)
     return True
 

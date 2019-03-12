@@ -263,6 +263,8 @@ class MLPhi:
                 mphi.append(cs[0])
             else:
                 mphi.append(And(cs))
+        if len(mphi) == 0:
+            return Expression(0) >= Expression(1)
         if len(mphi) == 1:
             return mphi[0]
         else:

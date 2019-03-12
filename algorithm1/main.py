@@ -29,7 +29,7 @@ def setArgumentParser():
                            help="Strategy based on SCC to go through the CFG.")
     # ntML parameters
     argParser.add_argument("-p", "--plot", required=False, action='store_true', help="Plot splitting if number vars is 2")
-    argParser.add_argument("-s", "--sampling", default="solver", choices=["solver", "lp"],
+    argParser.add_argument("-s", "--sampling", default="solver", choices=["solver", "lp", "rays"],
                            help="Sampling method")
     argParser.add_argument("-sn", "--sampling-number", type=int, default=10,
                            help="Number of points.")
@@ -76,7 +76,9 @@ def launch_file(config, f):
         raise Exception() from e
         return False
     config["vars_name"] = cfg.get_info("global_vars")
-    cfg.build_polyhedrons()
+    from nodeproperties import invariant
+    invariant.set_configuration({"invariants": "polyhedra", "invariants_threshold": []})
+    invariant.compute_invariants(cfg, add_to_polyhedron=True)
     analyse(config, cfg)
     return True
 
@@ -90,10 +92,10 @@ def analyse(config, cfg):
     nonterminating_sccs = []
     ntMLkeys = ["plot", "sampling", "sampling_number", "sampling_threshold", "classifier", "phi_transition", "phi_nondeterminism"]
     ntMLconf = {k: config[k] for k in ntMLkeys}
-    print("config: {")
+    OM.printif(2, "config: {")
     for key in sorted(ntMLconf.keys()):
-        print("\t%s: %s" % (key, ntMLconf[key]))
-    print("}")
+        OM.printif(2, "\t%s: %s" % (key, ntMLconf[key]))
+    OM.printif(2, "}")
     while (not stop and CFGs):
         current_cfg, sccd = CFGs.pop(0)
         removed = current_cfg.remove_unsat_edges()
