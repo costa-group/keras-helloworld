@@ -51,6 +51,7 @@ class MLConf:
         elif classifier == "svc":
             self.classifier = SVC
             self.classifier_defaultvalues["kernel"] = "linear"
+            self.classifier_defaultvalues["class_weight"] = {1000: 100, -1000: 1} 
         else:
             raise ValueError("Unknown method ({}) for phis".format(classifier))
 
@@ -78,6 +79,18 @@ class MLConf:
 
     def getPoints_before(self, solver, vs, lvs, all_vars, others=[]):
         points = self.generatePoints(solver, vs + lvs, all_vars, tags=["_phi"])
+        new_ps = []
+        for p in points:
+            for v in vs + lvs:
+                new_p = dict(p)
+                new_p[v] += 11
+                if solver.is_in(new_p, names=["_phi"]):
+                    new_ps.append(new_p)
+                new_p = dict(p)
+                new_p[v] -= 11
+                if solver.is_in(new_p, names=["_phi"]):
+                    new_ps.append(new_p)
+        points += new_ps
         bad_points = []
         good_points = []
         for p in points:
@@ -88,7 +101,7 @@ class MLConf:
             elif solver.is_in(p, names=["_phi", "_tr", "_good"]):
                 good_points.append([p[v] for v in vs + lvs])
             else:
-                OM.printif(1, "ignoring point: ", p)
+                OM.printif(3, "ignoring point: ", p)
         OM.printif(1, "goods: ", len(good_points), "bads: ", len(bad_points))
         if len(lvs) > 0:
             extra_p = self.generatePoints(solver, vs + lvs, all_vars, tags=["_phi", "_no_tr"])
@@ -99,6 +112,7 @@ class MLConf:
     def create_classifier(self, *args, **kwargs):
         kargs = dict(self.classifier_defaultvalues)
         kargs.update(**kwargs)
+        # return SVC(kernel="linear")
         return self.classifier(*args, **kargs)
 
     def create_phi(self, scc):
@@ -467,6 +481,7 @@ class ML:
                     break
                 else:
                     new_phi.aproximate_coeffs(max_coeff=1e10, max_dec=10)
+                    OM.printif(1, "split found:", new_phi.toString(str,str))
                     s.add(new_phi, name="_phi")
                     modified = True
                     phi.append(source, tname, new_phi)
